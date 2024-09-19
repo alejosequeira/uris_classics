@@ -14,6 +14,17 @@ export interface Car {
   year: number;
   price: number;
   imageUrl: string;
+  images: string[];
+  description: string;
+  specifications: {
+    engine: string;
+    transmission: string;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+  };
+  features: string[];
+  history?: string;
   averageRating: number;
   reviews: Review[];
   isFavorite: boolean;

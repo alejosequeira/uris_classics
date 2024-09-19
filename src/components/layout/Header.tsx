@@ -24,7 +24,7 @@ const Header = () => {
                 <li><button onClick={() => signOut()} className="hover:text-gray-300">Sign out</button></li>
               </>
             ) : (
-              <li><Link href="api/auth/signin" className="hover:text-gray-300">Sign in</Link></li>
+              <li><Link href="auth/signin" className="hover:text-gray-300">Sign in</Link></li>
             )}
           </ul>
         </nav>

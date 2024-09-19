@@ -12,16 +12,20 @@ const CARS_PER_PAGE = 6;
 
 export default function CarsPage() {
   const [cars, setCars] = useState<Car[]>([]);
+  const [sortOption, setSortOption] = useState('default');
   const [filteredCars, setFilteredCars] = useState<PaginatedResponse<Car>>({
     data: [],
     total: 0,
     page: 1,
     perPage: CARS_PER_PAGE,
   });
-  const [filters, setFilters] = useState({ make: '', minYear: 0, maxPrice: 0 });
+  const [filters, setFilters] = useState({ make: '', minYear: 1969, maxYear: 2024, maxPrice: 0 });
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage, setCarsPerPage] = useState(CARS_PER_PAGE);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const makes = Array.from(new Set(mockCars.map(car => car.make)));
 
   useEffect(() => {
     // Cargar favoritos desde localStorage
@@ -34,27 +38,42 @@ export default function CarsPage() {
   }, []);
 
   useEffect(() => {
-    filterCars('', filters, currentPage);
-  }, [currentPage, carsPerPage, showOnlyFavorites, cars]);
+    filterAndSortCars(searchTerm, filters, currentPage, sortOption);
+  }, [currentPage, carsPerPage, showOnlyFavorites, cars, searchTerm, filters, sortOption]);
 
-  const handleSearch = (searchTerm: string) => {
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
     setCurrentPage(1);
-    filterCars(searchTerm, filters, 1);
   };
 
-  const handleFilterChange = (newFilter: { [key: string]: string | number }) => {
-    const updatedFilters = { 
-      ...filters, 
+  const handleSortChange = (newSortOption: string) => {
+    setSortOption(newSortOption);
+    filterAndSortCars(searchTerm, filters, currentPage, newSortOption);
+  };
+
+  const handleFilterChange = (newFilter: { [key: string]: string | number | boolean }) => {
+    const updatedFilters = {
+      ...filters,
       ...Object.fromEntries(
-        Object.entries(newFilter).map(([key, value]) => [key, value === '' ? '' : key === 'make' ? value : Number(value)])
+        Object.entries(newFilter).map(([key, value]) => {
+          if (key === 'make') return [key, value];
+          if (key === 'showOnlyFavorites') {
+            setShowOnlyFavorites(value as boolean);
+            return [key, value];
+          }
+          if (key === 'carsPerPage') {
+            setCarsPerPage(Number(value));
+            return [key, Number(value)];
+          }
+          return [key, value === '' ? 0 : Number(value)];
+        })
       )
     };
     setFilters(updatedFilters);
     setCurrentPage(1);
-    filterCars('', updatedFilters, 1);
   };
 
-  const filterCars = (searchTerm: string, currentFilters: typeof filters, page: number, perPage: number = carsPerPage) => {
+  const filterAndSortCars = (searchTerm: string, currentFilters: typeof filters, page: number, currentSortOption: string, perPage: number = carsPerPage) => {
     let filtered = cars.filter((car) => {
       const matchesSearch =
         car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -62,12 +81,26 @@ export default function CarsPage() {
         car.year.toString().includes(searchTerm);
 
       const matchesMake = !currentFilters.make || car.make === currentFilters.make;
-      const matchesYear = !currentFilters.minYear || car.year >= currentFilters.minYear;
+      const matchesMinYear = !currentFilters.minYear || car.year >= currentFilters.minYear;
+      const matchesMaxYear = !currentFilters.maxYear || car.year <= currentFilters.maxYear;
       const matchesPrice = !currentFilters.maxPrice || car.price <= currentFilters.maxPrice;
       const matchesFavorite = !showOnlyFavorites || car.isFavorite;
 
-      return matchesSearch && matchesMake && matchesYear && matchesPrice && matchesFavorite;
+      return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
     });
+
+    // Aplicar ordenamiento
+    switch (currentSortOption) {
+      case 'priceHighToLow':
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'priceLowToHigh':
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      default:
+        // Mantener el orden original o aplicar un orden por defecto
+        break;
+    }
 
     const startIndex = (page - 1) * perPage;
     const paginatedCars = filtered.slice(startIndex, startIndex + perPage);
@@ -81,16 +114,16 @@ export default function CarsPage() {
   };
 
   const handleToggleFavorite = (carId: string) => {
-    const updatedCars = cars.map(car => 
+    const updatedCars = cars.map(car =>
       car.id === carId ? { ...car, isFavorite: !car.isFavorite } : car
     );
     setCars(updatedCars);
-    
+
     // Actualizar localStorage
     const favoriteCars = updatedCars.filter(car => car.isFavorite).map(car => car.id);
     localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
 
-    filterCars('', filters, currentPage);
+    filterAndSortCars(searchTerm, filters, currentPage, sortOption);
   };
 
   const totalPages = Math.ceil(filteredCars.total / carsPerPage);
@@ -100,10 +133,13 @@ export default function CarsPage() {
       <h1 className="text-3xl font-bold mb-6">Our Cars</h1>
       <CarSearch onSearch={handleSearch} />
       <CarFilters 
-        onFilterChange={handleFilterChange} 
+        onFilterChange={handleFilterChange}
+        onSortChange={handleSortChange}
+        makes={makes}
         carsPerPage={carsPerPage} 
         showOnlyFavorites={showOnlyFavorites}
-        onToggleFavorites={() => setShowOnlyFavorites(!showOnlyFavorites)}
+        cars={cars}
+        sortOption={sortOption}
       />
       {filteredCars.data.length > 0 ? (
         <>
