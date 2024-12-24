@@ -8,7 +8,7 @@ interface CarFiltersProps {
   onFilterChange: (filters: { [key: string]: string | number | boolean }) => void;
   onSortChange: (sortOption: string) => void;
   onClearFilters: () => void;
-  
+
   makes: string[];
   carsPerPage: number;
   showOnlyFavorites: boolean;
@@ -20,7 +20,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   onFilterChange,
   onSortChange,
   onClearFilters,
-  
+
   makes,
   carsPerPage,
   showOnlyFavorites,
@@ -172,14 +172,31 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                 name="sortOption"
                 value={sortOption}
                 onChange={(e) => onSortChange(e.target.value)}
-                className="w-full p-3 rounded-lg
-                         bg-[rgb(var(--bg-secondary-light))] dark:bg-[rgb(var(--bg-secondary-dark))]
-                         text-[rgb(var(--text-primary-light))] dark:text-[rgb(var(--text-primary-dark))]
-                         border border-[rgb(var(--border-light))] dark:border-[rgb(var(--border-dark))]"
+                className="w-full p-3 rounded-lg mb-4
+               bg-[rgb(var(--bg-secondary-light))] dark:bg-[rgb(var(--bg-secondary-dark))]
+               text-[rgb(var(--text-primary-light))] dark:text-[rgb(var(--text-primary-dark))]
+               border border-[rgb(var(--border-light))] dark:border-[rgb(var(--border-dark))]"
               >
                 <option value="default">Default</option>
                 <option value="priceHighToLow">Price: High to Low</option>
                 <option value="priceLowToHigh">Price: Low to High</option>
+              </select>
+
+              <label className="text-sm font-medium text-[rgb(var(--text-secondary-light))] dark:text-[rgb(var(--text-secondary-dark))]">
+                Cars per page
+              </label>
+              <select
+                name="carsPerPage"
+                value={carsPerPage}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg mb-4
+               bg-[rgb(var(--bg-secondary-light))] dark:bg-[rgb(var(--bg-secondary-dark))]
+               text-[rgb(var(--text-primary-light))] dark:text-[rgb(var(--text-primary-dark))]
+               border border-[rgb(var(--border-light))] dark:border-[rgb(var(--border-dark))]"
+              >
+                <option value={6}>6 per page</option>
+                <option value={12}>12 per page</option>
+                <option value={24}>24 per page</option>
               </select>
             </div>
 
@@ -191,7 +208,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                 checked={showOnlyFavorites}
                 onChange={handleChange}
                 className="w-4 h-4 rounded border-[rgb(var(--border-light))] dark:border-[rgb(var(--border-dark))]
-                         text-[rgb(var(--accent-light))] dark:text-[rgb(var(--accent-dark))]"
+               text-[rgb(var(--accent-light))] dark:text-[rgb(var(--accent-dark))]"
               />
               <label
                 htmlFor="favorites"

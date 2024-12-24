@@ -1,7 +1,7 @@
 "use client"
 // src/components/layout/HeroSection.tsx
 import React, { useEffect, useState } from 'react';
-import CarSearch from '@/components/car/CarSearch';
+
 import { Playfair_Display } from 'next/font/google';
 
 const playfair = Playfair_Display({ subsets: ['latin'] });

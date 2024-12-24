@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import CarCard from '@/components/car/CarCard';
 import CarSearch from '@/components/car/CarSearch';
 import CarFilters from '@/components/car/CarFilters';

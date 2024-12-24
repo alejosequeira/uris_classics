@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StarRating from '@/components/ui/StarRating';
+
 
 interface ReviewFormProps {
     onSubmit: (review: { rating: number;name: string, comment: string }) => void;

@@ -1,7 +1,7 @@
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Car } from '@/types/car';
+
 import StarRating from '@/components/ui/StarRating';
 import Reviews from '@/components/car/Reviews';
 import mockCars from '@/api/carData';
