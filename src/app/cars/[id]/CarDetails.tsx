@@ -48,8 +48,9 @@ export default function CarDetails({ id }: { id: string }) {
                     <Image
                         src={car.imageUrl}
                         alt={`${car.year} ${car.make} ${car.model}`}
-                        layout="fill"
-                        objectFit="cover"
+                        width={1200}
+                        height={800}
+                        className="w-full h-full object-cover"
                     />
                 </div>
                 <div className="p-6">

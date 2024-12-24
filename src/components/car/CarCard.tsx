@@ -19,18 +19,18 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view }) => {
                     shadow-lg hover:shadow-xl
                     transform transition-all duration-500 hover:-translate-y-1">
         <div className="relative aspect-video overflow-hidden">
-          <Image 
-            src={car.imageUrl} 
-            alt={`${car.year} ${car.make} ${car.model}`} 
-            layout="fill"
-            objectFit="cover"
-            className="transform transition-transform duration-500 group-hover:scale-110"
+          <Image
+            src={car.imageUrl}
+            alt={`${car.year} ${car.make} ${car.model}`}
+            width={800}    // añadir width y height específicos
+            height={600}   // en lugar de layout="fill"
+            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--navy))/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute top-2 right-2">
-            <FavoriteButton 
-              isFavorite={car.isFavorite} 
-              onClick={() => onToggleFavorite(car.id)} 
+            <FavoriteButton
+              isFavorite={car.isFavorite}
+              onClick={() => onToggleFavorite(car.id)}
               ariaLabel={`${car.isFavorite ? 'Remove from' : 'Add to'} favorites`}
             />
           </div>
@@ -58,7 +58,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view }) => {
             </p>
           </div>
 
-          <Link 
+          <Link
             href={`/cars/${car.id}`}
             className="mt-4 block w-full text-center px-6 py-3 rounded-lg
                      bg-[rgb(var(--accent-light))] dark:bg-[rgb(var(--accent-dark))]
@@ -88,17 +88,17 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view }) => {
                   shadow-lg hover:shadow-xl
                   flex transition-all duration-500 hover:-translate-y-1">
       <div className="relative w-80 h-64">
-        <Image 
-          src={car.imageUrl} 
-          alt={`${car.year} ${car.make} ${car.model}`} 
+        <Image
+          src={car.imageUrl}
+          alt={`${car.year} ${car.make} ${car.model}`}
           layout="fill"
           objectFit="cover"
           className="transform transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute top-2 left-2">
-          <FavoriteButton 
-            isFavorite={car.isFavorite} 
-            onClick={() => onToggleFavorite(car.id)} 
+          <FavoriteButton
+            isFavorite={car.isFavorite}
+            onClick={() => onToggleFavorite(car.id)}
             ariaLabel={`${car.isFavorite ? 'Remove from' : 'Add to'} favorites`}
           />
         </div>
@@ -136,7 +136,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view }) => {
           </div>
         </div>
 
-        <Link 
+        <Link
           href={`/cars/${car.id}`}
           className="mt-4 inline-block px-8 py-3 rounded-lg
                    bg-[rgb(var(--accent-light))] dark:bg-[rgb(var(--accent-dark))]
