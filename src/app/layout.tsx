@@ -1,12 +1,14 @@
+
 import '../styles/globals.css'
 import type { Metadata } from 'next'
 import Layout from '../components/layout/Layout'
-import { Inter } from 'next/font/google'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { getServerSession } from "next-auth"
 import SessionProvider from "./SessionProvider"
-
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Classic Cars Marketplace',
@@ -20,13 +22,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession()
-
+  
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <SessionProvider session={session}>
-          <Layout>{children}</Layout>
-        </SessionProvider>
+    <html lang="en" suppressHydrationWarning>
+      
+      <body className={`${inter.className} bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SessionProvider session={session}>
+            <Layout>{children}</Layout>
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

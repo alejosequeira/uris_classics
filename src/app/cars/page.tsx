@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import CarCard from '@/components/car/CarCard';
 import CarSearch from '@/components/car/CarSearch';
 import CarFilters from '@/components/car/CarFilters';
 import Pagination from '@/components/ui/Pagination';
 import { Car, PaginatedResponse } from '@/types/car';
 import mockCars from '@/api/carData';
+import ViewToggle from '@/components/ui/ViewToggle';
+import Spinner from '@/components/ui/Spinner';
 
 const CARS_PER_PAGE = 6;
 
@@ -24,11 +26,12 @@ export default function CarsPage() {
   const [carsPerPage, setCarsPerPage] = useState(CARS_PER_PAGE);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [view, setView] = useState<'grid' | 'list'>('grid');
+  const [isLoading, setIsLoading] = useState(false);
+  const totalPages = Math.ceil(filteredCars.total / carsPerPage);
   const makes = Array.from(new Set(mockCars.map(car => car.make)));
 
   useEffect(() => {
-    // Cargar favoritos desde localStorage
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
     const carsWithFavorites = mockCars.map(car => ({
       ...car,
@@ -73,7 +76,11 @@ export default function CarsPage() {
     setCurrentPage(1);
   };
 
-  const filterAndSortCars = (searchTerm: string, currentFilters: typeof filters, page: number, currentSortOption: string, perPage: number = carsPerPage) => {
+  const filterAndSortCars = async (searchTerm: string, currentFilters: typeof filters, page: number, currentSortOption: string, perPage: number = carsPerPage) => {
+    setIsLoading(true);
+    // Simulamos una carga asíncrona
+    await new Promise(resolve => setTimeout(resolve, 500));
+
     let filtered = cars.filter((car) => {
       const matchesSearch =
         car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -88,6 +95,7 @@ export default function CarsPage() {
 
       return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
     });
+
 
     // Aplicar ordenamiento
     switch (currentSortOption) {
@@ -111,6 +119,7 @@ export default function CarsPage() {
       page: page,
       perPage: perPage,
     });
+    setIsLoading(false);
   };
 
   const handleToggleFavorite = (carId: string) => {
@@ -126,37 +135,65 @@ export default function CarsPage() {
     filterAndSortCars(searchTerm, filters, currentPage, sortOption);
   };
 
-  const totalPages = Math.ceil(filteredCars.total / carsPerPage);
+  const handleClearFilters = () => {
+    setFilters({
+      make: '',
+      minYear: 1900,
+      maxYear: new Date().getFullYear(),
+      maxPrice: 0
+    });
+    setSortOption('default');
+    setShowOnlyFavorites(false);
+    setCarsPerPage(CARS_PER_PAGE);
+    setCurrentPage(1);
+    setSearchTerm('');
+  };
+
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-6">Our Cars</h1>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Our Exclusive Collection</h1>
       <CarSearch onSearch={handleSearch} />
-      <CarFilters 
-        onFilterChange={handleFilterChange}
-        onSortChange={handleSortChange}
-        makes={makes}
-        carsPerPage={carsPerPage} 
-        showOnlyFavorites={showOnlyFavorites}
-        cars={cars}
-        sortOption={sortOption}
-      />
-      {filteredCars.data.length > 0 ? (
+      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+        <CarFilters
+          onFilterChange={handleFilterChange}
+          
+          onSortChange={handleSortChange}
+          onClearFilters={handleClearFilters}          
+          makes={makes}
+          carsPerPage={carsPerPage}
+          showOnlyFavorites={showOnlyFavorites}
+          cars={cars}
+          sortOption={sortOption}
+        />
+       
+      </div>
+      <div className="flex justify-between items-center mb-6">
+        <p className="text-lg text-gray-600">
+          Showing {filteredCars.data.length} of {filteredCars.total} cars
+        </p>
+        <ViewToggle view={view} onViewChange={setView} />
+      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : filteredCars.data.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={view === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" : "space-y-6"}>
             {filteredCars.data.map(car => (
-              <CarCard key={car.id} car={car} onToggleFavorite={handleToggleFavorite} />
+              <CarCard key={car.id} car={car} onToggleFavorite={handleToggleFavorite} view={view} />
             ))}
           </div>
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
+          <div className="mt-8">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(filteredCars.total / carsPerPage)}
+              onPageChange={setCurrentPage}
+            />
+          </div>
         </>
       ) : (
-        <p className="text-center text-xl mt-10">No cars found matching your criteria.</p>
+        <p className="text-center text-xl mt-10 text-gray-600">No cars found matching your criteria.</p>
       )}
     </div>
-  )
+  );
 }

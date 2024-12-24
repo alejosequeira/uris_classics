@@ -17,16 +17,30 @@ export interface Car {
   images: string[];
   description: string;
   specifications: {
-    engine: string;
-    transmission: string;
-    mileage: number;
-    exteriorColor: string;
-    interiorColor: string;
+      engine: string;
+      transmission: string;
+      mileage: number;
+      exteriorColor: string;
+      interiorColor: string;
+      horsepower: string;
+      topSpeed: string;
+      acceleration: string;
   };
   features: string[];
-  history?: string;
+  history: string;
+  location: string;
+  engine: string;
+  transmission: string;
+  mileage: number;
   averageRating: number;
-  reviews: Review[];
+  reviews: {
+      id: string;
+      userId: string;
+      username: string;
+      rating: number;
+      comment: string;
+      date: string;
+  }[];
   isFavorite: boolean;
 }
 
