@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 import CarCard from '@/components/car/CarCard';
 import CarSearch from '@/components/car/CarSearch';
 import CarFilters from '@/components/car/CarFilters';
@@ -28,8 +29,8 @@ export default function CarsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [isLoading, setIsLoading] = useState(false);
-  const totalPages = Math.ceil(filteredCars.total / carsPerPage);
   const makes = Array.from(new Set(mockCars.map(car => car.make)));
+
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
@@ -40,9 +41,6 @@ export default function CarsPage() {
     setCars(carsWithFavorites);
   }, []);
 
-  useEffect(() => {
-    filterAndSortCars(searchTerm, filters, currentPage, sortOption);
-  }, [currentPage, carsPerPage, showOnlyFavorites, cars, searchTerm, filters, sortOption]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -76,12 +74,17 @@ export default function CarsPage() {
     setCurrentPage(1);
   };
 
-  const filterAndSortCars = async (searchTerm: string, currentFilters: typeof filters, page: number, currentSortOption: string, perPage: number = carsPerPage) => {
+  const filterAndSortCars = useCallback(async (
+    searchTerm: string,
+    currentFilters: typeof filters,
+    page: number,
+    currentSortOption: string,
+    perPage: number = carsPerPage
+  ) => {
     setIsLoading(true);
-    // Simulamos una carga asíncrona
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    let filtered = cars.filter((car) => {
+    const filtered = cars.filter((car) => {
       const matchesSearch =
         car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
         car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -120,7 +123,7 @@ export default function CarsPage() {
       perPage: perPage,
     });
     setIsLoading(false);
-  };
+  }, [cars, showOnlyFavorites, carsPerPage]);
 
   const handleToggleFavorite = (carId: string) => {
     const updatedCars = cars.map(car =>
@@ -148,7 +151,9 @@ export default function CarsPage() {
     setCurrentPage(1);
     setSearchTerm('');
   };
-
+  useEffect(() => {
+    filterAndSortCars(searchTerm, filters, currentPage, sortOption, carsPerPage);
+  }, [filterAndSortCars, searchTerm, filters, currentPage, sortOption, carsPerPage]);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -157,16 +162,16 @@ export default function CarsPage() {
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
         <CarFilters
           onFilterChange={handleFilterChange}
-          
+
           onSortChange={handleSortChange}
-          onClearFilters={handleClearFilters}          
+          onClearFilters={handleClearFilters}
           makes={makes}
           carsPerPage={carsPerPage}
           showOnlyFavorites={showOnlyFavorites}
           cars={cars}
           sortOption={sortOption}
         />
-       
+
       </div>
       <div className="flex justify-between items-center mb-6">
         <p className="text-lg text-gray-600">

@@ -7,13 +7,10 @@ import { Playfair_Display } from 'next/font/google';
 const playfair = Playfair_Display({ subsets: ['latin'] });
 
 interface HeroSectionProps {
-//   onSearch: (searchTerm: string) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({  }) => {
-    const onSearch = (searchTerm: string) => {
-        console.log(searchTerm);
-    };
+    
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {

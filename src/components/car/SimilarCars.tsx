@@ -32,11 +32,12 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
       
       // Actualizar localStorage
       const allFavoriteCars = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
-      const updatedFavorites = cars.isFavorite
+      const carToUpdate = prevCars.find(car => car.id === carId);
+      const updatedFavorites = carToUpdate?.isFavorite
         ? allFavoriteCars.filter((id: string) => id !== carId)
         : [...allFavoriteCars, carId];
-      localStorage.setItem('favoriteCars', JSON.stringify(updatedFavorites));
       
+      localStorage.setItem('favoriteCars', JSON.stringify(updatedFavorites));
       return newCars;
     });
   };
@@ -50,6 +51,7 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
             key={similarCar.id} 
             car={similarCar} 
             onToggleFavorite={handleToggleFavorite} 
+            view="grid"
           />
         ))}
       </div>
