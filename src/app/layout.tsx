@@ -1,11 +1,12 @@
+// src/app/layout.tsx
 import '../styles/globals.css'
 import type { Metadata } from 'next'
 import Layout from '../components/layout/Layout'
-import { Inter } from 'next/font/google'  
+import { Inter } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
+import Providers from './providers'  
 
 const inter = Inter({ subsets: ['latin'] })
-
 
 export const metadata: Metadata = {
   title: 'Classic Cars Marketplace',
@@ -13,21 +14,20 @@ export const metadata: Metadata = {
   keywords: 'classic cars, muscle cars, vintage automobiles, car marketplace',
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  
-  
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />        
+      </head>
       <body className={`${inter.className} bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          
-            <Layout>{children}</Layout>
-          
-        </ThemeProvider>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
       </body>
     </html>
   )

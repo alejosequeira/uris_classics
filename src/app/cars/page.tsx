@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import CarCard from '@/components/car/CarCard';
 import CarSearch from '@/components/car/CarSearch';
 import CarFilters from '@/components/car/CarFilters';
@@ -10,10 +9,12 @@ import { Car, PaginatedResponse } from '@/types/car';
 import mockCars from '@/api/carData';
 import ViewToggle from '@/components/ui/ViewToggle';
 import Spinner from '@/components/ui/Spinner';
+import { useSearch } from '@/context/SearchContext';
 
 const CARS_PER_PAGE = 6;
 
 export default function CarsPage() {
+  const { searchTerm } = useSearch();
   const [cars, setCars] = useState<Car[]>([]);
   const [sortOption, setSortOption] = useState('default');
   const [filteredCars, setFilteredCars] = useState<PaginatedResponse<Car>>({
@@ -26,12 +27,11 @@ export default function CarsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage, setCarsPerPage] = useState(CARS_PER_PAGE);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [isLoading, setIsLoading] = useState(false);
   const makes = Array.from(new Set(mockCars.map(car => car.make)));
 
-
+  // Inicializar coches y favoritos
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
     const carsWithFavorites = mockCars.map(car => ({
@@ -41,10 +41,16 @@ export default function CarsPage() {
     setCars(carsWithFavorites);
   }, []);
 
+  // Efecto para manejar el término de búsqueda del contexto
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch(searchTerm);
+    }
+  }, [searchTerm]);
 
   const handleSearch = (term: string) => {
-    setSearchTerm(term);
     setCurrentPage(1);
+    filterAndSortCars(term, filters, 1, sortOption);
   };
 
   const handleSortChange = (newSortOption: string) => {
@@ -99,8 +105,6 @@ export default function CarsPage() {
       return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
     });
 
-
-    // Aplicar ordenamiento
     switch (currentSortOption) {
       case 'priceHighToLow':
         filtered.sort((a, b) => b.price - a.price);
@@ -109,7 +113,6 @@ export default function CarsPage() {
         filtered.sort((a, b) => a.price - b.price);
         break;
       default:
-        // Mantener el orden original o aplicar un orden por defecto
         break;
     }
 
@@ -131,7 +134,6 @@ export default function CarsPage() {
     );
     setCars(updatedCars);
 
-    // Actualizar localStorage
     const favoriteCars = updatedCars.filter(car => car.isFavorite).map(car => car.id);
     localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
 
@@ -149,8 +151,8 @@ export default function CarsPage() {
     setShowOnlyFavorites(false);
     setCarsPerPage(CARS_PER_PAGE);
     setCurrentPage(1);
-    setSearchTerm('');
   };
+
   useEffect(() => {
     filterAndSortCars(searchTerm, filters, currentPage, sortOption, carsPerPage);
   }, [filterAndSortCars, searchTerm, filters, currentPage, sortOption, carsPerPage]);
@@ -162,7 +164,6 @@ export default function CarsPage() {
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
         <CarFilters
           onFilterChange={handleFilterChange}
-
           onSortChange={handleSortChange}
           onClearFilters={handleClearFilters}
           makes={makes}
@@ -171,14 +172,15 @@ export default function CarsPage() {
           cars={cars}
           sortOption={sortOption}
         />
-
       </div>
+      
       <div className="flex justify-between items-center mb-6">
         <p className="text-lg text-gray-600">
           Showing {filteredCars.data.length} of {filteredCars.total} cars
         </p>
         <ViewToggle view={view} onViewChange={setView} />
       </div>
+      
       {isLoading ? (
         <Spinner />
       ) : filteredCars.data.length > 0 ? (
