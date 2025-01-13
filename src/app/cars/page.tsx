@@ -159,9 +159,13 @@ export default function CarsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Our Exclusive Collection</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center text-foreground">
+        Our Exclusive Collection
+      </h1>
+      
       <CarSearch onSearch={handleSearch} />
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+      
+      <div className="bg-card shadow-md rounded-lg p-6 mb-8 text-card-foreground">
         <CarFilters
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}
@@ -175,7 +179,7 @@ export default function CarsPage() {
       </div>
       
       <div className="flex justify-between items-center mb-6">
-        <p className="text-lg text-gray-600">
+        <p className="text-lg text-muted-foreground">
           Showing {filteredCars.data.length} of {filteredCars.total} cars
         </p>
         <ViewToggle view={view} onViewChange={setView} />
@@ -185,9 +189,20 @@ export default function CarsPage() {
         <Spinner />
       ) : filteredCars.data.length > 0 ? (
         <>
-          <div className={view === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" : "space-y-6"}>
+          <div 
+            className={
+              view === 'grid' 
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+                : "space-y-6"
+            }
+          >
             {filteredCars.data.map(car => (
-              <CarCard key={car.id} car={car} onToggleFavorite={handleToggleFavorite} view={view} />
+              <CarCard 
+                key={car.id} 
+                car={car} 
+                onToggleFavorite={handleToggleFavorite} 
+                view={view} 
+              />
             ))}
           </div>
           <div className="mt-8">
@@ -199,7 +214,9 @@ export default function CarsPage() {
           </div>
         </>
       ) : (
-        <p className="text-center text-xl mt-10 text-gray-600">No cars found matching your criteria.</p>
+        <p className="text-center text-xl mt-10 text-muted-foreground">
+          No cars found matching your criteria.
+        </p>
       )}
     </div>
   );

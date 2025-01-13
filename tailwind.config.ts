@@ -1,24 +1,4 @@
-// import type { Config } from "tailwindcss";
-
-// const config: Config = {
-//   content: [
-//     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-//     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-//     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-//   ],
-//   theme: {
-//     extend: {
-//       colors: {
-//         background: "var(--background)",
-//         foreground: "var(--foreground)",
-//       },
-//     },
-//   },
-//   plugins: [],
-// };
-
-// export default config;
-// tailwind.config.js
+// tailwind.config.ts
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -29,6 +9,56 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        emerald: {
+          DEFAULT: "rgb(var(--emerald))",
+          light: "rgb(var(--emerald-light))",
+          dark: "rgb(var(--emerald-dark))",
+        },
+        ivory: "rgb(var(--ivory))",
+        navy: "rgb(var(--navy))",
+        "soft-gold": {
+          DEFAULT: "rgb(var(--soft-gold))",
+          light: "rgb(var(--soft-gold-light))",
+          dark: "rgb(var(--soft-gold-dark))",
+        },
+        mahogany: "rgb(var(--mahogany))",
+        carbon: "rgb(var(--carbon))",
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
       animation: {
         'fadeIn': 'fadeIn 0.5s ease-in',
         'slideUp': 'slideUp 0.5s ease-out',

@@ -3,89 +3,174 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap');
 
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
+@layer base {
+  :root {
+    /* Palette Colors */
+    --emerald: 1 50 32;
+    --ivory: 248 241 229;
+    --navy: 0 33 71;
+    --soft-gold: 197 168 128;
+    --mahogany: 93 58 26;
+    --carbon: 51 51 51;
+    --emerald-light: 1 70 42;
+    --emerald-dark: 1 40 22;
+    --soft-gold-light: 207 178 138;
+    --soft-gold-dark: 187 158 118;
+
+    /* Light mode */
+    --background: var(--ivory);
+    --foreground: var(--carbon);
+    --card: 0 0% 100%;
+    --card-foreground: var(--carbon);
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--carbon);
+    --primary: var(--emerald);
+    --primary-foreground: var(--ivory);
+    --secondary: var(--soft-gold);
+    --secondary-foreground: var(--carbon);
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: var(--soft-gold-light);
+    --accent-foreground: var(--carbon);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--carbon);
+    --radius: 0.5rem;
+
+    /* Gradientes predefinidos */
+    --gradient-primary: linear-gradient(
+      45deg,
+      rgb(var(--emerald)) 0%,
+      rgb(var(--navy)) 100%
+    );
+    --gradient-accent: linear-gradient(
+      45deg,
+      rgb(var(--soft-gold)) 0%,
+      rgb(var(--mahogany)) 100%
+    );
+
+    /* Functional Colors */
+    --bg-primary-light: var(--ivory);
+    --bg-secondary-light: 255 255 255;
+    --text-primary-light: var(--navy);
+    --text-secondary-light: var(--carbon);
+    --accent-light: var(--soft-gold);
+    --bg-primary-dark: var(--emerald);
+    --bg-secondary-dark: var(--navy);
+    --text-primary-dark: var(--ivory);
+    --text-secondary-dark: var(--soft-gold);
+    --accent-dark: var(--mahogany);
+
+    /* Componentes específicos */
+    --header-bg-light: 248 241 229 0.9;
+    --header-bg-dark: 1 50 32 0.9;
+    --hero-bg-light: var(--emerald);
+    --hero-bg-dark: var(--navy);
+    --hero-text-light: var(--ivory);
+    --hero-text-dark: var(--ivory);
+    --hero-accent-light: var(--soft-gold);
+    --hero-accent-dark: var(--soft-gold);
+    --border-light: var(--soft-gold);
+    --border-dark: var(--mahogany);
+  }
+
+  .dark {
+    --background: var(--carbon);
+    --foreground: var(--ivory);
+    --card: var(--carbon);
+    --card-foreground: var(--ivory);
+    --popover: var(--carbon);
+    --popover-foreground: var(--ivory);
+    --primary: var(--emerald-light);
+    --primary-foreground: var(--ivory);
+    --secondary: var(--soft-gold-dark);
+    --secondary-foreground: var(--ivory);
+    --muted: var(--carbon);
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: var(--soft-gold-dark);
+    --accent-foreground: var(--ivory);
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: var(--ivory);
+    --border: var(--carbon);
+    --input: var(--carbon);
+    --ring: var(--soft-gold);
+  }
+
+  /* Estilos base */
+  * {
+    @apply border-border;
+    transition-property: background-color, border-color, opacity, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+  }
 }
 
-/* Actualizar en globals.css */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 0.02em;
-  font-weight: 700;
+@layer components {
+  .elegant-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .modern-text {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.03em;
+  }
+
+  .price {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .smooth-transform {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
-.elegant-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-}
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
 
-.modern-text {
-  font-family: 'Roboto', sans-serif;
-  letter-spacing: 0.03em;
-}
+  .animate-fadeSlideUp {
+    animation: fadeSlideUp 1s ease-out forwards;
+  }
 
-.price {
-  font-family: 'Cormorant Garamond', serif;
-}
-/* globals.css */
-:root {
-  /* Palette Colors - Mantenemos tus colores base */
-  --emerald: 1 50 32;      /* #013220 */
-  --ivory: 248 241 229;    /* #F8F1E5 */
-  --navy: 0 33 71;         /* #002147 */
-  --soft-gold: 197 168 128; /* #C5A880 */
-  --mahogany: 93 58 26;    /* #5D3A1A */
-  --carbon: 51 51 51;      /* #333333 */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
 
-  --emerald-light: 1 70 42;
-  --emerald-dark: 1 40 22;
-  --soft-gold-light: 207 178 138;
-  --soft-gold-dark: 187 158 118;
-  
-  /* Gradientes predefinidos */
-  --gradient-primary: linear-gradient(
-    45deg,
-    rgb(var(--emerald)) 0%,
-    rgb(var(--navy)) 100%
-  );
-  
-  --gradient-accent: linear-gradient(
-    45deg,
-    rgb(var(--soft-gold)) 0%,
-    rgb(var(--mahogany)) 100%
-  );
-  
-  /* Functional Colors - Light Mode */
-  --bg-primary-light: var(--ivory);
-  --bg-secondary-light: 255 255 255;
-  --text-primary-light: var(--navy);
-  --text-secondary-light: var(--carbon);
-  --accent-light: var(--soft-gold);
-  
-  /* Functional Colors - Dark Mode */
-  --bg-primary-dark: var(--emerald);
-  --bg-secondary-dark: var(--navy);
-  --text-primary-dark: var(--ivory);
-  --text-secondary-dark: var(--soft-gold);
-  --accent-dark: var(--mahogany);
-  
-  /* Header específicamente */
-  --header-bg-light: 248 241 229 0.9; /* ivory con transparencia */
-  --header-bg-dark: 1 50 32 0.9;      /* emerald con transparencia */
-  
-  /* Hero Section específicamente */
-  --hero-bg-light: var(--emerald);
-  --hero-bg-dark: var(--navy);
-  --hero-text-light: var(--ivory);
-  --hero-text-dark: var(--ivory);
-  --hero-accent-light: var(--soft-gold);
-  --hero-accent-dark: var(--soft-gold);
-  
-  /* Borders */
-  --border-light: var(--soft-gold);
-  --border-dark: var(--mahogany);
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .bg-radial-gradient {
+    background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.3) 100%);
+  }
+
+  .animate-pulse {
+    animation: pulse 3s infinite;
+  }
+
+  .animate-glow {
+    animation: glow 3s infinite;
+  }
 }
 
 @keyframes fadeSlideUp {
@@ -98,6 +183,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -109,71 +195,22 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-.animate-fadeSlideUp {
-  animation: fadeSlideUp 1s ease-out forwards;
-}
-
-.animation-delay-200 {
-  animation-delay: 200ms;
-}
-
-.animation-delay-400 {
-  animation-delay: 400ms;
-}
-
-.animation-delay-600 {
-  animation-delay: 600ms;
-}
-
-.bg-radial-gradient {
-  background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.3) 100%);
-}
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: rotate(45deg) scale(1); }
-  50% { opacity: .7; transform: rotate(45deg) scale(1.1); }
-}
-
-.animate-pulse {
-  animation: pulse 3s infinite;
+  0%, 100% { 
+    opacity: 1; 
+    transform: rotate(45deg) scale(1); 
+  }
+  50% { 
+    opacity: .7; 
+    transform: rotate(45deg) scale(1.1); 
+  }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 5px rgb(var(--soft-gold)); }
-  50% { box-shadow: 0 0 20px rgb(var(--soft-gold)); }
-}
-
-.animate-glow {
-  animation: glow 3s infinite;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Añadir a globals.css */
-/* Transiciones globales */
-* {
-  transition-property: background-color, border-color, opacity, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  
-}
-
-.smooth-transform {
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  0%, 100% { 
+    box-shadow: 0 0 5px rgb(var(--soft-gold)); 
+  }
+  50% { 
+    box-shadow: 0 0 20px rgb(var(--soft-gold)); 
+  }
 }
