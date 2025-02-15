@@ -1,5 +1,135 @@
 import { Car } from '@/types/car';
 
+// En carData.ts
+
+export interface CarouselCar {
+    title: string;
+    imageUrl: string;
+    alt?: string;
+    priority?: boolean;
+}
+
+interface CarGroup {
+    cars: CarouselCar[];
+}
+
+export const carGroups: CarGroup[] = [
+    {
+        // Grupo Mustang
+        cars: [
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Front View',
+                priority: true 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Side View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Rear View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Interior View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Engine View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Detail View' 
+            }
+        ]
+    },
+    {
+        // Grupo Camaro
+        cars: [
+            { 
+                title: '1970 Chevrolet Camaro ZL1', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1970 Chevrolet Camaro ZL1 - Front View',
+                priority: false 
+            },
+            { 
+                title: '1989 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1989 Chevrolet Camaro - Side View' 
+            },
+            { 
+                title: '1968 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1968 Chevrolet Camaro - Rear View' 
+            },
+            { 
+                title: '1965 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1965 Chevrolet Camaro - Interior View' 
+            },
+            { 
+                title: '1972 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1972 Chevrolet Camaro - Engine View' 
+            },
+            { 
+                title: '1975 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                alt: '1975 Chevrolet Camaro - Detail View' 
+            }
+        ]
+    },
+    {
+        // Grupo Charger
+        cars: [
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Front View',
+                priority: true 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Side View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Rear View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Interior View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Engine View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.jpg',
+                alt: '1969 Dodge Charger - Detail View' 
+            }
+        ]
+    }
+ ];
+
+// Función helper para obtener un grupo aleatorio (siempre devuelve las 6 imágenes del mismo auto)
+export const getRandomCarouselCars = (): CarouselCar[] => {
+    const randomIndex = Math.floor(Math.random() * carGroups.length);
+    return carGroups[randomIndex].cars;
+};
+
 const mockCars: Car[] = [
     {
         id: '1',

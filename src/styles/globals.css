@@ -1,122 +1,171 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap');
 
+
+
 @layer base {
+  /* Light Mode - Futurista */
   :root {
-    /* Palette Colors */
-    --emerald: 1 50 32;
-    --ivory: 248 241 229;
-    --navy: 0 33 71;
-    --soft-gold: 197 168 128;
-    --mahogany: 93 58 26;
-    --carbon: 51 51 51;
-    --emerald-light: 1 70 42;
-    --emerald-dark: 1 40 22;
-    --soft-gold-light: 207 178 138;
-    --soft-gold-dark: 187 158 118;
-
-    /* Light mode */
-    --background: var(--ivory);
-    --foreground: var(--carbon);
+    --primary: 0 0% 9%; /* Azul neón */
+    --secondary: 0 0% 96.1%; /* Negro puro */
+    --neutral-light: 220 15% 20%; /* Azul oscuro */
+    --neutral-dark: 220 10% 10%; /* Azul noche */
+    --accent: 0 0% 96.1%; /* Cian brillante */
+    --highlight: 300 90% 55%; /* Magenta neón */
+    --muted: 0 0% 96.1%; /* Azul grisáceo */
+    /* --brand: #e53935; Rojo intenso */
+    --brand:#e53935;
+    --brand-light: 4 100% 70%; /* Rojo coral */
+    --brand-dark: 0 75% 41%; /* Rojo profundo */
+    --background: 240 10% 4%; 
+    --foreground: 0 0% 15%;
     --card: 0 0% 100%;
-    --card-foreground: var(--carbon);
+    --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: var(--carbon);
-    --primary: var(--emerald);
-    --primary-foreground: var(--ivory);
-    --secondary: var(--soft-gold);
-    --secondary-foreground: var(--carbon);
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: var(--soft-gold-light);
-    --accent-foreground: var(--carbon);
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: var(--carbon);
-    --radius: 0.5rem;
-
-    /* Gradientes predefinidos */
+    --popover-foreground: 0 0% 3.9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary-foreground: 0 0% 9%;
+    --accent-foreground: 0 0% 9%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+  
     --gradient-primary: linear-gradient(
       45deg,
-      rgb(var(--emerald)) 0%,
-      rgb(var(--navy)) 100%
+      hsl(var(--primary)) 0%,
+      hsl(var(--highlight)) 50%,
+      var(--brand) 100%
     );
-    --gradient-accent: linear-gradient(
-      45deg,
-      rgb(var(--soft-gold)) 0%,
-      rgb(var(--mahogany)) 100%
+    --gradient-card: linear-gradient(
+      90deg,
+      hsl(var(--neutral-dark)) 0%,
+      hsl(var(--muted)) 100%
     );
-
-    /* Functional Colors */
-    --bg-primary-light: var(--ivory);
-    --bg-secondary-light: 255 255 255;
-    --text-primary-light: var(--navy);
-    --text-secondary-light: var(--carbon);
-    --accent-light: var(--soft-gold);
-    --bg-primary-dark: var(--emerald);
-    --bg-secondary-dark: var(--navy);
-    --text-primary-dark: var(--ivory);
-    --text-secondary-dark: var(--soft-gold);
-    --accent-dark: var(--mahogany);
-
-    /* Componentes específicos */
-    --header-bg-light: 248 241 229 0.9;
-    --header-bg-dark: 1 50 32 0.9;
-    --hero-bg-light: var(--emerald);
-    --hero-bg-dark: var(--navy);
-    --hero-text-light: var(--ivory);
-    --hero-text-dark: var(--ivory);
-    --hero-accent-light: var(--soft-gold);
-    --hero-accent-dark: var(--soft-gold);
-    --border-light: var(--soft-gold);
-    --border-dark: var(--mahogany);
+    --gradient-hover: linear-gradient(
+      90deg,
+      hsl(var(--highlight)) 0%,
+      var(--brand-light) 100%
+    );
+  
+    --neon-glow: 0 0 20px hsl(var(--highlight) / 0.7), 0 0 40px var(--brand-light);
+    --fire-glow: 0 0 20px var(--brand-dark), 0 0 40px var(--brand-light);
+    --muted-foreground: 0 0% 45.1%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
   }
 
+  /* Dark Mode - Elegant Theme */
   .dark {
-    --background: var(--carbon);
-    --foreground: var(--ivory);
-    --card: var(--carbon);
-    --card-foreground: var(--ivory);
-    --popover: var(--carbon);
-    --popover-foreground: var(--ivory);
-    --primary: var(--emerald-light);
-    --primary-foreground: var(--ivory);
-    --secondary: var(--soft-gold-dark);
-    --secondary-foreground: var(--ivory);
-    --muted: var(--carbon);
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: var(--soft-gold-dark);
-    --accent-foreground: var(--ivory);
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --secondary: 0 0% 14.9%;
+    --accent: 0 0% 14.9%;
+    --highlight: var(--brand-dark);
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+
+    /* Elegant Gradients */
+    --gradient-primary: linear-gradient(
+      45deg,
+      var(--brand) 0%,
+      var(--brand-dark) 100%
+    );
+    --gradient-card: linear-gradient(
+      90deg,
+      hsl(0 0% 25%) 0%,
+      var(--brand) 100%
+    );
+    --gradient-hover: linear-gradient(
+      90deg,
+      hsl(0 0% 12% / 0.9) 0%,
+      var(--brand-light) 100%
+    );
+
+    /* Glows */
+    --fire-glow: 0 0 20px var(--brand-dark), 0 0 40px var(--brand-light);
+    --neon-glow: 0 0 15px var(--brand-light), 0 0 30px var(--brand);
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: var(--ivory);
-    --border: var(--carbon);
-    --input: var(--carbon);
-    --ring: var(--soft-gold);
+    --destructive-foreground: 0 0% 98%;
+    --input: 0 0% 14.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 
-  /* Estilos base */
+  /* Base Styles */
   * {
     @apply border-border;
     transition-property: background-color, border-color, opacity, transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 200ms;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     letter-spacing: 0.02em;
     font-weight: 700;
   }
+
+  button {
+    @apply rounded-md;
+  }
+
+  /* Header Styles */
+  header {
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  header.is-scrolled {
+    background: var(--gradient-primary);
+    box-shadow: var(--fire-glow);
+  }
+
+  nav a {
+    @apply text-[var(--brand)] transition-colors;
+  }
+
+  nav a:hover {
+    color: var(--brand-light);
+    text-shadow: var(--neon-glow);
+  }
+
+  /* Animaciones */
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: var(--fire-glow);
+    }
+    50% {
+      box-shadow: var(--neon-glow);
+    }
+  }
 }
+
+
 
 @layer components {
   .elegant-text {
@@ -214,3 +263,96 @@
     box-shadow: 0 0 20px rgb(var(--soft-gold)); 
   }
 }
+
+
+/* INICIO EFFECTS Sombras rugosas para texto */
+.text-shadow-rustic {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.3);
+}
+/* Sombra desgastada para RusticText */
+.text-shadow-rustic {
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4), -2px -2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación de vibración */
+@keyframes rusticVibration {
+  0% {
+    transform: scale(1.40);
+    filter: blur(0.3px);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.41); /* Se expande ligeramente */
+    filter: blur(0.6px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.40);
+    filter: blur(0.3px);
+    opacity: 0.25;
+  }
+}
+
+.animate-rusticVibration {
+  
+  animation: rusticVibration 5s infinite ease-in-out;
+}
+@keyframes firePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+@keyframes fire-intense {
+  0% {
+    text-shadow: 
+      0 -0.1em 0.1em #800,
+      0 -0.2em 0.2em #f00,
+      0 -0.3em 0.3em #ff0,
+      0 -0.4em 0.4em #ff8000,
+      0 -0.5em 0.5em #f00,
+      0 -0.6em 0.6em #800;
+  }
+  50% {
+    text-shadow: 
+      0 -0.15em 0.15em #800,
+      0 -0.25em 0.25em #f00,
+      0 -0.35em 0.35em #ff0,
+      0 -0.45em 0.45em #ff8000,
+      0 -0.55em 0.55em #f00,
+      0 -0.65em 0.65em #800;
+  }
+  100% {
+    text-shadow: 
+      0 -0.1em 0.1em #800,
+      0 -0.2em 0.2em #f00,
+      0 -0.3em 0.3em #ff0,
+      0 -0.4em 0.4em #ff8000,
+      0 -0.5em 0.5em #f00,
+      0 -0.6em 0.6em #800;
+  }
+}
+
+.fire-text-intense {
+  color: #fff;
+  animation: fire-intense 3.8s ease-in-out infinite alternate;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* font-size: 2em; */
+  font-family: 'Cormorant Garamond', serif;
+
+}
+

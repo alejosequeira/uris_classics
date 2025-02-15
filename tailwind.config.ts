@@ -1,4 +1,3 @@
-// tailwind.config.ts
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -6,6 +5,8 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -15,6 +16,11 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brand: {
+          DEFAULT: "var(--brand)",
+          light: "hsl(var(--brand-light))",
+          dark: "hsl(var(--brand-dark))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -22,10 +28,6 @@ module.exports = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -39,20 +41,15 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        emerald: {
-          DEFAULT: "rgb(var(--emerald))",
-          light: "rgb(var(--emerald-light))",
-          dark: "rgb(var(--emerald-dark))",
-        },
-        ivory: "rgb(var(--ivory))",
-        navy: "rgb(var(--navy))",
-        "soft-gold": {
-          DEFAULT: "rgb(var(--soft-gold))",
-          light: "rgb(var(--soft-gold-light))",
-          dark: "rgb(var(--soft-gold-dark))",
-        },
-        mahogany: "rgb(var(--mahogany))",
-        carbon: "rgb(var(--carbon))",
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-card': 'var(--gradient-card)',
+        'gradient-hover': 'var(--gradient-hover)',
+      },
+      boxShadow: {
+        'neon': 'var(--neon-glow)',
+        'fire': 'var(--fire-glow)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -92,5 +89,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }

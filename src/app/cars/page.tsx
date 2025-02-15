@@ -31,6 +31,11 @@ export default function CarsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const makes = Array.from(new Set(mockCars.map(car => car.make)));
 
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+  const handleToggleFilters = (isOpen: boolean) => {
+    setIsFiltersOpen(isOpen);
+  };
   // Inicializar coches y favoritos
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
@@ -91,10 +96,11 @@ export default function CarsPage() {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     const filtered = cars.filter((car) => {
-      const matchesSearch =
-        car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      const matchesSearch = searchTerm
+        ? car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
         car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        car.year.toString().includes(searchTerm);
+        car.year.toString().includes(searchTerm)
+        : true;
 
       const matchesMake = !currentFilters.make || car.make === currentFilters.make;
       const matchesMinYear = !currentFilters.minYear || car.year >= currentFilters.minYear;
@@ -116,15 +122,25 @@ export default function CarsPage() {
         break;
     }
 
-    const startIndex = (page - 1) * perPage;
-    const paginatedCars = filtered.slice(startIndex, startIndex + perPage);
+    if (filtered.length === 0) {
+      setFilteredCars({
+        data: [],
+        total: 0,
+        page: 1,
+        perPage: perPage,
+      });
+    } else {
+      const startIndex = (page - 1) * perPage;
+      const paginatedCars = filtered.slice(startIndex, startIndex + perPage);
 
-    setFilteredCars({
-      data: paginatedCars,
-      total: filtered.length,
-      page: page,
-      perPage: perPage,
-    });
+      setFilteredCars({
+        data: paginatedCars,
+        total: filtered.length,
+        page: page,
+        perPage: perPage,
+      });
+    }
+
     setIsLoading(false);
   }, [cars, showOnlyFavorites, carsPerPage]);
 
@@ -162,46 +178,51 @@ export default function CarsPage() {
       <h1 className="text-4xl font-bold mb-8 text-center text-foreground">
         Our Exclusive Collection
       </h1>
-      
+
       <CarSearch onSearch={handleSearch} />
-      
-      <div className="bg-card shadow-md rounded-lg p-6 mb-8 text-card-foreground">
+
+      {/* Cambia esta sección */}
+      <div className="bg-gray-900 shadow-md rounded-lg p-6 mb-8">
         <CarFilters
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}
           onClearFilters={handleClearFilters}
+          onSearch={handleSearch}
           makes={makes}
           carsPerPage={carsPerPage}
           showOnlyFavorites={showOnlyFavorites}
           cars={cars}
           sortOption={sortOption}
+          isFiltersOpen={isFiltersOpen}
+          onToggleFilters={handleToggleFilters}
+          searchTerm={searchTerm} 
         />
       </div>
-      
+
       <div className="flex justify-between items-center mb-6">
         <p className="text-lg text-muted-foreground">
           Showing {filteredCars.data.length} of {filteredCars.total} cars
         </p>
         <ViewToggle view={view} onViewChange={setView} />
       </div>
-      
+
       {isLoading ? (
         <Spinner />
-      ) : filteredCars.data.length > 0 ? (
+      ) : filteredCars.total > 0 ? (
         <>
-          <div 
+          <div
             className={
-              view === 'grid' 
-                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+              view === 'grid'
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 : "space-y-6"
             }
           >
             {filteredCars.data.map(car => (
-              <CarCard 
-                key={car.id} 
-                car={car} 
-                onToggleFavorite={handleToggleFavorite} 
-                view={view} 
+              <CarCard
+                key={car.id}
+                car={car}
+                onToggleFavorite={handleToggleFavorite}
+                view={view}
               />
             ))}
           </div>
@@ -214,9 +235,12 @@ export default function CarsPage() {
           </div>
         </>
       ) : (
-        <p className="text-center text-xl mt-10 text-muted-foreground">
-          No cars found matching your criteria.
-        </p>
+        <div className="text-center py-12">
+          <p className="text-2xl text-foreground mb-2">No cars found</p>
+          <p className="text-muted-foreground">
+            Try adjusting your search or filter criteria
+          </p>
+        </div>
       )}
     </div>
   );
