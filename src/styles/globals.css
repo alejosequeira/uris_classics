@@ -21,6 +21,8 @@
     --brand-light: 4 100% 70%; /* Rojo coral */
     --brand-dark: 0 75% 41%; /* Rojo profundo */
     --background: 240 10% 4%; 
+    --background-secondary: 0 0% 13%;
+    --background-tertiary: 0 0% 20%;
     --foreground: 0 0% 15%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;

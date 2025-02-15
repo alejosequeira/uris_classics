@@ -174,15 +174,15 @@ export default function CarsPage() {
   }, [filterAndSortCars, searchTerm, filters, currentPage, sortOption, carsPerPage]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="bg-backgroundsecond container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center text-foreground">
         Our Exclusive Collection
       </h1>
 
-      <CarSearch onSearch={handleSearch} />
+      {/* <CarSearch onSearch={handleSearch} /> */}
 
       {/* Cambia esta sección */}
-      <div className="bg-gray-900 shadow-md rounded-lg p-6 mb-8">
+      <div className="bg-backgroundtertiary shadow-md rounded-lg p-6 mb-8">
         <CarFilters
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}

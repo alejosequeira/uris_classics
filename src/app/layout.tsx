@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />        
       </head>
-      <body className={`${inter.className} bg-white dark:bg-gray-900 min-h-screen transition-colors duration-200`}>
+      <body className={`${inter.className} bg-backgroundsecond  dark:bg-backgroundsecond min-h-screen transition-colors duration-200`}>
         <Providers>
           <Layout>{children}</Layout>
         </Providers>

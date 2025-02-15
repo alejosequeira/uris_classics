@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
                     <div
                         className="absolute inset-0 bg-cover bg-center h-screen" // Ajustamos a altura completa
                         style={{
-                            backgroundImage: "url('/images/optimizadoback/hero-bg.jpg')",
+                            backgroundImage: "url('/images/optimizadoback/culo-mustang.jpg')",
                             transform: `translateY(${scrollY * 0.5}px)`,
                         }}
                     />
@@ -56,16 +56,40 @@ const HeroSection: React.FC = () => {
                     <div className="absolute inset-4 md:inset-8 border border-[rgb(var(--soft-gold))]/20" />
 
                     <div className="relative container mx-auto px-4 md:px-8 min-h-screen flex flex-col justify-center items-center pt-20"> {/* Ajustamos altura y espaciado */}
-                        <div className="space-y-8 md:space-y-12 mb-12 md:mb-20 text-center"> {/* Aumentamos espaciado */}
-                            <h1
-                                className={`${playfair.className} text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[rgb(var(--ivory))] tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.3)] animate-fadeSlideUp`}
-                            >
-                                TIMELESS ELEGANCE
-                            </h1>
-                            <p className="text-xl sm:text-2xl md:text-3xl font-light max-w-[90%] md:max-w-4xl mx-auto text-[rgb(var(--soft-gold))] tracking-wide leading-relaxed animate-fadeSlideUp animation-delay-200">
-                                Every Classic Tells a Story with Pleasant Moments Shared
-                            </p>
+
+
+
+                        <div className="relative w-full h-full">
+                            <div className="relative text-center space-y-6 md:space-y-10 px-4">
+                                <h1
+                                    className={`
+        ${playfair.className} 
+        text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
+        font-bold tracking-wider 
+        drop-shadow-[0_4px_8px_rgba(255,255,255,0.3)] 
+        animate-fadeSlideUp
+    `}
+                                >
+                                    TIMELESS ELEGANCE
+                                </h1>
+
+                                <p
+                                    className={`
+        ${playfair.className} 
+        text-lg sm:text-xl md:text-2xl 
+        font-light text-white tracking-wide leading-relaxed 
+        drop-shadow-[0_2px_6px_rgba(255,255,255,0.2)] 
+        animate-fadeSlideUp animation-delay-200
+    `}
+                                >
+                                   We are dedicated to parking your dream car in your garage!
+                                </p>
+                            </div>
                         </div>
+
+
+
+
                         <div className="w-full max-w-3xl mt-8 animate-fadeSlideUp animation-delay-400"> {/* Aumentamos ancho máximo */}
                             <CarSearch onSearch={handleSearch} variant="hero" isTransparent={true} />
                         </div>
