@@ -1,10 +1,8 @@
-import Image from 'next/image';
-import { RefreshCw, ChevronRight } from 'lucide-react';
+"use client"
 import { useRandomCars } from '@/utils/useRandomCars';
-import { CarouselCar } from '@/api/carData';
 import BackgroundCarousel from './BackgroundCarousel';
 import MobileCarousel from './MobileCarousel';
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LayoutCarousel = () => {

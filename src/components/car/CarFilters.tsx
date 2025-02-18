@@ -1,218 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { Range } from 'react-range';
-// import { Car } from '@/types/car';
-
-// // Importamos los componentes de Flowbite React
-// import { Button, Label, Select, Checkbox } from 'flowbite-react';
-
-// interface CarFiltersProps {
-//   onFilterChange: (filters: { [key: string]: string | number | boolean }) => void;
-//   onSortChange: (sortOption: string) => void;
-//   onClearFilters: () => void;
-//   makes: string[];
-//   carsPerPage: number;
-//   showOnlyFavorites: boolean;
-//   cars: Car[];
-//   sortOption: string;
-// }
-
-// const CarFilters: React.FC<CarFiltersProps> = ({
-//   onFilterChange,
-//   onSortChange,
-//   onClearFilters,
-//   makes,
-//   carsPerPage,
-//   showOnlyFavorites,
-//   cars,
-//   sortOption
-// }) => {
-//   const currentYear = new Date().getFullYear();
-//   const [yearRange, setYearRange] = useState([1900, currentYear]);
-//   const [priceRange, setPriceRange] = useState([1000000]);
-//   const [maxPrice, setMaxPrice] = useState(1000000);
-
-//   useEffect(() => {
-//     if (cars.length > 0) {
-//       const years = cars.map(car => car.year);
-//       const prices = cars.map(car => car.price);
-//       setYearRange([Math.min(...years), Math.max(...years)]);
-//       const newMaxPrice = Math.max(...prices, 1000);
-//       setMaxPrice(newMaxPrice);
-//       setPriceRange([newMaxPrice]);
-//     }
-//   }, [cars]);
-
-//   const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-//     const { name, value, type } = e.target;
-//     const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-//     onFilterChange({ [name]: newValue });
-//   };
-
-//   const handleYearRangeChange = (values: number[]) => {
-//     setYearRange(values);
-//     onFilterChange({ minYear: values[0], maxYear: values[1] });
-//   };
-
-//   const handlePriceChange = (values: number[]) => {
-//     setPriceRange(values);
-//     onFilterChange({ maxPrice: values[0] });
-//   };
-
-//   return (
-//     <div className="flex flex-wrap items-center gap-4 mb-6 p-4 bg-gray-100 rounded-lg">
-
-//       {/* Ejemplo con Label + Select de Flowbite */}
-//       <div>
-//         <Label htmlFor="make" value="Make" />
-//         <Select
-//           id="make"
-//           name="make"
-//           onChange={handleChange}
-//           className="min-w-[120px]" // puedes agregar tus propias clases
-//         >
-//           <option value="">All Makes</option>
-//           {makes.map(make => (
-//             <option key={make} value={make}>{make}</option>
-//           ))}
-//         </Select>
-//       </div>
-
-//       {/* Range para año (usando react-range, estilo manual) */}
-//       <div className="w-64">
-//         <Range
-//           step={1}
-//           min={1900}
-//           max={currentYear}
-//           values={yearRange}
-//           onChange={handleYearRangeChange}
-//           renderTrack={({ props, children }) => (
-//             <div
-//               {...props}
-//               style={{
-//                 ...props.style,
-//                 height: '6px',
-//                 width: '100%',
-//                 backgroundColor: '#ddd'
-//               }}
-//             >
-//               {children}
-//             </div>
-//           )}
-//           renderThumb={({ props }) => (
-//             <div
-//               {...props}
-//               style={{
-//                 ...props.style,
-//                 height: '20px',
-//                 width: '20px',
-//                 backgroundColor: '#999'
-//               }}
-//             />
-//           )}
-//         />
-//         <div className="flex justify-between mt-2">
-//           <span>{yearRange[0]}</span>
-//           <span>{yearRange[1]}</span>
-//         </div>
-//       </div>
-
-//       {/* Range para precio */}
-//       <div className="w-64">
-//         <Range
-//           step={1000}
-//           min={0}
-//           max={Math.max(maxPrice, 1000)}
-//           values={priceRange}
-//           onChange={handlePriceChange}
-//           renderTrack={({ props, children }) => (
-//             <div
-//               {...props}
-//               style={{
-//                 ...props.style,
-//                 height: '6px',
-//                 width: '100%',
-//                 backgroundColor: '#ddd'
-//               }}
-//             >
-//               {children}
-//             </div>
-//           )}
-//           renderThumb={({ props }) => (
-//             <div
-//               {...props}
-//               style={{
-//                 ...props.style,
-//                 height: '20px',
-//                 width: '20px',
-//                 backgroundColor: '#999'
-//               }}
-//             />
-//           )}
-//         />
-//         <div className="flex justify-between mt-2">
-//           <span>$0</span>
-//           <span>${priceRange[0].toLocaleString()}</span>
-//         </div>
-//       </div>
-
-//       {/* Select para orden */}
-//       <div>
-//         <Label htmlFor="sortOption" value="Sort" />
-//         <Select
-//           id="sortOption"
-//           name="sortOption"
-//           value={sortOption}
-//           onChange={(e) => onSortChange(e.target.value)}
-//           className="min-w-[150px]"
-//         >
-//           <option value="default">Default</option>
-//           <option value="priceHighToLow">Price: High to Low</option>
-//           <option value="priceLowToHigh">Price: Low to High</option>
-//         </Select>
-//       </div>
-
-//       {/* Select para carsPerPage */}
-//       <div>
-//         <Label htmlFor="carsPerPage" value="Cars per page" />
-//         <Select
-//           id="carsPerPage"
-//           name="carsPerPage"
-//           value={carsPerPage}
-//           onChange={handleChange}
-//           className="min-w-[120px]"
-//         >
-//           <option value={6}>6 per page</option>
-//           <option value={12}>12 per page</option>
-//           <option value={24}>24 per page</option>
-//         </Select>
-//       </div>
-
-//       {/* Checkbox para mostrar favoritos */}
-//       <div className="flex items-center gap-2">
-//         <Checkbox
-//           id="favorites"
-//           name="showOnlyFavorites"
-//           checked={showOnlyFavorites}
-//           onChange={handleChange}
-//         />
-//         <Label htmlFor="favorites" className="cursor-pointer">
-//           Show only favorites
-//         </Label>
-//       </div>
-
-//       {/* Botón con Flowbite */}
-//       <Button color="failure" onClick={onClearFilters}>
-//         Clear Filters
-//       </Button>
-
-//     </div>
-//   );
-// };
-
-// export default CarFilters;
-
-
-
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, RotateCcw } from 'lucide-react';
@@ -228,7 +13,7 @@ interface CarFiltersProps {
   onFilterChange: (filters: { [key: string]: string | number | boolean }) => void;
   onSortChange: (sortOption: string) => void;
   onClearFilters: () => void;
-  onSearch: (term: string) => void; 
+  onSearch: (term: string) => void;
   makes: string[];
   cars: Car[];
   sortOption: string;
@@ -236,9 +21,11 @@ interface CarFiltersProps {
   showOnlyFavorites: boolean;
   isFiltersOpen: boolean;
   onToggleFilters: (isOpen: boolean) => void;
-  searchTerm?: string; 
-  
+  searchTerm?: string;
+  onCarsPerPageChange: (value: number) => void;
+  onToggleFavorites: (value: boolean) => void;
 }
+const CARS_PER_PAGE = 6;
 
 const PRICE_RANGES: PriceRange[] = [
   { min: 0, max: 50000, label: '$0 - $50,000' },
@@ -255,16 +42,19 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   onClearFilters,
   onSearch,
   makes,
-  cars,
   sortOption,
   carsPerPage,
   showOnlyFavorites,
   isFiltersOpen,
   onToggleFilters,
-   searchTerm = ''
+  searchTerm = '',
+  onCarsPerPageChange,
+  onToggleFavorites
 }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<PriceRange | null>(null);
   const [searchValue, setSearchValue] = useState(searchTerm);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedMake, setSelectedMake] = useState<string | null>(null);
   const handlePriceRangeChange = (range: PriceRange) => {
     setSelectedPriceRange(range);
     onFilterChange({
@@ -272,8 +62,9 @@ const CarFilters: React.FC<CarFiltersProps> = ({
       maxPrice: range.max ?? Number.MAX_SAFE_INTEGER
     });
   };
-   // Crear función debounced para la búsqueda
-   const debouncedSearch = debounce((term: string) => {
+  
+  // Crear función debounced para la búsqueda
+  const debouncedSearch = debounce((term: string) => {
     onSearch(term);
   }, 300);
 
@@ -284,12 +75,21 @@ const CarFilters: React.FC<CarFiltersProps> = ({
     debouncedSearch(value);
   };
 
-  // Limpiar el debounce al desmontar
   useEffect(() => {
     return () => {
       debouncedSearch.cancel();
     };
-  }, []);
+  }, [debouncedSearch]);
+
+  const handleYearSelect = (year: number) => {
+    setSelectedYear(year);
+    onFilterChange({ year });
+  };
+
+  const handleMakeSelect = (make: string) => {
+    setSelectedMake(make);
+    onFilterChange({ make });
+  };
 
   // Actualizar searchValue cuando cambia searchTerm
   useEffect(() => {
@@ -300,7 +100,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
     <div className="w-full space-y-4">
       {/* Top Search Bar */}
       <div className="flex items-center gap-4">
-      <div className="relative flex-1">
+        <div className="relative flex-1">
           <input
             type="text"
             value={searchValue}
@@ -334,21 +134,22 @@ const CarFilters: React.FC<CarFiltersProps> = ({
       </div>
 
       {/* Filter Dropdowns */}
-      <div
-        className={`grid grid-cols-5 gap-2 ${isFiltersOpen ? 'block' : 'hidden'
-          }`}
-      >
+      <div className={`grid grid-cols-6 gap-2 ${isFiltersOpen ? 'block' : 'hidden'}`}>
         {/* Year Dropdown */}
         <div className="relative group">
-          <button className="w-full px-4 py-2.5 bg-brand text-white text-left rounded-t-lg">
-            Year
+          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
+            }`}>
+            {selectedYear ? `Year: ${selectedYear}` : 'Year'}
           </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10 max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700">
+          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10 max-h-[300px] overflow-y-auto">
             {[...Array(2025 - 1932 + 1)].map((_, i) => (
               <button
                 key={2025 - i}
-                className="w-full px-4 py-2 text-foreground hover:bg-brand hover:text-white text-left transition-colors"
-                onClick={() => onFilterChange({ year: 2025 - i })}
+                className={`w-full px-4 py-2 text-left transition-colors ${selectedYear === (2025 - i)
+                  ? 'bg-brand text-white'
+                  : 'text-foreground hover:bg-brand hover:text-white'
+                  }`}
+                onClick={() => handleYearSelect(2025 - i)}
               >
                 {2025 - i}
               </button>
@@ -358,15 +159,19 @@ const CarFilters: React.FC<CarFiltersProps> = ({
 
         {/* Make Dropdown */}
         <div className="relative group">
-          <button className="w-full px-4 py-2.5 bg-card text-foreground text-left rounded-t-lg">
-            Make
+          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
+            }`}>
+            {selectedMake || 'Make'}
           </button>
           <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
             {makes.map(make => (
               <button
                 key={make}
-                className="w-full px-4 py-2 text-foreground hover:bg-brand hover:text-white text-left transition-colors"
-                onClick={() => onFilterChange({ make })}
+                className={`w-full px-4 py-2 text-left transition-colors ${selectedMake === make
+                  ? 'bg-brand text-white'
+                  : 'text-foreground hover:bg-brand hover:text-white'
+                  }`}
+                onClick={() => handleMakeSelect(make)}
               >
                 {make}
               </button>
@@ -374,20 +179,46 @@ const CarFilters: React.FC<CarFiltersProps> = ({
           </div>
         </div>
 
-        {/* Model Dropdown */}
+        {/* Cars Per Page Dropdown */}
         <div className="relative group">
-          <button className="w-full px-4 py-2.5 bg-card text-foreground text-left rounded-t-lg">
-            Model
+          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
+            }`}>
+            {`${carsPerPage} per page`}
           </button>
           <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
-            {/* Add model options based on selected make */}
+            {[6, 12, 24, 48].map(option => (
+              <button
+                key={option}
+                className={`w-full px-4 py-2 text-left transition-colors ${carsPerPage === option
+                  ? 'bg-brand text-white'
+                  : 'text-foreground hover:bg-brand hover:text-white'
+                  }`}
+                onClick={() => onCarsPerPageChange(option)}
+              >
+                {option} cars
+              </button>
+            ))}
           </div>
+        </div>
+
+        {/* Show Only Favorites Toggle */}
+        <div className="relative">
+          <button
+            className={`w-full px-4 py-2.5 text-left rounded-lg transition-colors ${showOnlyFavorites
+              ? 'bg-brand text-white'
+              : 'bg-card text-foreground hover:bg-brand hover:text-white'
+              }`}
+            onClick={() => onToggleFavorites(!showOnlyFavorites)}
+          >
+            {showOnlyFavorites ? 'Show All' : 'Show Favorites'}
+          </button>
         </div>
 
         {/* Price Range Dropdown */}
         <div className="relative group">
-          <button className="w-full px-4 py-2.5 bg-card text-foreground text-left rounded-t-lg">
-            Price
+          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
+            }`}>
+            {selectedPriceRange ? selectedPriceRange.label : 'Price'}
           </button>
           <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
             {PRICE_RANGES.map(range => (
@@ -407,8 +238,11 @@ const CarFilters: React.FC<CarFiltersProps> = ({
 
         {/* Sort By Dropdown */}
         <div className="relative group">
-          <button className="w-full px-4 py-2.5 bg-card text-foreground text-left rounded-t-lg">
-            Sort By
+          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
+            }`}>
+            {sortOption === 'default' ? 'Sort By' :
+              sortOption === 'priceHighToLow' ? 'Price: High to Low' :
+                'Price: Low to High'}
           </button>
           <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
             <button

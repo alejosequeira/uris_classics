@@ -11,7 +11,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, resolvedTheme } = useTheme();
   const isLightMode = theme === "light" || resolvedTheme === "light";
-  const isDarkMode = theme === "dark" || resolvedTheme === "dark";
 
   useEffect(() => {
     const handleScroll = () => {

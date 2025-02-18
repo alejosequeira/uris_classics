@@ -1,12 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
-import { RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRandomCars } from '@/utils/useRandomCars';
+import {ChevronLeft, ChevronRight } from 'lucide-react';
 import { CarouselCar } from '@/api/carData';
-import { useTheme } from "next-themes";
-import exp from "constants";
 
 
 

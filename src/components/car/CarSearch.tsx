@@ -53,7 +53,7 @@ const CarSearch: React.FC<CarSearchProps> = ({
     }
     // Cleanup
     return () => debouncedSearch.cancel();
-  }, [searchTerm]);
+  }, [searchTerm, debouncedSearch, onSearch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import CarCard from '@/components/car/CarCard';
-import CarSearch from '@/components/car/CarSearch';
 import CarFilters from '@/components/car/CarFilters';
 import Pagination from '@/components/ui/Pagination';
 import { Car, PaginatedResponse } from '@/types/car';
@@ -12,6 +11,13 @@ import Spinner from '@/components/ui/Spinner';
 import { useSearch } from '@/context/SearchContext';
 
 const CARS_PER_PAGE = 6;
+interface Filters {
+  make: string;
+  minYear: number;
+  maxYear: number;
+  minPrice: number;
+  maxPrice: number;
+}
 
 export default function CarsPage() {
   const { searchTerm } = useSearch();
@@ -23,7 +29,13 @@ export default function CarsPage() {
     page: 1,
     perPage: CARS_PER_PAGE,
   });
-  const [filters, setFilters] = useState({ make: '', minYear: 1969, maxYear: 2024, maxPrice: 0 });
+  const [filters, setFilters] = useState<Filters>({
+    make: '',
+    minYear: 1969,
+    maxYear: 2024,
+    minPrice: 0,
+    maxPrice: 0
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage, setCarsPerPage] = useState(CARS_PER_PAGE);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
@@ -46,18 +58,19 @@ export default function CarsPage() {
     setCars(carsWithFavorites);
   }, []);
 
-  // Efecto para manejar el término de búsqueda del contexto
-  useEffect(() => {
-    if (searchTerm) {
-      handleSearch(searchTerm);
-    }
-  }, [searchTerm]);
+
 
   const handleSearch = (term: string) => {
     setCurrentPage(1);
     filterAndSortCars(term, filters, 1, sortOption);
   };
-
+  // Efecto para manejar el término de búsqueda del contexto
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch(searchTerm);
+    }
+  }, [searchTerm, handleSearch]);
+  
   const handleSortChange = (newSortOption: string) => {
     setSortOption(newSortOption);
     filterAndSortCars(searchTerm, filters, currentPage, newSortOption);
@@ -75,6 +88,9 @@ export default function CarsPage() {
           }
           if (key === 'carsPerPage') {
             setCarsPerPage(Number(value));
+            return [key, Number(value)];
+          }
+          if (key === 'minPrice' || key === 'maxPrice') {
             return [key, Number(value)];
           }
           return [key, value === '' ? 0 : Number(value)];
@@ -105,7 +121,11 @@ export default function CarsPage() {
       const matchesMake = !currentFilters.make || car.make === currentFilters.make;
       const matchesMinYear = !currentFilters.minYear || car.year >= currentFilters.minYear;
       const matchesMaxYear = !currentFilters.maxYear || car.year <= currentFilters.maxYear;
-      const matchesPrice = !currentFilters.maxPrice || car.price <= currentFilters.maxPrice;
+      const matchesPrice = (
+        !currentFilters.minPrice || car.price >= currentFilters.minPrice
+      ) && (
+        !currentFilters.maxPrice || car.price <= currentFilters.maxPrice
+      );
       const matchesFavorite = !showOnlyFavorites || car.isFavorite;
 
       return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
@@ -161,7 +181,8 @@ export default function CarsPage() {
       make: '',
       minYear: 1900,
       maxYear: new Date().getFullYear(),
-      maxPrice: 0
+      maxPrice: 0,
+      minPrice:0,
     });
     setSortOption('default');
     setShowOnlyFavorites(false);
@@ -179,8 +200,6 @@ export default function CarsPage() {
         Our Exclusive Collection
       </h1>
 
-      {/* <CarSearch onSearch={handleSearch} /> */}
-
       {/* Cambia esta sección */}
       <div className="bg-backgroundtertiary shadow-md rounded-lg p-6 mb-8">
         <CarFilters
@@ -196,6 +215,9 @@ export default function CarsPage() {
           isFiltersOpen={isFiltersOpen}
           onToggleFilters={handleToggleFilters}
           searchTerm={searchTerm} 
+          onCarsPerPageChange={(value) => setCarsPerPage(value)}
+          onToggleFavorites={(value) => setShowOnlyFavorites(value)}
+        
         />
       </div>
 
