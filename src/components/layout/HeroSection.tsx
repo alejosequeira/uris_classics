@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
     const isDarkMode = theme === "dark" || resolvedTheme === "dark";
 
     return (
-        <div className="relative h-full overflow-hidden">
+        <div className="relative h-screen overflow-hidden">
             {isDarkMode ? (
                 /* Dark Mode Hero */
                 <>
@@ -82,7 +82,7 @@ const HeroSection: React.FC = () => {
         animate-fadeSlideUp animation-delay-200
     `}
                                 >
-                                   We are dedicated to parking your dream car in your garage!
+                                    We are dedicated to parking your dream car in your garage!
                                 </p>
                             </div>
                         </div>
@@ -97,17 +97,19 @@ const HeroSection: React.FC = () => {
                 </>
             ) : (
                 /* Light Mode Hero */
-                <div className="relative h-full overflow-visible bg-black flex flex-col">
+                <>
+                <div className="absolute inset-0 bg-cover bg-center h-screen">
                     {/* Capa 1: Textura de aceite con parallax */}
                     <div
-                        className="absolute top-48 left-0 right-0 bottom-0 bg-cover bg-end opacity-20"
+                        className="absolute inset-0 bg-cover bg-end animate-[fireBreath_4s_ease-in-out_infinite]"
                         style={{
-                            backgroundImage: "url('/images/textures/oil-splatter.png')",
-                            transform: `translateY(${scrollY * 0.1}px)`,
-                        }}
+                            backgroundImage: "url('/images/textures/fire2-background.jpg')",
+                            '--scroll-y': `${scrollY * 0.1}px`,
+                        } as React.CSSProperties}
                     />
 
-                    {/* Capa 2: Gradiente rojo radial */}
+                    {/* Capas de gradiente */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/50 to-black/80" />
                     <div
                         className="absolute inset-0"
                         style={{
@@ -115,62 +117,52 @@ const HeroSection: React.FC = () => {
                             mixBlendMode: "overlay",
                         }}
                     />
+                </div>
 
-                    {/* Capa 3: Efecto de brillo en los bordes */}
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            background: `radial-gradient(circle at center, transparent 30%, hsl(var(--brand-dark)) 100%)`,
-                            mixBlendMode: "multiply",
-                        }}
-                    />
+                {/* Contenedor principal */}
+                <div className="relative container mx-auto px-4 md:px-8 min-h-screen flex flex-col justify-center items-center">
+                    <ParticlesEffect />
 
-                    {/* Contenedor principal */}
-                    <div className="relative z-10 container mx-auto px-8 flex flex-col items-center text-center pt-40 sm:pt-44 md:pt-48 lg:pt-52">
-                        <ParticlesEffect />
+                    <div className="relative w-full h-full">
+                        <div className="relative text-center space-y-6 md:space-y-10 px-4">
+                            {/* Título principal */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1, ease: "easeOut" }}
+                            >
+                                <RusticText
+                                    text="INNOVATION MEETS STYLE"
+                                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-[var(--brand)] tracking-wide drop-shadow-lg"
+                                />
+                            </motion.div>
 
-                        {/* Título principal */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="relative w-full mb-8 sm:mb-12"
-                        >
-                            <RusticText
-                                text="INNOVATION MEETS STYLE"
-                                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[var(--brand)] tracking-wide drop-shadow-lg"
-                            />
-                        </motion.div>
-
-                        {/* Subtítulo */}
-                        <motion.p
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.5 }}
-                            className="mt-8 mb-12 text-base sm:text-lg md:text-xl text-[var(--brand-light)] tracking-wide mx-auto w-full px-4"
-                        >
-                            Experience a perfect blend of future-forward designs and timeless classics.
-                        </motion.p>
-
-                        {/* Buscador */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 1 }}
-                            className="mt-8 mb-16 w-full max-w-[95%] sm:max-w-2xl"
-                        >
-                            <CarSearch onSearch={() => { }} variant="hero" isTransparent={true} />
-                        </motion.div>
-
-                        {/* Carrusel */}
-                        <div className="relative w-screen px-0 z-20 mt-40 mb-20">
-                            <LayoutCarousel />
+                            {/* Subtítulo */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1, delay: 0.5 }}
+                                className="text-lg sm:text-xl md:text-2xl text-[var(--brand-light)] tracking-wide"
+                            >
+                                Experience a perfect blend of future-forward designs and timeless classics.
+                            </motion.p>
                         </div>
                     </div>
 
-                    {/* Línea decorativa */}
-                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-80 z-30"></div>
+                    {/* Buscador */}
+                    <div className="w-full max-w-3xl mt-8 animate-fadeSlideUp animation-delay-400">
+                        <CarSearch onSearch={() => { }} variant="hero" isTransparent={true} />
+                    </div>
+
+                    {/* Carrusel */}
+                    <div className="relative w-screen px-0 z-20 mt-20">
+                        <LayoutCarousel />
+                    </div>
                 </div>
+
+                {/* Línea decorativa */}
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-80 z-30"></div>
+            </>
             )}
         </div>
     );

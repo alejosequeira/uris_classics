@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import Layout from '../components/layout/Layout'
 import { Inter } from 'next/font/google'
 import Providers from './providers'  
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-backgroundsecond  dark:bg-backgroundsecond min-h-screen transition-colors duration-200`}>
         <Providers>
+          
           <Layout>{children}</Layout>
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>
