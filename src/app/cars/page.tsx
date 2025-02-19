@@ -60,17 +60,9 @@ export default function CarsPage() {
 
 
 
-  const handleSearch = (term: string) => {
-    setCurrentPage(1);
-    filterAndSortCars(term, filters, 1, sortOption);
-  };
-  // Efecto para manejar el término de búsqueda del contexto
-  useEffect(() => {
-    if (searchTerm) {
-      handleSearch(searchTerm);
-    }
-  }, [searchTerm, handleSearch]);
-  
+
+
+
   const handleSortChange = (newSortOption: string) => {
     setSortOption(newSortOption);
     filterAndSortCars(searchTerm, filters, currentPage, newSortOption);
@@ -124,8 +116,8 @@ export default function CarsPage() {
       const matchesPrice = (
         !currentFilters.minPrice || car.price >= currentFilters.minPrice
       ) && (
-        !currentFilters.maxPrice || car.price <= currentFilters.maxPrice
-      );
+          !currentFilters.maxPrice || car.price <= currentFilters.maxPrice
+        );
       const matchesFavorite = !showOnlyFavorites || car.isFavorite;
 
       return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
@@ -164,6 +156,18 @@ export default function CarsPage() {
     setIsLoading(false);
   }, [cars, showOnlyFavorites, carsPerPage]);
 
+  const handleSearch = useCallback((term: string) => {
+    setCurrentPage(1);
+    filterAndSortCars(term, filters, 1, sortOption);
+  }, [filters, sortOption, filterAndSortCars]);
+
+  // Efecto para manejar el término de búsqueda del contexto
+  useEffect(() => {
+    if (searchTerm) {
+      handleSearch(searchTerm);
+    }
+  }, [searchTerm, handleSearch]);
+
   const handleToggleFavorite = (carId: string) => {
     const updatedCars = cars.map(car =>
       car.id === carId ? { ...car, isFavorite: !car.isFavorite } : car
@@ -176,13 +180,14 @@ export default function CarsPage() {
     filterAndSortCars(searchTerm, filters, currentPage, sortOption);
   };
 
+
   const handleClearFilters = () => {
     setFilters({
       make: '',
       minYear: 1900,
       maxYear: new Date().getFullYear(),
       maxPrice: 0,
-      minPrice:0,
+      minPrice: 0,
     });
     setSortOption('default');
     setShowOnlyFavorites(false);
@@ -214,10 +219,10 @@ export default function CarsPage() {
           sortOption={sortOption}
           isFiltersOpen={isFiltersOpen}
           onToggleFilters={handleToggleFilters}
-          searchTerm={searchTerm} 
+          searchTerm={searchTerm}
           onCarsPerPageChange={(value) => setCarsPerPage(value)}
           onToggleFavorites={(value) => setShowOnlyFavorites(value)}
-        
+
         />
       </div>
 

@@ -19,7 +19,7 @@ const MobileCarousel = ({ cars }: { cars: CarouselCar[] }) => {
     };
   
     return (
-      <div className="relative w-full max-w-[90%] mx-auto -mt-32 ">
+      <div className="relative w-full max-w-[90%] mx-auto -mt-4 ">
         {/* Indicadores en la parte superior */}
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex space-x-3 z-30">
           {cars.map((_, index) => (

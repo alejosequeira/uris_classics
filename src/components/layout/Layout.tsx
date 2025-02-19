@@ -2,24 +2,21 @@ import React from 'react';
 import Header from './Header';
 import HeroSection from '@/components/layout/HeroSection'
 
-
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="relative min-h-screen">
       <Header />
-      <div className="flex-grow relative"> {/* Agregamos flex-grow aquí */}
-        <div className="h-full"> {/* Contenedor para asegurar altura completa */}
-          <HeroSection />
-          <main className="container mx-auto px-4 py-8">
-            {children}
-          </main>
-        </div>
+      <div className="relative">
+        <HeroSection />
+        <main className="relative bg-backgroundsecond">
+          {children}
+        </main>
       </div>
-      <footer className="bg-gray-800 text-white p-4 text-center mt-auto">
+      <footer className="relative bg-gray-800 text-white p-4 text-center">
         <p>&copy; 2024 Classic Cars Marketplace</p>
       </footer>
     </div>
