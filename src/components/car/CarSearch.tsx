@@ -71,22 +71,22 @@ const CarSearch: React.FC<CarSearchProps> = ({
     default: {
       container: "w-full max-w-4xl mx-auto",
       form: "relative",
-      input: `w-full px-6 py-4 rounded-lg
-             bg-[rgb(var(--bg-primary-light))] dark:bg-[rgb(var(--bg-primary-dark))]
-             text-[rgb(var(--text-primary-light))] dark:text-[rgb(var(--text-primary-dark))]
-             border-2 border-[rgb(var(--accent-light))] dark:border-[rgb(var(--accent-dark))]
-             focus:outline-none focus:ring-2 focus:ring-[rgb(var(--accent-light))] dark:focus:ring-[rgb(var(--accent-dark))]
+      input: `w-full px-4 pr-16 py-2.5 rounded-lg
+             bg-card
+             text-foreground placeholder-gray-400
+             border border-border
+             focus:outline-none focus:ring-2 focus:ring-brand/50 focus:border-brand
              transition-all duration-300`,
-      button: `absolute right-2 top-1/2 transform -translate-y-1/2
-              px-6 py-2 rounded-lg
-              bg-[rgb(var(--accent-light))] dark:bg-[rgb(var(--accent-dark))]
-              text-[rgb(var(--bg-primary-light))] dark:text-[rgb(var(--bg-primary-dark))]
-              hover:opacity-90 transition-all duration-300`,
+      button: `absolute right-0 top-0 h-full
+              px-4
+              text-gray-400 hover:text-brand
+              transition-colors duration-300
+              flex items-center justify-center`,
     },
     hero: {
       container: "w-full max-w-4xl mx-auto",
       form: "relative",
-      input: `w-full px-6 py-4 rounded-full
+      input: `w-full px-6 pr-[120px] py-4 rounded-full
              ${isTransparent 
                ? "bg-[rgb(var(--navy))]/10 backdrop-blur-sm" 
                : "bg-white dark:bg-[rgb(var(--navy))]"}
@@ -101,28 +101,31 @@ const CarSearch: React.FC<CarSearchProps> = ({
               hover:opacity-90 transition-all duration-300`,
     },
   };
-
   const currentStyle = styles[variant];
-
+  
   return (
     <div className={`${currentStyle.container} ${className}`}>
       <form onSubmit={handleSubmit} className={currentStyle.form}>
         <input
           type="text"
-          placeholder="Search for your dream classic car..."
+          placeholder="Search by Year, Make or Model..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
           className={currentStyle.input}
         />
-        <button type="submit" className={currentStyle.button}>
+        <button 
+          type="submit" 
+          className={currentStyle.button}
+          aria-label="Search"
+        >
           {variant === "hero" ? (
-            <div className="flex items-center">
+            <div className="flex items-center gap-2">
               <span>Search</span>
-              <Search className="w-4 h-4 ml-2" />
+              <Search className="w-4 h-4" />
             </div>
           ) : (
-            "Search"
+            <Search className="w-5 h-5" />
           )}
         </button>
       </form>

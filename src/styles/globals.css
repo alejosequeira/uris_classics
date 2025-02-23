@@ -350,3 +350,28 @@
     opacity: 0.3;
   }
 }
+
+
+/* 
+.bg-radial-shadow {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.4) 0%, transparent 80%);
+}
+
+.bg-texture {
+  background-image: url('/images/textures/frente_mustang_viejo.jpg');
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+@keyframes rusticVibration {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(1px, 1px) rotate(0.5deg); }
+  50% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+  75% { transform: translate(1px, -1px) rotate(0.5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-rusticVibration {
+  animation: rusticVibration 5s infinite;
+} */

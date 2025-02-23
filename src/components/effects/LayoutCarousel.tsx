@@ -2,7 +2,7 @@
 import { useRandomCars } from '@/utils/useRandomCars';
 import BackgroundCarousel from './BackgroundCarousel';
 import MobileCarousel from './MobileCarousel';
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LayoutCarousel = () => {
@@ -11,20 +11,51 @@ const LayoutCarousel = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  // Agregar debounce al detector de redimensión
   useEffect(() => {
+    let debounceTimer: NodeJS.Timeout;
+    
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 200);
     };
     
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
-    const timer = setTimeout(() => setIsLoading(false), 500);
+    const loadingTimer = setTimeout(() => setIsLoading(false), 500);
     
     return () => {
       window.removeEventListener('resize', checkMobile);
-      clearTimeout(timer);
+      clearTimeout(debounceTimer);
+      clearTimeout(loadingTimer);
     };
+  }, []);
+
+  // Memoizar los mapeos de coches para evitar recálculos
+  const mobileCarData = useMemo(() => 
+    randomCars.map((car, index) => ({
+      ...car,
+      priority: index === 0,
+      alt: `${car.title} view ${index + 1}`
+    })),
+    [randomCars]
+  );
+
+  const desktopCarData = useMemo(() => 
+    randomCars.map((car, index) => ({
+      ...car,
+      priority: index < 2,
+      alt: `${car.title} view ${index + 1}`
+    })),
+    [randomCars]
+  );
+
+  // Estabilizar la función de setHoveredIndex
+  const handleSetHoveredIndex = useCallback((index: number | null) => {
+    setHoveredIndex(index);
   }, []);
 
   if (isLoading) {
@@ -38,24 +69,15 @@ const LayoutCarousel = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
+        key={isMobile ? 'mobile' : 'desktop'}
       >
         {isMobile ? (
-          <MobileCarousel 
-            cars={randomCars.map((car, index) => ({
-              ...car,
-              priority: index === 0,
-              alt: `${car.title} view ${index + 1}`
-            }))} 
-          />
+          <MobileCarousel cars={mobileCarData} />
         ) : (
           <BackgroundCarousel 
-            cars={randomCars.map((car, index) => ({
-              ...car,
-              priority: index < 2,
-              alt: `${car.title} view ${index + 1}`
-            }))}
+            cars={desktopCarData}
             hoveredIndex={hoveredIndex}
-            setHoveredIndex={setHoveredIndex}
+            setHoveredIndex={handleSetHoveredIndex}
           />
         )}
       </motion.div>
@@ -63,4 +85,4 @@ const LayoutCarousel = () => {
   );
 };
 
-export default LayoutCarousel;
+export default React.memo(LayoutCarousel);

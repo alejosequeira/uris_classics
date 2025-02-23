@@ -11,6 +11,7 @@ import Spinner from '@/components/ui/Spinner';
 import { useSearch } from '@/context/SearchContext';
 
 const CARS_PER_PAGE = 6;
+
 interface Filters {
   make: string;
   minYear: number;
@@ -41,13 +42,10 @@ export default function CarsPage() {
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [isLoading, setIsLoading] = useState(false);
-  const makes = Array.from(new Set(mockCars.map(car => car.make)));
-
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
-  const handleToggleFilters = (isOpen: boolean) => {
-    setIsFiltersOpen(isOpen);
-  };
+  const makes = Array.from(new Set(mockCars.map(car => car.make)));
+
   // Inicializar coches y favoritos
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem('favoriteCars') || '[]');
@@ -57,41 +55,6 @@ export default function CarsPage() {
     }));
     setCars(carsWithFavorites);
   }, []);
-
-
-
-
-
-
-  const handleSortChange = (newSortOption: string) => {
-    setSortOption(newSortOption);
-    filterAndSortCars(searchTerm, filters, currentPage, newSortOption);
-  };
-
-  const handleFilterChange = (newFilter: { [key: string]: string | number | boolean }) => {
-    const updatedFilters = {
-      ...filters,
-      ...Object.fromEntries(
-        Object.entries(newFilter).map(([key, value]) => {
-          if (key === 'make') return [key, value];
-          if (key === 'showOnlyFavorites') {
-            setShowOnlyFavorites(value as boolean);
-            return [key, value];
-          }
-          if (key === 'carsPerPage') {
-            setCarsPerPage(Number(value));
-            return [key, Number(value)];
-          }
-          if (key === 'minPrice' || key === 'maxPrice') {
-            return [key, Number(value)];
-          }
-          return [key, value === '' ? 0 : Number(value)];
-        })
-      )
-    };
-    setFilters(updatedFilters);
-    setCurrentPage(1);
-  };
 
   const filterAndSortCars = useCallback(async (
     searchTerm: string,
@@ -123,6 +86,7 @@ export default function CarsPage() {
       return matchesSearch && matchesMake && matchesMinYear && matchesMaxYear && matchesPrice && matchesFavorite;
     });
 
+    // Aplicar ordenamiento
     switch (currentSortOption) {
       case 'priceHighToLow':
         filtered.sort((a, b) => b.price - a.price);
@@ -130,44 +94,71 @@ export default function CarsPage() {
       case 'priceLowToHigh':
         filtered.sort((a, b) => a.price - b.price);
         break;
-      default:
-        break;
     }
 
-    if (filtered.length === 0) {
-      setFilteredCars({
-        data: [],
-        total: 0,
-        page: 1,
-        perPage: perPage,
-      });
-    } else {
-      const startIndex = (page - 1) * perPage;
-      const paginatedCars = filtered.slice(startIndex, startIndex + perPage);
+    // Paginar resultados
+    const startIndex = (page - 1) * perPage;
+    const paginatedCars = filtered.slice(startIndex, startIndex + perPage);
 
-      setFilteredCars({
-        data: paginatedCars,
-        total: filtered.length,
-        page: page,
-        perPage: perPage,
-      });
-    }
+    setFilteredCars({
+      data: paginatedCars,
+      total: filtered.length,
+      page,
+      perPage,
+    });
 
     setIsLoading(false);
   }, [cars, showOnlyFavorites, carsPerPage]);
 
-  const handleSearch = useCallback((term: string) => {
+
+  const handleFilterChange = (newFilter: { [key: string]: string | number | boolean }) => {
+    const updatedFilters = {
+      ...filters,
+      ...Object.fromEntries(
+        Object.entries(newFilter).map(([key, value]) => {
+          if (key === 'make') return [key, value];
+          if (key === 'showOnlyFavorites') {
+            setShowOnlyFavorites(value as boolean);
+            return [key, value];
+          }
+          if (key === 'carsPerPage') {
+            setCarsPerPage(Number(value));
+            return [key, Number(value)];
+          }
+          return [key, typeof value === 'string' ? Number(value) || 0 : value];
+        })
+      )
+    };
+    setFilters(updatedFilters);
     setCurrentPage(1);
-    filterAndSortCars(term, filters, 1, sortOption);
-  }, [filters, sortOption, filterAndSortCars]);
+  };
 
-  // Efecto para manejar el término de búsqueda del contexto
-  useEffect(() => {
-    if (searchTerm) {
-      handleSearch(searchTerm);
-    }
-  }, [searchTerm, handleSearch]);
+  const handleSortChange = (newSortOption: string) => {
+    setSortOption(newSortOption);
+    filterAndSortCars(searchTerm, filters, currentPage, newSortOption);
+  };
 
+  const handleClearFilters = () => {
+    setFilters({
+      make: '',
+      minYear: 1969,
+      maxYear: 2024,
+      minPrice: 0,
+      maxPrice: 0
+    });
+    setSortOption('default');
+    setShowOnlyFavorites(false);
+    setCarsPerPage(CARS_PER_PAGE);
+    setCurrentPage(1);
+    // Asegurarse de que esto dispare el filterAndSortCars
+    filterAndSortCars('', {
+      make: '',
+      minYear: 1969,
+      maxYear: 2024,
+      minPrice: 0,
+      maxPrice: 0
+    }, 1, 'default', CARS_PER_PAGE);
+  };
   const handleToggleFavorite = (carId: string) => {
     const updatedCars = cars.map(car =>
       car.id === carId ? { ...car, isFavorite: !car.isFavorite } : car
@@ -181,22 +172,9 @@ export default function CarsPage() {
   };
 
 
-  const handleClearFilters = () => {
-    setFilters({
-      make: '',
-      minYear: 1900,
-      maxYear: new Date().getFullYear(),
-      maxPrice: 0,
-      minPrice: 0,
-    });
-    setSortOption('default');
-    setShowOnlyFavorites(false);
-    setCarsPerPage(CARS_PER_PAGE);
-    setCurrentPage(1);
-  };
-
+  // Efecto para manejar búsquedas y filtros
   useEffect(() => {
-    filterAndSortCars(searchTerm, filters, currentPage, sortOption, carsPerPage);
+    filterAndSortCars(searchTerm || '', filters, currentPage, sortOption, carsPerPage);
   }, [filterAndSortCars, searchTerm, filters, currentPage, sortOption, carsPerPage]);
 
   return (
@@ -205,24 +183,21 @@ export default function CarsPage() {
         Our Exclusive Collection
       </h1>
 
-      {/* Cambia esta sección */}
       <div className="bg-backgroundtertiary shadow-md rounded-lg p-6 mb-8">
         <CarFilters
           onFilterChange={handleFilterChange}
           onSortChange={handleSortChange}
           onClearFilters={handleClearFilters}
-          onSearch={handleSearch}
+
           makes={makes}
           carsPerPage={carsPerPage}
           showOnlyFavorites={showOnlyFavorites}
           cars={cars}
           sortOption={sortOption}
           isFiltersOpen={isFiltersOpen}
-          onToggleFilters={handleToggleFilters}
-          searchTerm={searchTerm}
-          onCarsPerPageChange={(value) => setCarsPerPage(value)}
-          onToggleFavorites={(value) => setShowOnlyFavorites(value)}
-
+          onToggleFilters={setIsFiltersOpen}
+          onCarsPerPageChange={setCarsPerPage}
+          onToggleFavorites={setShowOnlyFavorites}
         />
       </div>
 

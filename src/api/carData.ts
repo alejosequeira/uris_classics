@@ -23,31 +23,31 @@ export const carGroups: CarGroup[] = [
                 alt: '1969 Ford Mustang - Front View',
                 priority: true 
             },
-            { 
-                title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
-                alt: '1969 Ford Mustang - Side View' 
-            },
-            { 
-                title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
-                alt: '1969 Ford Mustang - Rear View' 
-            },
-            { 
-                title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
-                alt: '1969 Ford Mustang - Interior View' 
-            },
-            { 
-                title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
-                alt: '1969 Ford Mustang - Engine View' 
-            },
-            { 
-                title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
-                alt: '1969 Ford Mustang - Detail View' 
-            }
+            // { 
+            //     title: '1969 Ford Mustang', 
+            //     imageUrl: '/images/ford-mustang-1969.webp',
+            //     alt: '1969 Ford Mustang - Side View' 
+            // },
+            // { 
+            //     title: '1969 Ford Mustang', 
+            //     imageUrl: '/images/ford-mustang-1969.webp',
+            //     alt: '1969 Ford Mustang - Rear View' 
+            // },
+            // { 
+            //     title: '1969 Ford Mustang', 
+            //     imageUrl: '/images/ford-mustang-1969.webp',
+            //     alt: '1969 Ford Mustang - Interior View' 
+            // },
+            // { 
+            //     title: '1969 Ford Mustang', 
+            //     imageUrl: '/images/ford-mustang-1969.webp',
+            //     alt: '1969 Ford Mustang - Engine View' 
+            // },
+            // { 
+            //     title: '1969 Ford Mustang', 
+            //     imageUrl: '/images/ford-mustang-1969.webp',
+            //     alt: '1969 Ford Mustang - Detail View' 
+            // }
         ]
     },
     {
@@ -55,35 +55,35 @@ export const carGroups: CarGroup[] = [
         cars: [
             { 
                 title: '1970 Chevrolet Camaro ZL1', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
                 alt: '1970 Chevrolet Camaro ZL1 - Front View',
                 priority: false 
             },
-            { 
-                title: '1989 Chevrolet Camaro', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
-                alt: '1989 Chevrolet Camaro - Side View' 
-            },
-            { 
-                title: '1968 Chevrolet Camaro', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
-                alt: '1968 Chevrolet Camaro - Rear View' 
-            },
-            { 
-                title: '1965 Chevrolet Camaro', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
-                alt: '1965 Chevrolet Camaro - Interior View' 
-            },
-            { 
-                title: '1972 Chevrolet Camaro', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
-                alt: '1972 Chevrolet Camaro - Engine View' 
-            },
-            { 
-                title: '1975 Chevrolet Camaro', 
-                imageUrl: '/images/chevrolet-camaro-1970.jpg',
-                alt: '1975 Chevrolet Camaro - Detail View' 
-            }
+            // { 
+            //     title: '1989 Chevrolet Camaro', 
+            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+            //     alt: '1989 Chevrolet Camaro - Side View' 
+            // },
+            // { 
+            //     title: '1968 Chevrolet Camaro', 
+            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+            //     alt: '1968 Chevrolet Camaro - Rear View' 
+            // },
+            // { 
+            //     title: '1965 Chevrolet Camaro', 
+            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+            //     alt: '1965 Chevrolet Camaro - Interior View' 
+            // },
+            // { 
+            //     title: '1972 Chevrolet Camaro', 
+            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+            //     alt: '1972 Chevrolet Camaro - Engine View' 
+            // },
+            // { 
+            //     title: '1975 Chevrolet Camaro', 
+            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+            //     alt: '1975 Chevrolet Camaro - Detail View' 
+            // }
         ]
     },
     {
@@ -91,35 +91,35 @@ export const carGroups: CarGroup[] = [
         cars: [
             { 
                 title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
+                imageUrl: '/images/dodge-charger-1969.webp',
                 alt: '1969 Dodge Charger - Front View',
                 priority: true 
             },
-            { 
-                title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
-                alt: '1969 Dodge Charger - Side View' 
-            },
-            { 
-                title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
-                alt: '1969 Dodge Charger - Rear View' 
-            },
-            { 
-                title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
-                alt: '1969 Dodge Charger - Interior View' 
-            },
-            { 
-                title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
-                alt: '1969 Dodge Charger - Engine View' 
-            },
-            { 
-                title: '1969 Dodge Charger', 
-                imageUrl: '/images/dodge-charger-1969.jpg',
-                alt: '1969 Dodge Charger - Detail View' 
-            }
+            // { 
+            //     title: '1969 Dodge Charger', 
+            //     imageUrl: '/images/dodge-charger-1969.webp',
+            //     alt: '1969 Dodge Charger - Side View' 
+            // },
+            // { 
+            //     title: '1969 Dodge Charger', 
+            //     imageUrl: '/images/dodge-charger-1969.webp',
+            //     alt: '1969 Dodge Charger - Rear View' 
+            // },
+            // { 
+            //     title: '1969 Dodge Charger', 
+            //     imageUrl: '/images/dodge-charger-1969.webp',
+            //     alt: '1969 Dodge Charger - Interior View' 
+            // },
+            // { 
+            //     title: '1969 Dodge Charger', 
+            //     imageUrl: '/images/dodge-charger-1969.webp',
+            //     alt: '1969 Dodge Charger - Engine View' 
+            // },
+            // { 
+            //     title: '1969 Dodge Charger', 
+            //     imageUrl: '/images/dodge-charger-1969.webp',
+            //     alt: '1969 Dodge Charger - Detail View' 
+            // }
         ]
     }
  ];
@@ -137,19 +137,22 @@ const mockCars: Car[] = [
         model: 'Mustang',
         year: 1969,
         price: 38000,
-        imageUrl: '/images/ford-mustang-1969.webp',
+        imageUrl: '/images/forsale/first-mustang/MustangRestomod/img1.jpg',
         images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/chevrolet-camaro-1970.jpg',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/chevrolet-camaro-1970.jpg',
+            
+           '/images/forsale/first-mustang/MustangRestomod/img2.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img3.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img4.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img5.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img6.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img7.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img8.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img9.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img10.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img11.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img12.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img13.jpg',
+        //    '/images/forsale/first-mustang/MustangRestomod/img14.jpg',
         ],
         description: 'A beautifully restored 1969 Ford Mustang. This classic muscle car is a true icon of American automotive history.',
         specifications: {
@@ -187,12 +190,12 @@ const mockCars: Car[] = [
         model: 'Camaro',
         year: 1970,
         price: 42000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
+        imageUrl: '/images/chevrolet-camaro-1970.webp',
         images: [
-            '/images/chevrolet-camaro-1970.jpg',
-            '/images/chevrolet-camaro-1970.jpg',
-            '/images/chevrolet-camaro-1970.jpg',
-            '/images/chevrolet-camaro-1970.jpg',
+            '/images/chevrolet-camaro-1970.webp',
+            // '/images/chevrolet-camaro-1970.webp',
+            // '/images/chevrolet-camaro-1970.webp',
+            // '/images/chevrolet-camaro-1970.webp',
         ],
         description: 'Classic 1970 Chevrolet Camaro in exceptional condition. A perfect blend of muscle car heritage and modern reliability.',
         specifications: {
@@ -224,342 +227,342 @@ const mockCars: Car[] = [
         ],
         isFavorite: false
     },
-    {
-        id: '3',
-        make: 'Dodge',
-        model: 'Charger',
-        year: 1969,
-        price: 45000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A powerful 1969 Dodge Charger. This muscle car represents the golden age of American performance vehicles.',
-        specifications: {
-            engine: '302 V8',
-            transmission: '3-speed automatic',
-            mileage: 75000,
-            exteriorColor: 'Red',
-            interiorColor: 'Black',
-            horsepower: '250 hp',
-            topSpeed: '124 mph',
-            acceleration: '7.1 seconds 0-60 mph'
-        },
-        features: [
-            'Power steering',
-            'Power brakes',
-            'Bucket seats',
-            'Cowl induction hood',
-            'Rally wheels',
-        ],
-        history: 'This Charger has been part of a private collection for the past 15 years. It underwent a full restoration in 2010 and has been driven sparingly since then.',
-        location: 'Los Angeles, CA',
-        engine: '396 V8',
-        transmission: '4-speed manual',
-        mileage: 68000,
-        averageRating: 4.3,
-        reviews: [
-            { id: '301', userId: 'user5', username: 'SpeedDemon', rating: 5, comment: 'A dream come true!', date: '2023-05-25' },
-            { id: '302', userId: 'user6', username: 'VintageCars', rating: 4, comment: 'Excellent condition, fair price.', date: '2023-06-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '4',
-        make: 'Ford',
-        model: 'F-150',
-        year: 2020,
-        price: 50000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A modern and capable 2020 Ford F-150, perfect for work and play.',
-        specifications: {
-            engine: '302 V8',
-            transmission: '3-speed automatic',
-            mileage: 75000,
-            exteriorColor: 'Red',
-            interiorColor: 'Black',
-            horsepower: '250 hp',
-            topSpeed: '124 mph',
-            acceleration: '7.1 seconds 0-60 mph'
-        },
-        features: [
-            'Four-wheel drive',
-            'Towing package',
-            'Heated seats',
-            'Touchscreen navigation',
-            'Backup camera',
-        ],
-        history: 'Regularly serviced and in excellent condition. Single owner.',
-        location: 'Houston, TX',
-        engine: '5.0L V8',
-        transmission: '10-speed automatic',
-        mileage: 15000,
-        averageRating: 4.3,
-        reviews: [
-            { id: '401', userId: 'user7', username: 'TruckEnthusiast', rating: 5, comment: 'Best truck I\'ve ever owned!', date: '2023-07-01' },
-            { id: '402', userId: 'user8', username: 'DailyDriver', rating: 4, comment: 'Great for work and play.', date: '2023-07-15' },
-        ],
-        isFavorite: false
-    },
-    {
-        id: '5',
-        make: 'Chevrolet',
-        model: 'Corvette',
-        year: 2021,
-        price: 65000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A stunning 2021 Chevrolet Corvette with exceptional performance and modern luxury.',
-        specifications: {
-            engine: '6.2L V8',
-            transmission: '8-speed automatic',
-            mileage: 12000,
-            exteriorColor: 'Red',
-            interiorColor: 'Black',
-            horsepower: '495 hp',
-            topSpeed: '194 mph',
-            acceleration: '2.9 seconds 0-60 mph'
-        },
-        features: [
-            'Heated and ventilated seats',
-            'Touchscreen infotainment system',
-            'Heads-up display',
-            'Premium audio system',
-            'Rearview camera'
-        ],
-        history: 'One owner, meticulously maintained with all service records.',
-        location: 'Dallas, TX',
-        engine: '6.2L V8 (495 hp)',
-        transmission: '8-speed automatic',
-        mileage: 12000,
-        averageRating: 4.9,
-        reviews: [
-            { id: '501', userId: 'user9', username: 'SpeedFreak', rating: 5, comment: 'Unbelievable performance!', date: '2023-08-01' },
-            { id: '502', userId: 'user10', username: 'LuxuryCars', rating: 4, comment: 'A bit flashy, but so much fun to drive.', date: '2023-08-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '6',
-        make: 'Dodge',
-        model: 'Viper',
-        year: 2019,
-        price: 80000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A powerful 2019 Dodge Viper with raw performance and aggressive styling.',
-        specifications: {
-            engine: '8.4L V10',
-            transmission: '6-speed manual',
-            mileage: 9000,
-            exteriorColor: 'Black',
-            interiorColor: 'Red',
-            horsepower: '645 hp',
-            topSpeed: '206 mph',
-            acceleration: '3.4 seconds 0-60 mph'
-        },
-        features: [
-            'Track-tuned suspension',
-            'High-performance brakes',
-            'Lightweight body panels',
-            'Performance seats',
-            'Backup camera'
-        ],
-        history: 'Always garage-kept, used mainly for track days. All original parts.',
-        location: 'Las Vegas, NV',
-        engine: '8.4L V10 (645 hp)',
-        transmission: '6-speed manual',
-        mileage: 9000,
-        averageRating: 4.7,
-        reviews: [
-            { id: '601', userId: 'user11', username: 'AdrenalineJunkie', rating: 5, comment: 'Raw power and aggression!', date: '2023-09-01' },
-            { id: '602', userId: 'user12', username: 'TrackDayHero', rating: 4, comment: 'Handles like a dream on the track.', date: '2023-09-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '7',
-        make: 'Ford',
-        model: 'Bronco',
-        year: 2021,
-        price: 35000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A rugged 2021 Ford Bronco built for adventure and off-road capabilities.',
-        specifications: {
-            engine: '2.7L V6 EcoBoost',
-            transmission: '10-speed automatic',
-            mileage: 10000,
-            exteriorColor: 'Cactus Gray',
-            interiorColor: 'Black',
-            horsepower: '310 hp',
-            topSpeed: '120 mph',
-            acceleration: '7.2 seconds 0-60 mph'
-        },
-        features: [
-            'Four-wheel drive',
-            'Removable roof and doors',
-            'Terrain management system',
-            'Trail cameras',
-            'Heavy-duty suspension'
-        ],
-        history: 'One owner, regularly maintained with minimal off-road use.',
-        location: 'Denver, CO',
-        engine: '2.7L V6 EcoBoost (310 hp)',
-        transmission: '10-speed automatic',
-        mileage: 10000,
-        averageRating: 4.8,
-        reviews: [
-            { id: '701', userId: 'user13', username: 'OffRoadWarrior', rating: 5, comment: 'Perfect for adventures!', date: '2023-10-01' },
-            { id: '702', userId: 'user14', username: 'WeekendExplorer', rating: 3, comment: 'Good, but fuel economy could be better.', date: '2023-10-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '8',
-        make: 'Chevrolet',
-        model: 'Impala',
-        year: 1967,
-        price: 30000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A timeless 1967 Chevrolet Impala with classic American styling and comfort.',
-        specifications: {
-            engine: '427 V8',
-            transmission: '3-speed automatic',
-            mileage: 78000,
-            exteriorColor: 'Black',
-            interiorColor: 'Red',
-            horsepower: '385 hp',
-            topSpeed: '115 mph',
-            acceleration: '7.0 seconds 0-60 mph'
-        },
-        features: [
-            'Power steering',
-            'Classic bench seats',
-            'AM/FM radio',
-            'Original chrome accents',
-            'Whitewall tires'
-        ],
-        history: 'Professionally restored in 2015. A true collector’s item.',
-        location: 'Seattle, WA',
-        engine: '427 V8 (385 hp)',
-        transmission: '3-speed automatic',
-        mileage: 78000,
-        averageRating: 4.6,
-        reviews: [
-            { id: '801', userId: 'user15', username: 'VintageCollector', rating: 5, comment: 'A piece of history!', date: '2023-11-01' },
-            { id: '802', userId: 'user16', username: 'SundayCruiser', rating: 3, comment: 'Beautiful, but high maintenance.', date: '2023-11-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '9',
-        make: 'Dodge',
-        model: 'Challenger',
-        year: 2020,
-        price: 45000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A modern 2020 Dodge Challenger combining retro style with cutting-edge performance.',
-        specifications: {
-            engine: '6.4L V8 HEMI',
-            transmission: '8-speed automatic',
-            mileage: 15000,
-            exteriorColor: 'Plum Crazy Purple',
-            interiorColor: 'Black',
-            horsepower: '485 hp',
-            topSpeed: '182 mph',
-            acceleration: '4.2 seconds 0-60 mph'
-        },
-        features: [
-            'Performance suspension',
-            'Brembo brakes',
-            'Touchscreen infotainment',
-            'Adaptive cruise control',
-            'Launch control'
-        ],
-        history: 'Purchased new and meticulously maintained. Driven primarily on weekends.',
-        location: 'Phoenix, AZ',
-        engine: '6.4L V8 HEMI (485 hp)',
-        transmission: '8-speed automatic',
-        mileage: 15000,
-        averageRating: 4.7,
-        reviews: [
-            { id: '901', userId: 'user17', username: 'ModernMuscle', rating: 5, comment: 'The perfect blend of old and new!', date: '2023-12-01' },
-            { id: '902', userId: 'user18', username: 'QuarterMileKing', rating: 4, comment: 'Fast in a straight line, decent in corners.', date: '2023-12-15' }
-        ],
-        isFavorite: false
-    },
-    {
-        id: '10',
-        make: 'Ford',
-        model: 'GT',
-        year: 2005,
-        price: 250000,
-        imageUrl: '/images/chevrolet-camaro-1970.jpg',
-        images: [
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-            '/images/ford-mustang-1969.webp',
-        ],
-        description: 'A legendary 2005 Ford GT with supercar performance and timeless design.',
-        specifications: {
-            engine: '5.4L Supercharged V8',
-            transmission: '6-speed manual',
-            mileage: 7000,
-            exteriorColor: 'Heritage Blue',
-            interiorColor: 'Black',
-            horsepower: '550 hp',
-            topSpeed: '205 mph',
-            acceleration: '3.5 seconds 0-60 mph'
-        },
-        features: [
-            'Carbon fiber body panels',
-            'Brembo brakes',
-            'Leather-trimmed seats',
-            'Performance gauges',
-            'Push-button start'
-        ],
-        history: 'Low-mileage collector’s car. Always stored in a climate-controlled garage.',
-        location: 'Miami, FL',
-        engine: '5.4L Supercharged V8 (550 hp)',
-        transmission: '6-speed manual',
-        mileage: 7000,
-        averageRating: 4.9,
-        reviews: [
-            { id: '1001', userId: 'user19', username: 'ExoticCarFanatic', rating: 5, comment: 'A true supercar experience!', date: '2024-01-01' },
-            { id: '1002', userId: 'user20', username: 'PerformanceGuru', rating: 4, comment: 'Incredible performance, but not for daily use.', date: '2024-01-15' }
-        ],
-        isFavorite: false
-    },
+    // {
+    //     id: '3',
+    //     make: 'Dodge',
+    //     model: 'Charger',
+    //     year: 1969,
+    //     price: 45000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A powerful 1969 Dodge Charger. This muscle car represents the golden age of American performance vehicles.',
+    //     specifications: {
+    //         engine: '302 V8',
+    //         transmission: '3-speed automatic',
+    //         mileage: 75000,
+    //         exteriorColor: 'Red',
+    //         interiorColor: 'Black',
+    //         horsepower: '250 hp',
+    //         topSpeed: '124 mph',
+    //         acceleration: '7.1 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Power steering',
+    //         'Power brakes',
+    //         'Bucket seats',
+    //         'Cowl induction hood',
+    //         'Rally wheels',
+    //     ],
+    //     history: 'This Charger has been part of a private collection for the past 15 years. It underwent a full restoration in 2010 and has been driven sparingly since then.',
+    //     location: 'Los Angeles, CA',
+    //     engine: '396 V8',
+    //     transmission: '4-speed manual',
+    //     mileage: 68000,
+    //     averageRating: 4.3,
+    //     reviews: [
+    //         { id: '301', userId: 'user5', username: 'SpeedDemon', rating: 5, comment: 'A dream come true!', date: '2023-05-25' },
+    //         { id: '302', userId: 'user6', username: 'VintageCars', rating: 4, comment: 'Excellent condition, fair price.', date: '2023-06-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '4',
+    //     make: 'Ford',
+    //     model: 'F-150',
+    //     year: 2020,
+    //     price: 50000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A modern and capable 2020 Ford F-150, perfect for work and play.',
+    //     specifications: {
+    //         engine: '302 V8',
+    //         transmission: '3-speed automatic',
+    //         mileage: 75000,
+    //         exteriorColor: 'Red',
+    //         interiorColor: 'Black',
+    //         horsepower: '250 hp',
+    //         topSpeed: '124 mph',
+    //         acceleration: '7.1 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Four-wheel drive',
+    //         'Towing package',
+    //         'Heated seats',
+    //         'Touchscreen navigation',
+    //         'Backup camera',
+    //     ],
+    //     history: 'Regularly serviced and in excellent condition. Single owner.',
+    //     location: 'Houston, TX',
+    //     engine: '5.0L V8',
+    //     transmission: '10-speed automatic',
+    //     mileage: 15000,
+    //     averageRating: 4.3,
+    //     reviews: [
+    //         { id: '401', userId: 'user7', username: 'TruckEnthusiast', rating: 5, comment: 'Best truck I\'ve ever owned!', date: '2023-07-01' },
+    //         { id: '402', userId: 'user8', username: 'DailyDriver', rating: 4, comment: 'Great for work and play.', date: '2023-07-15' },
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '5',
+    //     make: 'Chevrolet',
+    //     model: 'Corvette',
+    //     year: 2021,
+    //     price: 65000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A stunning 2021 Chevrolet Corvette with exceptional performance and modern luxury.',
+    //     specifications: {
+    //         engine: '6.2L V8',
+    //         transmission: '8-speed automatic',
+    //         mileage: 12000,
+    //         exteriorColor: 'Red',
+    //         interiorColor: 'Black',
+    //         horsepower: '495 hp',
+    //         topSpeed: '194 mph',
+    //         acceleration: '2.9 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Heated and ventilated seats',
+    //         'Touchscreen infotainment system',
+    //         'Heads-up display',
+    //         'Premium audio system',
+    //         'Rearview camera'
+    //     ],
+    //     history: 'One owner, meticulously maintained with all service records.',
+    //     location: 'Dallas, TX',
+    //     engine: '6.2L V8 (495 hp)',
+    //     transmission: '8-speed automatic',
+    //     mileage: 12000,
+    //     averageRating: 4.9,
+    //     reviews: [
+    //         { id: '501', userId: 'user9', username: 'SpeedFreak', rating: 5, comment: 'Unbelievable performance!', date: '2023-08-01' },
+    //         { id: '502', userId: 'user10', username: 'LuxuryCars', rating: 4, comment: 'A bit flashy, but so much fun to drive.', date: '2023-08-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '6',
+    //     make: 'Dodge',
+    //     model: 'Viper',
+    //     year: 2019,
+    //     price: 80000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A powerful 2019 Dodge Viper with raw performance and aggressive styling.',
+    //     specifications: {
+    //         engine: '8.4L V10',
+    //         transmission: '6-speed manual',
+    //         mileage: 9000,
+    //         exteriorColor: 'Black',
+    //         interiorColor: 'Red',
+    //         horsepower: '645 hp',
+    //         topSpeed: '206 mph',
+    //         acceleration: '3.4 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Track-tuned suspension',
+    //         'High-performance brakes',
+    //         'Lightweight body panels',
+    //         'Performance seats',
+    //         'Backup camera'
+    //     ],
+    //     history: 'Always garage-kept, used mainly for track days. All original parts.',
+    //     location: 'Las Vegas, NV',
+    //     engine: '8.4L V10 (645 hp)',
+    //     transmission: '6-speed manual',
+    //     mileage: 9000,
+    //     averageRating: 4.7,
+    //     reviews: [
+    //         { id: '601', userId: 'user11', username: 'AdrenalineJunkie', rating: 5, comment: 'Raw power and aggression!', date: '2023-09-01' },
+    //         { id: '602', userId: 'user12', username: 'TrackDayHero', rating: 4, comment: 'Handles like a dream on the track.', date: '2023-09-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '7',
+    //     make: 'Ford',
+    //     model: 'Bronco',
+    //     year: 2021,
+    //     price: 35000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A rugged 2021 Ford Bronco built for adventure and off-road capabilities.',
+    //     specifications: {
+    //         engine: '2.7L V6 EcoBoost',
+    //         transmission: '10-speed automatic',
+    //         mileage: 10000,
+    //         exteriorColor: 'Cactus Gray',
+    //         interiorColor: 'Black',
+    //         horsepower: '310 hp',
+    //         topSpeed: '120 mph',
+    //         acceleration: '7.2 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Four-wheel drive',
+    //         'Removable roof and doors',
+    //         'Terrain management system',
+    //         'Trail cameras',
+    //         'Heavy-duty suspension'
+    //     ],
+    //     history: 'One owner, regularly maintained with minimal off-road use.',
+    //     location: 'Denver, CO',
+    //     engine: '2.7L V6 EcoBoost (310 hp)',
+    //     transmission: '10-speed automatic',
+    //     mileage: 10000,
+    //     averageRating: 4.8,
+    //     reviews: [
+    //         { id: '701', userId: 'user13', username: 'OffRoadWarrior', rating: 5, comment: 'Perfect for adventures!', date: '2023-10-01' },
+    //         { id: '702', userId: 'user14', username: 'WeekendExplorer', rating: 3, comment: 'Good, but fuel economy could be better.', date: '2023-10-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '8',
+    //     make: 'Chevrolet',
+    //     model: 'Impala',
+    //     year: 1967,
+    //     price: 30000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A timeless 1967 Chevrolet Impala with classic American styling and comfort.',
+    //     specifications: {
+    //         engine: '427 V8',
+    //         transmission: '3-speed automatic',
+    //         mileage: 78000,
+    //         exteriorColor: 'Black',
+    //         interiorColor: 'Red',
+    //         horsepower: '385 hp',
+    //         topSpeed: '115 mph',
+    //         acceleration: '7.0 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Power steering',
+    //         'Classic bench seats',
+    //         'AM/FM radio',
+    //         'Original chrome accents',
+    //         'Whitewall tires'
+    //     ],
+    //     history: 'Professionally restored in 2015. A true collector’s item.',
+    //     location: 'Seattle, WA',
+    //     engine: '427 V8 (385 hp)',
+    //     transmission: '3-speed automatic',
+    //     mileage: 78000,
+    //     averageRating: 4.6,
+    //     reviews: [
+    //         { id: '801', userId: 'user15', username: 'VintageCollector', rating: 5, comment: 'A piece of history!', date: '2023-11-01' },
+    //         { id: '802', userId: 'user16', username: 'SundayCruiser', rating: 3, comment: 'Beautiful, but high maintenance.', date: '2023-11-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '9',
+    //     make: 'Dodge',
+    //     model: 'Challenger',
+    //     year: 2020,
+    //     price: 45000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A modern 2020 Dodge Challenger combining retro style with cutting-edge performance.',
+    //     specifications: {
+    //         engine: '6.4L V8 HEMI',
+    //         transmission: '8-speed automatic',
+    //         mileage: 15000,
+    //         exteriorColor: 'Plum Crazy Purple',
+    //         interiorColor: 'Black',
+    //         horsepower: '485 hp',
+    //         topSpeed: '182 mph',
+    //         acceleration: '4.2 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Performance suspension',
+    //         'Brembo brakes',
+    //         'Touchscreen infotainment',
+    //         'Adaptive cruise control',
+    //         'Launch control'
+    //     ],
+    //     history: 'Purchased new and meticulously maintained. Driven primarily on weekends.',
+    //     location: 'Phoenix, AZ',
+    //     engine: '6.4L V8 HEMI (485 hp)',
+    //     transmission: '8-speed automatic',
+    //     mileage: 15000,
+    //     averageRating: 4.7,
+    //     reviews: [
+    //         { id: '901', userId: 'user17', username: 'ModernMuscle', rating: 5, comment: 'The perfect blend of old and new!', date: '2023-12-01' },
+    //         { id: '902', userId: 'user18', username: 'QuarterMileKing', rating: 4, comment: 'Fast in a straight line, decent in corners.', date: '2023-12-15' }
+    //     ],
+    //     isFavorite: false
+    // },
+    // {
+    //     id: '10',
+    //     make: 'Ford',
+    //     model: 'GT',
+    //     year: 2005,
+    //     price: 250000,
+    //     imageUrl: '/images/chevrolet-camaro-1970.webp',
+    //     images: [
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //         '/images/ford-mustang-1969.webp',
+    //     ],
+    //     description: 'A legendary 2005 Ford GT with supercar performance and timeless design.',
+    //     specifications: {
+    //         engine: '5.4L Supercharged V8',
+    //         transmission: '6-speed manual',
+    //         mileage: 7000,
+    //         exteriorColor: 'Heritage Blue',
+    //         interiorColor: 'Black',
+    //         horsepower: '550 hp',
+    //         topSpeed: '205 mph',
+    //         acceleration: '3.5 seconds 0-60 mph'
+    //     },
+    //     features: [
+    //         'Carbon fiber body panels',
+    //         'Brembo brakes',
+    //         'Leather-trimmed seats',
+    //         'Performance gauges',
+    //         'Push-button start'
+    //     ],
+    //     history: 'Low-mileage collector’s car. Always stored in a climate-controlled garage.',
+    //     location: 'Miami, FL',
+    //     engine: '5.4L Supercharged V8 (550 hp)',
+    //     transmission: '6-speed manual',
+    //     mileage: 7000,
+    //     averageRating: 4.9,
+    //     reviews: [
+    //         { id: '1001', userId: 'user19', username: 'ExoticCarFanatic', rating: 5, comment: 'A true supercar experience!', date: '2024-01-01' },
+    //         { id: '1002', userId: 'user20', username: 'PerformanceGuru', rating: 4, comment: 'Incredible performance, but not for daily use.', date: '2024-01-15' }
+    //     ],
+    //     isFavorite: false
+    // },
 ];
 
 export default mockCars;

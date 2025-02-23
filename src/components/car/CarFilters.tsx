@@ -1,8 +1,10 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import { Search, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { Search, SlidersHorizontal, RotateCcw, X } from 'lucide-react';
 import { Car } from '@/types/car';
-import { debounce } from 'lodash';
+import { useSearch } from '@/context/SearchContext';
+import CarSearch from './CarSearch';
+
 interface PriceRange {
   min: number;
   max: number | null;
@@ -13,7 +15,6 @@ interface CarFiltersProps {
   onFilterChange: (filters: { [key: string]: string | number | boolean }) => void;
   onSortChange: (sortOption: string) => void;
   onClearFilters: () => void;
-  onSearch: (term: string) => void;
   makes: string[];
   cars: Car[];
   sortOption: string;
@@ -21,12 +22,13 @@ interface CarFiltersProps {
   showOnlyFavorites: boolean;
   isFiltersOpen: boolean;
   onToggleFilters: (isOpen: boolean) => void;
-  searchTerm?: string;
   onCarsPerPageChange: (value: number) => void;
   onToggleFavorites: (value: boolean) => void;
 }
+
 const CARS_PER_PAGE = 6;
 
+// Constantes memoizadas fuera del componente
 const PRICE_RANGES: PriceRange[] = [
   { min: 0, max: 50000, label: '$0 - $50,000' },
   { min: 50000, max: 75000, label: '$50,000 - $75,000' },
@@ -36,247 +38,442 @@ const PRICE_RANGES: PriceRange[] = [
   { min: 150000, max: null, label: '$150,000 - over' }
 ];
 
+// Array de años pre-calculado
+const YEARS = Array.from({ length: 2025 - 1932 + 1 }, (_, i) => 2025 - i);
+
 const CarFilters: React.FC<CarFiltersProps> = ({
   onFilterChange,
   onSortChange,
   onClearFilters,
-  onSearch,
   makes,
   sortOption,
   carsPerPage,
   showOnlyFavorites,
   isFiltersOpen,
   onToggleFilters,
-  searchTerm = '',
   onCarsPerPageChange,
   onToggleFavorites
 }) => {
   const [selectedPriceRange, setSelectedPriceRange] = useState<PriceRange | null>(null);
-  const [searchValue, setSearchValue] = useState(searchTerm);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedMake, setSelectedMake] = useState<string | null>(null);
-  const handlePriceRangeChange = (range: PriceRange) => {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { handleSearch } = useSearch();
+
+  // Memo para los valores por página
+  const carsPerPageOptions = useMemo(() => [6, 12, 24, 48], []);
+
+  // useEffect para sincronizar el reset
+  useEffect(() => {
+    if (sortOption === 'default' && !showOnlyFavorites && carsPerPage === CARS_PER_PAGE) {
+      setSelectedPriceRange(null);
+      setSelectedYear(null);
+      setSelectedMake(null);
+      setOpenDropdown(null);
+    }
+  }, [sortOption, showOnlyFavorites, carsPerPage]);
+
+  // Handler memoizado para los dropdowns
+  const handleDropdownToggle = useCallback((dropdownName: string) => {
+    setOpenDropdown(currentDropdown =>
+      currentDropdown === dropdownName ? null : dropdownName
+    );
+  }, []);
+
+  // Handlers memoizados para las acciones
+  const handlePriceRangeChange = useCallback((range: PriceRange) => {
     setSelectedPriceRange(range);
+    setOpenDropdown(null);
     onFilterChange({
       minPrice: range.min,
       maxPrice: range.max ?? Number.MAX_SAFE_INTEGER
     });
-  };
-  
-  // Crear función debounced para la búsqueda
-  const debouncedSearch = debounce((term: string) => {
-    onSearch(term);
-  }, 300);
+  }, [onFilterChange]);
 
-  // Manejar cambios en el input de búsqueda
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    debouncedSearch(value);
-  };
-
-  useEffect(() => {
-    return () => {
-      debouncedSearch.cancel();
-    };
-  }, [debouncedSearch]);
-
-  const handleYearSelect = (year: number) => {
+  const handleYearSelect = useCallback((year: number) => {
     setSelectedYear(year);
-    onFilterChange({ year });
-  };
+    setOpenDropdown(null);
+    onFilterChange({
+      minYear: year,
+      maxYear: year
+    });
+  }, [onFilterChange]);
 
-  const handleMakeSelect = (make: string) => {
+  const handleMakeSelect = useCallback((make: string) => {
     setSelectedMake(make);
+    setOpenDropdown(null);
     onFilterChange({ make });
-  };
+  }, [onFilterChange]);
 
-  // Actualizar searchValue cuando cambia searchTerm
-  useEffect(() => {
-    setSearchValue(searchTerm);
-  }, [searchTerm]);
+  // Handler local para clear filters
+  const handleLocalClear = useCallback(() => {
+    setSelectedPriceRange(null);
+    setSelectedYear(null);
+    setSelectedMake(null);
+    setOpenDropdown(null);
+    onClearFilters();
+  }, [onClearFilters]);
+
+  // Handlers para X buttons
+  const handleClearYear = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedYear(null);
+    onFilterChange({ minYear: 1969, maxYear: 2024 });
+  }, [onFilterChange]);
+
+  const handleClearMake = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedMake(null);
+    onFilterChange({ make: '' });
+  }, [onFilterChange]);
+
+  const handleClearPrice = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedPriceRange(null);
+    onFilterChange({ minPrice: 0, maxPrice: 0 });
+  }, [onFilterChange]);
+
+  const handleClearSort = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSortChange('default');
+    setOpenDropdown(null);
+  }, [onSortChange]);
+
+  const handleClearCarsPerPage = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    onCarsPerPageChange(CARS_PER_PAGE);
+    setOpenDropdown(null);
+  }, [onCarsPerPageChange]);
+
+  const handleClearFavorites = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggleFavorites(false);
+  }, [onToggleFavorites]);
+
+  // Memo para handlers de sort
+  const sortHandlers = useMemo(() => ({
+    default: () => {
+      onSortChange('default');
+      setOpenDropdown(null);
+    },
+    highToLow: () => {
+      onSortChange('priceHighToLow');
+      setOpenDropdown(null);
+    },
+    lowToHigh: () => {
+      onSortChange('priceLowToHigh');
+      setOpenDropdown(null);
+    }
+  }), [onSortChange]);
+
+  // Memos para clases condicionales
+  const yearButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
+      selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
+    }`, [selectedYear]);
+
+  const makeButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
+      selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
+    }`, [selectedMake]);
+
+  const priceButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
+      selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
+    }`, [selectedPriceRange]);
+
+  const sortButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
+      sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
+    }`, [sortOption]);
+
+  const carsPerPageButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
+      carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
+    }`, [carsPerPage]);
+
+  const favoritesButtonClass = useMemo(() => 
+    `w-full px-4 py-2.5 text-left rounded-lg transition-colors relative ${
+      showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
+    }`, [showOnlyFavorites]);
+
+  // Función memoizada para opciones de años
+  const renderYearOptions = useMemo(() => {
+    if (openDropdown !== 'year') return null;
+    
+    return (
+      <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+        <div className="max-h-[200px] overflow-y-auto">
+          {YEARS.map(year => (
+            <button
+              key={year}
+              className={`w-full px-4 py-2 text-left transition-colors ${
+                selectedYear === year
+                  ? 'bg-brand text-white'
+                  : 'text-foreground hover:bg-brand/10'
+              }`}
+              onClick={() => handleYearSelect(year)}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }, [openDropdown, selectedYear, handleYearSelect]);
 
   return (
     <div className="w-full space-y-4">
-      {/* Top Search Bar */}
-      <div className="flex items-center gap-4">
-        <div className="relative flex-1">
-          <input
-            type="text"
-            value={searchValue}
-            onChange={handleSearchChange}
-            placeholder="Search by Year, Make or Model"
-            className="w-full px-4 py-2.5 bg-background border border-border rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:border-brand"
+      {/* Barra superior: Search + Botones */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex-1">
+          <CarSearch
+            onSearch={handleSearch}
+            variant="default"
+            className="w-full"
           />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:bg-card/50 rounded-full">
-            <Search className="h-5 w-5 text-gray-400" />
-          </button>
         </div>
 
-        <button
-          className="px-6 py-2.5 bg-brand hover:bg-brand-dark text-white rounded-lg flex items-center gap-2 transition-colors"
-          onClick={() => onToggleFilters(!isFiltersOpen)}
-        >
-          <SlidersHorizontal className="h-5 w-5" />
-          {isFiltersOpen ? 'CLOSE' : 'FILTERS'}
-        </button>
-
-        <button
-          className="px-6 py-2.5 border border-border hover:bg-card text-foreground rounded-lg flex items-center gap-2 transition-colors"
-          onClick={() => {
-            onClearFilters();
-            setSelectedPriceRange(null);
-          }}
-        >
-          <RotateCcw className="h-5 w-5" />
-          RESET
-        </button>
-      </div>
-
-      {/* Filter Dropdowns */}
-      <div className={`grid grid-cols-6 gap-2 ${isFiltersOpen ? 'block' : 'hidden'}`}>
-        {/* Year Dropdown */}
-        <div className="relative group">
-          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
-            }`}>
-            {selectedYear ? `Year: ${selectedYear}` : 'Year'}
-          </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10 max-h-[300px] overflow-y-auto">
-            {[...Array(2025 - 1932 + 1)].map((_, i) => (
-              <button
-                key={2025 - i}
-                className={`w-full px-4 py-2 text-left transition-colors ${selectedYear === (2025 - i)
-                  ? 'bg-brand text-white'
-                  : 'text-foreground hover:bg-brand hover:text-white'
-                  }`}
-                onClick={() => handleYearSelect(2025 - i)}
-              >
-                {2025 - i}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Make Dropdown */}
-        <div className="relative group">
-          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
-            }`}>
-            {selectedMake || 'Make'}
-          </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
-            {makes.map(make => (
-              <button
-                key={make}
-                className={`w-full px-4 py-2 text-left transition-colors ${selectedMake === make
-                  ? 'bg-brand text-white'
-                  : 'text-foreground hover:bg-brand hover:text-white'
-                  }`}
-                onClick={() => handleMakeSelect(make)}
-              >
-                {make}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Cars Per Page Dropdown */}
-        <div className="relative group">
-          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
-            }`}>
-            {`${carsPerPage} per page`}
-          </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
-            {[6, 12, 24, 48].map(option => (
-              <button
-                key={option}
-                className={`w-full px-4 py-2 text-left transition-colors ${carsPerPage === option
-                  ? 'bg-brand text-white'
-                  : 'text-foreground hover:bg-brand hover:text-white'
-                  }`}
-                onClick={() => onCarsPerPageChange(option)}
-              >
-                {option} cars
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Show Only Favorites Toggle */}
-        <div className="relative">
+        <div className="flex gap-2 sm:gap-4">
           <button
-            className={`w-full px-4 py-2.5 text-left rounded-lg transition-colors ${showOnlyFavorites
-              ? 'bg-brand text-white'
-              : 'bg-card text-foreground hover:bg-brand hover:text-white'
-              }`}
-            onClick={() => onToggleFavorites(!showOnlyFavorites)}
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 bg-brand hover:bg-brand-dark text-white rounded-lg flex items-center justify-center gap-2 transition-colors"
+            onClick={() => onToggleFilters(!isFiltersOpen)}
           >
-            {showOnlyFavorites ? 'Show All' : 'Show Favorites'}
+            <SlidersHorizontal className={`h-5 w-5 transition-transform duration-300 ${isFiltersOpen ? 'rotate-180' : ''}`} />
+            <span className="hidden sm:inline">{isFiltersOpen ? 'CLOSE' : 'FILTERS'}</span>
           </button>
-        </div>
 
-        {/* Price Range Dropdown */}
-        <div className="relative group">
-          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
-            }`}>
-            {selectedPriceRange ? selectedPriceRange.label : 'Price'}
+          <button
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 border border-border hover:bg-card text-foreground rounded-lg flex items-center justify-center gap-2 transition-colors"
+            onClick={handleLocalClear}
+          >
+            <RotateCcw className="h-5 w-5 transition-transform duration-300 hover:rotate-180" />
+            <span className="hidden sm:inline">RESET</span>
           </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
-            {PRICE_RANGES.map(range => (
-              <button
-                key={range.label}
-                className={`w-full px-4 py-2 text-left transition-colors ${selectedPriceRange === range
-                  ? 'bg-brand text-white'
-                  : 'text-foreground hover:bg-brand hover:text-white'
-                  }`}
-                onClick={() => handlePriceRangeChange(range)}
-              >
-                {range.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Sort By Dropdown */}
-        <div className="relative group">
-          <button className={`w-full px-4 py-2.5 text-left rounded-t-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
-            }`}>
-            {sortOption === 'default' ? 'Sort By' :
-              sortOption === 'priceHighToLow' ? 'Price: High to Low' :
-                'Price: Low to High'}
-          </button>
-          <div className="absolute top-full left-0 w-full bg-card border border-border rounded-b-lg overflow-hidden hidden group-hover:block z-10">
-            <button
-              className={`w-full px-4 py-2 text-left transition-colors ${sortOption === 'default'
-                ? 'bg-brand text-white'
-                : 'text-foreground hover:bg-brand hover:text-white'
-                }`}
-              onClick={() => onSortChange('default')}
-            >
-              Default
-            </button>
-            <button
-              className={`w-full px-4 py-2 text-left transition-colors ${sortOption === 'priceHighToLow'
-                ? 'bg-brand text-white'
-                : 'text-foreground hover:bg-brand hover:text-white'
-                }`}
-              onClick={() => onSortChange('priceHighToLow')}
-            >
-              Price: High to Low
-            </button>
-            <button
-              className={`w-full px-4 py-2 text-left transition-colors ${sortOption === 'priceLowToHigh'
-                ? 'bg-brand text-white'
-                : 'text-foreground hover:bg-brand hover:text-white'
-                }`}
-              onClick={() => onSortChange('priceLowToHigh')}
-            >
-              Price: Low to High
-            </button>
-          </div>
         </div>
       </div>
-    </div>
-  );
+
+      {/* Contenedor de Filtros */}
+      {isFiltersOpen && (
+        <div className="bg-backgroundtertiary rounded-lg p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            {/* Year Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => handleDropdownToggle('year')}
+                className={yearButtonClass}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{selectedYear ? `Year: ${selectedYear}` : 'Year'}</span>
+                  {selectedYear && (
+                    <button
+                      onClick={handleClearYear}
+                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              </button>
+              {renderYearOptions}
+            </div>
+
+            {/* Make Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => handleDropdownToggle('make')}
+                className={makeButtonClass}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{selectedMake || 'Make'}</span>
+                  {selectedMake && (
+                    <button
+                      onClick={handleClearMake}
+                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              </button>
+              {openDropdown === 'make' && (
+                <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+                  <div className="max-h-[200px] overflow-y-auto">
+                    {makes.map(make => (
+                      <button
+                        key={make}
+                        className={`w-full px-4 py-2 text-left transition-colors ${
+                          selectedMake === make
+                            ? 'bg-brand text-white'
+                            : 'text-foreground hover:bg-brand/10'
+                        }`}
+                        onClick={() => handleMakeSelect(make)}
+                      >
+                        {make}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Price Range Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => handleDropdownToggle('price')}
+                className={priceButtonClass}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{selectedPriceRange ? selectedPriceRange.label : 'Price'}</span>
+                  {selectedPriceRange && (
+                    <button
+                      onClick={handleClearPrice}
+                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                   >
+                     <X className="h-4 w-4" />
+                   </button>
+                 )}
+               </div>
+             </button>
+             {openDropdown === 'price' && (
+               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+                 {PRICE_RANGES.map(range => (
+                   <button
+                     key={range.label}
+                     className={`w-full px-4 py-2 text-left transition-colors ${
+                       selectedPriceRange === range
+                         ? 'bg-brand text-white'
+                         : 'text-foreground hover:bg-brand/10'
+                     }`}
+                     onClick={() => handlePriceRangeChange(range)}
+                   >
+                     {range.label}
+                   </button>
+                 ))}
+               </div>
+             )}
+           </div>
+
+           {/* Sort By Dropdown */}
+           <div className="relative">
+             <button
+               onClick={() => handleDropdownToggle('sort')}
+               className={sortButtonClass}
+             >
+               <div className="flex items-center justify-between">
+                 <span>
+                   {sortOption === 'default' ? 'Sort By' :
+                     sortOption === 'priceHighToLow' ? 'Price: High to Low' :
+                       'Price: Low to High'}
+                 </span>
+                 {sortOption !== 'default' && (
+                   <button
+                     onClick={handleClearSort}
+                     className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                   >
+                     <X className="h-4 w-4" />
+                   </button>
+                 )}
+               </div>
+             </button>
+             {openDropdown === 'sort' && (
+               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+                 <button
+                   className={`w-full px-4 py-2 text-left transition-colors ${
+                     sortOption === 'default'
+                       ? 'bg-brand text-white'
+                       : 'text-foreground hover:bg-brand/10'
+                   }`}
+                   onClick={sortHandlers.default}
+                 >
+                   Default
+                 </button>
+                 <button
+                   className={`w-full px-4 py-2 text-left transition-colors ${
+                     sortOption === 'priceHighToLow'
+                       ? 'bg-brand text-white'
+                       : 'text-foreground hover:bg-brand/10'
+                   }`}
+                   onClick={sortHandlers.highToLow}
+                 >
+                   Price: High to Low
+                 </button>
+                 <button
+                   className={`w-full px-4 py-2 text-left transition-colors ${
+                     sortOption === 'priceLowToHigh'
+                       ? 'bg-brand text-white'
+                       : 'text-foreground hover:bg-brand/10'
+                   }`}
+                   onClick={sortHandlers.lowToHigh}
+                 >
+                   Price: Low to High
+                 </button>
+               </div>
+             )}
+           </div>
+
+           {/* Cars Per Page Dropdown */}
+           <div className="relative">
+             <button
+               onClick={() => handleDropdownToggle('carsPerPage')}
+               className={carsPerPageButtonClass}
+             >
+               <div className="flex items-center justify-between">
+                 <span>{`${carsPerPage} per page`}</span>
+                 {carsPerPage !== CARS_PER_PAGE && (
+                   <button
+                     onClick={handleClearCarsPerPage}
+                     className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                   >
+                     <X className="h-4 w-4" />
+                   </button>
+                 )}
+               </div>
+             </button>
+             {openDropdown === 'carsPerPage' && (
+               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+                 {carsPerPageOptions.map(option => (
+                   <button
+                     key={option}
+                     className={`w-full px-4 py-2 text-left transition-colors ${
+                       carsPerPage === option
+                         ? 'bg-brand text-white'
+                         : 'text-foreground hover:bg-brand/10'
+                     }`}
+                     onClick={() => {
+                       onCarsPerPageChange(option);
+                       setOpenDropdown(null);
+                     }}
+                   >
+                     {option} cars
+                   </button>
+                 ))}
+               </div>
+             )}
+           </div>
+
+           {/* Show Only Favorites Toggle */}
+           <button
+             className={favoritesButtonClass}
+             onClick={() => onToggleFavorites(!showOnlyFavorites)}
+           >
+             <div className="flex items-center justify-between">
+               <span>{showOnlyFavorites ? 'Show All' : 'Show Favorites'}</span>
+               {showOnlyFavorites && (
+                 <button
+                   onClick={handleClearFavorites}
+                   className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                 >
+                   <X className="h-4 w-4" />
+                 </button>
+               )}
+             </div>
+           </button>
+         </div>
+       </div>
+     )}
+   </div>
+ );
 };
 
-export default CarFilters;
+export default React.memo(CarFilters);
