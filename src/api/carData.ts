@@ -23,31 +23,31 @@ export const carGroups: CarGroup[] = [
                 alt: '1969 Ford Mustang - Front View',
                 priority: true 
             },
-            // { 
-            //     title: '1969 Ford Mustang', 
-            //     imageUrl: '/images/ford-mustang-1969.webp',
-            //     alt: '1969 Ford Mustang - Side View' 
-            // },
-            // { 
-            //     title: '1969 Ford Mustang', 
-            //     imageUrl: '/images/ford-mustang-1969.webp',
-            //     alt: '1969 Ford Mustang - Rear View' 
-            // },
-            // { 
-            //     title: '1969 Ford Mustang', 
-            //     imageUrl: '/images/ford-mustang-1969.webp',
-            //     alt: '1969 Ford Mustang - Interior View' 
-            // },
-            // { 
-            //     title: '1969 Ford Mustang', 
-            //     imageUrl: '/images/ford-mustang-1969.webp',
-            //     alt: '1969 Ford Mustang - Engine View' 
-            // },
-            // { 
-            //     title: '1969 Ford Mustang', 
-            //     imageUrl: '/images/ford-mustang-1969.webp',
-            //     alt: '1969 Ford Mustang - Detail View' 
-            // }
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Side View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Rear View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Interior View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Engine View' 
+            },
+            { 
+                title: '1969 Ford Mustang', 
+                imageUrl: '/images/ford-mustang-1969.webp',
+                alt: '1969 Ford Mustang - Detail View' 
+            }
         ]
     },
     {
@@ -59,31 +59,31 @@ export const carGroups: CarGroup[] = [
                 alt: '1970 Chevrolet Camaro ZL1 - Front View',
                 priority: false 
             },
-            // { 
-            //     title: '1989 Chevrolet Camaro', 
-            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
-            //     alt: '1989 Chevrolet Camaro - Side View' 
-            // },
-            // { 
-            //     title: '1968 Chevrolet Camaro', 
-            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
-            //     alt: '1968 Chevrolet Camaro - Rear View' 
-            // },
-            // { 
-            //     title: '1965 Chevrolet Camaro', 
-            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
-            //     alt: '1965 Chevrolet Camaro - Interior View' 
-            // },
-            // { 
-            //     title: '1972 Chevrolet Camaro', 
-            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
-            //     alt: '1972 Chevrolet Camaro - Engine View' 
-            // },
-            // { 
-            //     title: '1975 Chevrolet Camaro', 
-            //     imageUrl: '/images/chevrolet-camaro-1970.webp',
-            //     alt: '1975 Chevrolet Camaro - Detail View' 
-            // }
+            { 
+                title: '1989 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
+                alt: '1989 Chevrolet Camaro - Side View' 
+            },
+            { 
+                title: '1968 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
+                alt: '1968 Chevrolet Camaro - Rear View' 
+            },
+            { 
+                title: '1965 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
+                alt: '1965 Chevrolet Camaro - Interior View' 
+            },
+            { 
+                title: '1972 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
+                alt: '1972 Chevrolet Camaro - Engine View' 
+            },
+            { 
+                title: '1975 Chevrolet Camaro', 
+                imageUrl: '/images/chevrolet-camaro-1970.webp',
+                alt: '1975 Chevrolet Camaro - Detail View' 
+            }
         ]
     },
     {
@@ -95,31 +95,31 @@ export const carGroups: CarGroup[] = [
                 alt: '1969 Dodge Charger - Front View',
                 priority: true 
             },
-            // { 
-            //     title: '1969 Dodge Charger', 
-            //     imageUrl: '/images/dodge-charger-1969.webp',
-            //     alt: '1969 Dodge Charger - Side View' 
-            // },
-            // { 
-            //     title: '1969 Dodge Charger', 
-            //     imageUrl: '/images/dodge-charger-1969.webp',
-            //     alt: '1969 Dodge Charger - Rear View' 
-            // },
-            // { 
-            //     title: '1969 Dodge Charger', 
-            //     imageUrl: '/images/dodge-charger-1969.webp',
-            //     alt: '1969 Dodge Charger - Interior View' 
-            // },
-            // { 
-            //     title: '1969 Dodge Charger', 
-            //     imageUrl: '/images/dodge-charger-1969.webp',
-            //     alt: '1969 Dodge Charger - Engine View' 
-            // },
-            // { 
-            //     title: '1969 Dodge Charger', 
-            //     imageUrl: '/images/dodge-charger-1969.webp',
-            //     alt: '1969 Dodge Charger - Detail View' 
-            // }
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.webp',
+                alt: '1969 Dodge Charger - Side View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.webp',
+                alt: '1969 Dodge Charger - Rear View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.webp',
+                alt: '1969 Dodge Charger - Interior View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.webp',
+                alt: '1969 Dodge Charger - Engine View' 
+            },
+            { 
+                title: '1969 Dodge Charger', 
+                imageUrl: '/images/dodge-charger-1969.webp',
+                alt: '1969 Dodge Charger - Detail View' 
+            }
         ]
     }
  ];
@@ -141,18 +141,18 @@ const mockCars: Car[] = [
         images: [
             
            '/images/forsale/first-mustang/MustangRestomod/img2.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img3.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img4.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img5.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img6.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img7.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img8.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img9.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img10.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img11.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img12.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img13.jpg',
-        //    '/images/forsale/first-mustang/MustangRestomod/img14.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img3.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img4.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img5.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img6.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img7.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img8.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img9.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img10.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img11.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img12.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img13.jpg',
+           '/images/forsale/first-mustang/MustangRestomod/img14.jpg',
         ],
         description: 'A beautifully restored 1969 Ford Mustang. This classic muscle car is a true icon of American automotive history.',
         specifications: {
@@ -173,7 +173,7 @@ const mockCars: Car[] = [
             'Leather seats',
         ],
         history: 'This Mustang has been meticulously maintained and restored to its original glory. It has had only two previous owners and comes with full documentation of its restoration process.',
-        location: 'Los Angeles, CA',
+        location: 'Home sweet home',
         engine: '302 V8 (250 hp)',
         transmission: '3-speed automatic',
         mileage: 75000,

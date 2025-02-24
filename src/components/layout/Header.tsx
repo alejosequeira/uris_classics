@@ -9,7 +9,7 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Constantes
-const NAVIGATION_ITEMS = ["INVENTORY", "ABOUT", "CONTACT"] as const;
+const NAVIGATION_ITEMS = ["ABOUT", "CONTACT"] as const;
 const SCROLL_THRESHOLD = 50;
 
 // Componente Link memoizado
@@ -90,7 +90,7 @@ const DesktopNav = memo(({ isScrolled }: { isScrolled: boolean }) => (
         href="/cars"
         className="px-6 py-2 rounded-full bg-[var(--brand)] text-[var(--foreground)] font-medium hover:shadow-[0_0_15px_var(--brand-light)] hover:scale-105 transition-all duration-300"
       >
-        NEW ARRIVALS!
+        INVENTORY
       </NavLink>
     </div>
   </nav>
@@ -103,7 +103,6 @@ interface MobileMenuProps {
 }
 
 const menuItems = [
-  { name: "INVENTORY", href: "/inventory" },
   { name: "ABOUT", href: "/about" },
   { name: "CONTACT", href: "/contact" }
 ];
@@ -226,7 +225,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                            hover:shadow-red-500/30 hover:scale-[1.02]
                            active:scale-[0.98] transition-all duration-300"
                 >
-                  NEW ARRIVALS!
+                  INVENTORY
                 </Link>
               </motion.div>
             </nav>

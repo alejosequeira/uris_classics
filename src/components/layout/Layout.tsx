@@ -12,11 +12,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header />
       <div className="relative">
         <HeroSection />
-        <main className="relative bg-backgroundsecond">
+        <main className="relative ">
           {children}
         </main>
       </div>
-      <footer className="relative bg-gray-800 text-white p-4 text-center">
+      <footer className="relative text-white p-4 text-center">
         <p>&copy; 2024 Classic Cars Marketplace</p>
       </footer>
     </div>

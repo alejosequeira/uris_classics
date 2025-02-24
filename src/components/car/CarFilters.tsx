@@ -1,10 +1,19 @@
 "use client"
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Search, SlidersHorizontal, RotateCcw, X } from 'lucide-react';
+import {
+  Search,
+  SlidersHorizontal,
+  RotateCcw,
+  X,
+  ChevronDown,
+  Heart,
+  Calendar,
+  DollarSign,
+  ArrowUpDown
+} from 'lucide-react';
 import { Car } from '@/types/car';
 import { useSearch } from '@/context/SearchContext';
 import CarSearch from './CarSearch';
-
 interface PriceRange {
   min: number;
   max: number | null;
@@ -59,6 +68,14 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   const [selectedMake, setSelectedMake] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { handleSearch } = useSearch();
+  // Estilo base para los dropdowns
+  const baseDropdownStyle = "relative flex items-center w-full px-4 py-3 text-left text-white rounded-lg transition-all duration-200 border border-gray-700/50 dark:border-gray-300/50 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50";
+
+  // Estilo para dropdowns activos
+  const activeDropdownStyle = "bg-brand border-transparent text-white dark:text-gray-900";
+
+  // Estilo para el contenedor de opciones
+  const dropdownOptionsStyle = "absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl backdrop-blur-sm z-30 overflow-hidden transition-all duration-200";
 
   // Memo para los valores por página
   const carsPerPageOptions = useMemo(() => [6, 12, 24, 48], []);
@@ -167,51 +184,44 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   }), [onSortChange]);
 
   // Memos para clases condicionales
-  const yearButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
-      selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
+  const yearButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
     }`, [selectedYear]);
 
-  const makeButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
-      selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
+  const makeButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
     }`, [selectedMake]);
 
-  const priceButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
-      selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
+  const priceButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
     }`, [selectedPriceRange]);
 
-  const sortButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
-      sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
+  const sortButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
     }`, [sortOption]);
 
-  const carsPerPageButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors ${
-      carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
+  const carsPerPageButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
     }`, [carsPerPage]);
 
-  const favoritesButtonClass = useMemo(() => 
-    `w-full px-4 py-2.5 text-left rounded-lg transition-colors relative ${
-      showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
+  const favoritesButtonClass = useMemo(() =>
+    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors relative ${showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
     }`, [showOnlyFavorites]);
 
   // Función memoizada para opciones de años
   const renderYearOptions = useMemo(() => {
     if (openDropdown !== 'year') return null;
-    
+
     return (
-      <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
+      <div className=" absolute top-full left-0 w-full mt-1 border border-border rounded-lg shadow-lg z-20">
         <div className="max-h-[200px] overflow-y-auto">
           {YEARS.map(year => (
             <button
               key={year}
-              className={`w-full px-4 py-2 text-left transition-colors ${
-                selectedYear === year
-                  ? 'bg-brand text-white'
-                  : 'text-foreground hover:bg-brand/10'
-              }`}
+              className={`w-full px-4 py-2 text-left text-white transition-colors ${selectedYear === year
+                ? 'bg-brand text-white'
+                : 'text-foreground hover:bg-brand/10'
+                }`}
               onClick={() => handleYearSelect(year)}
             >
               {year}
@@ -223,9 +233,9 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   }, [openDropdown, selectedYear, handleYearSelect]);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-4 ">
       {/* Barra superior: Search + Botones */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-4 ">
         <div className="flex-1">
           <CarSearch
             onSearch={handleSearch}
@@ -244,7 +254,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
           </button>
 
           <button
-            className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 border border-border hover:bg-card text-foreground rounded-lg flex items-center justify-center gap-2 transition-colors"
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 border border-border  hover:bg-foreground text-card rounded-lg flex items-center justify-center gap-2 transition-colors bg-backgroundtertiary"
             onClick={handleLocalClear}
           >
             <RotateCcw className="h-5 w-5 transition-transform duration-300 hover:rotate-180" />
@@ -255,58 +265,82 @@ const CarFilters: React.FC<CarFiltersProps> = ({
 
       {/* Contenedor de Filtros */}
       {isFiltersOpen && (
-        <div className="bg-backgroundtertiary rounded-lg p-4">
+        <div className="rounded-lg p-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {/* Year Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => handleDropdownToggle('year')}
-                className={yearButtonClass}
-              >
-                <div className="flex items-center justify-between">
-                  <span>{selectedYear ? `Year: ${selectedYear}` : 'Year'}</span>
-                  {selectedYear && (
-                    <button
-                      onClick={handleClearYear}
-                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-              </button>
-              {renderYearOptions}
+            <div className="relative ">
+          <button
+            onClick={() => handleDropdownToggle('year')}
+            className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${
+              selectedYear ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span>{selectedYear ? `Year: ${selectedYear}` : 'Year'}</span>
+              {selectedYear ? (
+                <button
+                  onClick={handleClearYear}
+                  className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              ) : (
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'year' ? 'rotate-180' : ''}`} />
+              )}
             </div>
+          </button>
+          {openDropdown === 'year' && (
+            <div className="absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl z-50">
+              <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
+                {YEARS.map(year => (
+                  <button
+                    key={year}
+                    className={`w-full px-4 py-2.5 text-left text-white transition-colors ${
+                      selectedYear === year 
+                        ? 'bg-brand text-white dark:text-gray-900' 
+                        : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                    }`}
+                    onClick={() => handleYearSelect(year)}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
 
             {/* Make Dropdown */}
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('make')}
-                className={makeButtonClass}
+                className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${selectedMake ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+                  }`}
               >
                 <div className="flex items-center justify-between">
                   <span>{selectedMake || 'Make'}</span>
-                  {selectedMake && (
+                  {selectedMake ? (
                     <button
                       onClick={handleClearMake}
-                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                      className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
                     >
-                      <X className="h-4 w-4" />
+                      <X className="w-4 h-4" />
                     </button>
+                  ) : (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'make' ? 'rotate-180' : ''}`} />
                   )}
                 </div>
               </button>
               {openDropdown === 'make' && (
-                <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
-                  <div className="max-h-[200px] overflow-y-auto">
+                <div className="absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl z-50">
+                  <div className="max-h-[200px] overflow-y-auto custom-scrollbar">
                     {makes.map(make => (
                       <button
                         key={make}
-                        className={`w-full px-4 py-2 text-left transition-colors ${
-                          selectedMake === make
-                            ? 'bg-brand text-white'
-                            : 'text-foreground hover:bg-brand/10'
-                        }`}
+                        className={`w-full px-4 py-2.5 text-left text-white transition-colors ${selectedMake === make
+                            ? 'bg-brand text-white dark:text-gray-900'
+                            : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                          }`}
                         onClick={() => handleMakeSelect(make)}
                       >
                         {make}
@@ -321,159 +355,167 @@ const CarFilters: React.FC<CarFiltersProps> = ({
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('price')}
-                className={priceButtonClass}
+                className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${selectedPriceRange ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+                  }`}
               >
                 <div className="flex items-center justify-between">
                   <span>{selectedPriceRange ? selectedPriceRange.label : 'Price'}</span>
-                  {selectedPriceRange && (
+                  {selectedPriceRange ? (
                     <button
                       onClick={handleClearPrice}
-                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                   >
-                     <X className="h-4 w-4" />
-                   </button>
-                 )}
-               </div>
-             </button>
-             {openDropdown === 'price' && (
-               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
-                 {PRICE_RANGES.map(range => (
-                   <button
-                     key={range.label}
-                     className={`w-full px-4 py-2 text-left transition-colors ${
-                       selectedPriceRange === range
-                         ? 'bg-brand text-white'
-                         : 'text-foreground hover:bg-brand/10'
-                     }`}
-                     onClick={() => handlePriceRangeChange(range)}
-                   >
-                     {range.label}
-                   </button>
-                 ))}
-               </div>
-             )}
-           </div>
+                      className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'price' ? 'rotate-180' : ''}`} />
+                  )}
+                </div>
+              </button>
+              {openDropdown === 'price' && (
+                <div className="absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl z-50">
+                  {PRICE_RANGES.map(range => (
+                    <button
+                      key={range.label}
+                      className={`w-full px-4 py-2.5 text-left text-white transition-colors ${selectedPriceRange === range
+                        ? 'bg-brand text-white dark:text-gray-900'
+                        : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                        }`}
+                      onClick={() => handlePriceRangeChange(range)}
+                    >
+                      {range.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
-           {/* Sort By Dropdown */}
-           <div className="relative">
-             <button
-               onClick={() => handleDropdownToggle('sort')}
-               className={sortButtonClass}
-             >
-               <div className="flex items-center justify-between">
-                 <span>
-                   {sortOption === 'default' ? 'Sort By' :
-                     sortOption === 'priceHighToLow' ? 'Price: High to Low' :
-                       'Price: Low to High'}
-                 </span>
-                 {sortOption !== 'default' && (
-                   <button
-                     onClick={handleClearSort}
-                     className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                   >
-                     <X className="h-4 w-4" />
-                   </button>
-                 )}
-               </div>
-             </button>
-             {openDropdown === 'sort' && (
-               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
-                 <button
-                   className={`w-full px-4 py-2 text-left transition-colors ${
-                     sortOption === 'default'
-                       ? 'bg-brand text-white'
-                       : 'text-foreground hover:bg-brand/10'
-                   }`}
-                   onClick={sortHandlers.default}
-                 >
-                   Default
-                 </button>
-                 <button
-                   className={`w-full px-4 py-2 text-left transition-colors ${
-                     sortOption === 'priceHighToLow'
-                       ? 'bg-brand text-white'
-                       : 'text-foreground hover:bg-brand/10'
-                   }`}
-                   onClick={sortHandlers.highToLow}
-                 >
-                   Price: High to Low
-                 </button>
-                 <button
-                   className={`w-full px-4 py-2 text-left transition-colors ${
-                     sortOption === 'priceLowToHigh'
-                       ? 'bg-brand text-white'
-                       : 'text-foreground hover:bg-brand/10'
-                   }`}
-                   onClick={sortHandlers.lowToHigh}
-                 >
-                   Price: Low to High
-                 </button>
-               </div>
-             )}
-           </div>
+            {/* Sort By Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => handleDropdownToggle('sort')}
+                className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${sortOption !== 'default' ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+                  }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span>
+                    {sortOption === 'default' ? 'Sort By' :
+                      sortOption === 'priceHighToLow' ? 'Price: High to Low' :
+                        'Price: Low to High'}
+                  </span>
+                  {sortOption !== 'default' ? (
+                    <button
+                      onClick={handleClearSort}
+                      className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'sort' ? 'rotate-180' : ''}`} />
+                  )}
+                </div>
+              </button>
+              {openDropdown === 'sort' && (
+                <div className="absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl z-50">
+                  <button
+                    className={`w-full px-4 py-2.5 text-left text-white transition-colors ${sortOption === 'default'
+                      ? 'bg-brand text-white dark:text-gray-900'
+                      : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                      }`}
+                    onClick={sortHandlers.default}
+                  >
+                    Default
+                  </button>
+                  <button
+                    className={`w-full px-4 py-2.5 text-left text-white transition-colors ${sortOption === 'priceHighToLow'
+                      ? 'bg-brand text-white dark:text-gray-900'
+                      : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                      }`}
+                    onClick={sortHandlers.highToLow}
+                  >
+                    Price: High to Low
+                  </button>
+                  <button
+                    className={`w-full px-4 py-2.5 text-left text-white transition-colors ${sortOption === 'priceLowToHigh'
+                      ? 'bg-brand text-white dark:text-gray-900'
+                      : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                      }`}
+                    onClick={sortHandlers.lowToHigh}
+                  >
+                    Price: Low to High
+                  </button>
+                </div>
+              )}
+            </div>
 
-           {/* Cars Per Page Dropdown */}
-           <div className="relative">
-             <button
-               onClick={() => handleDropdownToggle('carsPerPage')}
-               className={carsPerPageButtonClass}
-             >
-               <div className="flex items-center justify-between">
-                 <span>{`${carsPerPage} per page`}</span>
-                 {carsPerPage !== CARS_PER_PAGE && (
-                   <button
-                     onClick={handleClearCarsPerPage}
-                     className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                   >
-                     <X className="h-4 w-4" />
-                   </button>
-                 )}
-               </div>
-             </button>
-             {openDropdown === 'carsPerPage' && (
-               <div className="absolute top-full left-0 w-full mt-1 bg-card border border-border rounded-lg shadow-lg z-20">
-                 {carsPerPageOptions.map(option => (
-                   <button
-                     key={option}
-                     className={`w-full px-4 py-2 text-left transition-colors ${
-                       carsPerPage === option
-                         ? 'bg-brand text-white'
-                         : 'text-foreground hover:bg-brand/10'
-                     }`}
-                     onClick={() => {
-                       onCarsPerPageChange(option);
-                       setOpenDropdown(null);
-                     }}
-                   >
-                     {option} cars
-                   </button>
-                 ))}
-               </div>
-             )}
-           </div>
+            {/* Cars Per Page Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => handleDropdownToggle('carsPerPage')}
+                className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+                  }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span>{`${carsPerPage} per page`}</span>
+                  {carsPerPage !== CARS_PER_PAGE ? (
+                    <button
+                      onClick={handleClearCarsPerPage}
+                      className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${openDropdown === 'carsPerPage' ? 'rotate-180' : ''}`} />
+                  )}
+                </div>
+              </button>
+              {openDropdown === 'carsPerPage' && (
+                <div className="absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl z-50">
+                  {carsPerPageOptions.map(option => (
+                    <button
+                      key={option}
+                      className={`w-full px-4 py-2.5 text-left text-white transition-colors ${carsPerPage === option
+                        ? 'bg-brand text-white dark:text-gray-900'
+                        : 'text-gray-300 dark:text-gray-700 hover:bg-brand/10'
+                        }`}
+                      onClick={() => {
+                        onCarsPerPageChange(option);
+                        setOpenDropdown(null);
+                      }}
+                    >
+                      {option} cars
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
-           {/* Show Only Favorites Toggle */}
-           <button
-             className={favoritesButtonClass}
-             onClick={() => onToggleFavorites(!showOnlyFavorites)}
-           >
-             <div className="flex items-center justify-between">
-               <span>{showOnlyFavorites ? 'Show All' : 'Show Favorites'}</span>
-               {showOnlyFavorites && (
-                 <button
-                   onClick={handleClearFavorites}
-                   className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                 >
-                   <X className="h-4 w-4" />
-                 </button>
-               )}
-             </div>
-           </button>
-         </div>
-       </div>
-     )}
-   </div>
- );
+            {/* Show Only Favorites Toggle */}
+            <button
+              onClick={() => onToggleFavorites(!showOnlyFavorites)}
+              className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${showOnlyFavorites ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
+                }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Heart className={`w-4 h-4 ${showOnlyFavorites ? 'fill-current' : ''}`} />
+                  <span>{showOnlyFavorites ? 'Show Favorites' : 'Show Favorites'}</span>
+                </div>
+                {showOnlyFavorites && (
+                  <button
+                    onClick={handleClearFavorites}
+                    className="p-1.5 hover:bg-white/20 dark:hover:bg-black/20 rounded-full transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default React.memo(CarFilters);
