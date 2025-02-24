@@ -69,7 +69,7 @@ const Logo = memo(({ isScrolled, isLightMode }: { isScrolled: boolean; isLightMo
 Logo.displayName = 'Logo';
 
 // Componente Navigation Desktop memoizado
-const DesktopNav = memo(({ isScrolled }: { isScrolled: boolean }) => (
+const DesktopNav = memo(() => (
   <nav className="hidden md:flex items-center">
     <ul className="flex items-center space-x-12 mr-12">
       {NAVIGATION_ITEMS.map((item) => (
@@ -289,7 +289,7 @@ const Header = () => {
       <div className="w-full px-4 md:px-12 py-4">
         <div className="flex justify-between items-center">
           <Logo isScrolled={isScrolled} isLightMode={isLightMode} />
-          <DesktopNav isScrolled={isScrolled} />
+          <DesktopNav  />
 
           {/* Mobile Navigation Controls */}
           <div className="flex md:hidden items-center space-x-4">

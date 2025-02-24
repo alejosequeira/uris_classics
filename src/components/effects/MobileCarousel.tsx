@@ -7,7 +7,6 @@ import { CarouselCar } from '@/api/carData';
 
 // Componente memoizado para los botones indicadores
 const CarouselIndicator = memo(({ 
-  index, 
   isActive, 
   onClick 
 }: { 

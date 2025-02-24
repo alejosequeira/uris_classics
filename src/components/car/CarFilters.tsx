@@ -1,15 +1,11 @@
 "use client"
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  Search,
   SlidersHorizontal,
   RotateCcw,
   X,
   ChevronDown,
   Heart,
-  Calendar,
-  DollarSign,
-  ArrowUpDown
 } from 'lucide-react';
 import { Car } from '@/types/car';
 import { useSearch } from '@/context/SearchContext';
@@ -68,14 +64,6 @@ const CarFilters: React.FC<CarFiltersProps> = ({
   const [selectedMake, setSelectedMake] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { handleSearch } = useSearch();
-  // Estilo base para los dropdowns
-  const baseDropdownStyle = "relative flex items-center w-full px-4 py-3 text-left text-white rounded-lg transition-all duration-200 border border-gray-700/50 dark:border-gray-300/50 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50";
-
-  // Estilo para dropdowns activos
-  const activeDropdownStyle = "bg-brand border-transparent text-white dark:text-gray-900";
-
-  // Estilo para el contenedor de opciones
-  const dropdownOptionsStyle = "absolute top-full left-0 w-full mt-2 bg-backgroundtertiary dark:bg-white border border-gray-700/50 dark:border-gray-300/50 rounded-lg shadow-xl backdrop-blur-sm z-30 overflow-hidden transition-all duration-200";
 
   // Memo para los valores por página
   const carsPerPageOptions = useMemo(() => [6, 12, 24, 48], []);
@@ -183,54 +171,54 @@ const CarFilters: React.FC<CarFiltersProps> = ({
     }
   }), [onSortChange]);
 
-  // Memos para clases condicionales
-  const yearButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
-    }`, [selectedYear]);
+  // // Memos para clases condicionales
+  // const yearButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
+  //   }`, [selectedYear]);
 
-  const makeButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
-    }`, [selectedMake]);
+  // const makeButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
+  //   }`, [selectedMake]);
 
-  const priceButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
-    }`, [selectedPriceRange]);
+  // const priceButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
+  //   }`, [selectedPriceRange]);
 
-  const sortButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
-    }`, [sortOption]);
+  // const sortButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
+  //   }`, [sortOption]);
 
-  const carsPerPageButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
-    }`, [carsPerPage]);
+  // const carsPerPageButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
+  //   }`, [carsPerPage]);
 
-  const favoritesButtonClass = useMemo(() =>
-    `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors relative ${showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
-    }`, [showOnlyFavorites]);
+  // const favoritesButtonClass = useMemo(() =>
+  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors relative ${showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
+  //   }`, [showOnlyFavorites]);
 
-  // Función memoizada para opciones de años
-  const renderYearOptions = useMemo(() => {
-    if (openDropdown !== 'year') return null;
+  // // Función memoizada para opciones de años
+  // const renderYearOptions = useMemo(() => {
+  //   if (openDropdown !== 'year') return null;
 
-    return (
-      <div className=" absolute top-full left-0 w-full mt-1 border border-border rounded-lg shadow-lg z-20">
-        <div className="max-h-[200px] overflow-y-auto">
-          {YEARS.map(year => (
-            <button
-              key={year}
-              className={`w-full px-4 py-2 text-left text-white transition-colors ${selectedYear === year
-                ? 'bg-brand text-white'
-                : 'text-foreground hover:bg-brand/10'
-                }`}
-              onClick={() => handleYearSelect(year)}
-            >
-              {year}
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-  }, [openDropdown, selectedYear, handleYearSelect]);
+  //   return (
+  //     <div className=" absolute top-full left-0 w-full mt-1 border border-border rounded-lg shadow-lg z-20">
+  //       <div className="max-h-[200px] overflow-y-auto">
+  //         {YEARS.map(year => (
+  //           <button
+  //             key={year}
+  //             className={`w-full px-4 py-2 text-left text-white transition-colors ${selectedYear === year
+  //               ? 'bg-brand text-white'
+  //               : 'text-foreground hover:bg-brand/10'
+  //               }`}
+  //             onClick={() => handleYearSelect(year)}
+  //           >
+  //             {year}
+  //           </button>
+  //         ))}
+  //       </div>
+  //     </div>
+  //   );
+  // }, [openDropdown, selectedYear, handleYearSelect]);
 
   return (
     <div className="w-full space-y-4 ">

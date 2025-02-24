@@ -68,7 +68,7 @@ export default function ContactPage() {
           </h1>
           <p className="text-xl text-gray-400 dark:text-gray-600 max-w-2xl mx-auto">
             Have questions about a specific classic car or need assistance? 
-            We're here to help you find your dream vehicle.
+            We&apos;re here to help you find your dream vehicle.
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function ContactPage() {
                 {/* Interés */}
                 <div>
                   <label className="block text-white dark:text-gray-900 font-medium mb-2">
-                    I'm Interested In
+                    I&apos;m Interested In
                   </label>
                   <div className="relative">
                     <CarFront className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />

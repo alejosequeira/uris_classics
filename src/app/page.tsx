@@ -1,13 +1,13 @@
-import { 
-  Search, 
-  Clock, 
-  Shield, 
+import {
+  Clock,
+  Shield,
   Star,
   ArrowRight,
   CarFront,
-  DollarSign,
   Users
 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const categories = [
@@ -59,64 +59,54 @@ export default function Home() {
   return (
     <div className="min-h-screen dark:bg-gray-100">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-screen flex items-center">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
         <div className="absolute inset-0">
-          <img 
+          <Image
             src="/images/forsale/first-mustang/MustangRestomod/img1.jpg"
-            alt="Classic Cars" 
+            alt="Classic Cars"
+            width={0}
+            height={0}
+            sizes="100vw"
             className="w-full h-full object-cover"
           />
         </div>
-        
-        <div className="relative z-20 container mx-auto px-4 py-24">
+
+        <div className="relative z-20 container mx-auto px-4 py-24 flex flex-col justify-between h-full">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fadeIn">
+            <h1 className="text-5xl md:text-6xl font-bold text-white animate-fadeIn">
               Find Your Dream
               <span className="text-brand block mt-2">Classic Car</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 animate-slideUp delay-200">
-              Discover the finest collection of classic and muscle cars. 
-              Each vehicle tells a unique story of automotive history.
-            </p>
-
-            {/* Search Bar */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-lg p-2 flex items-center max-w-2xl animate-slideUp delay-300">
-              <div className="flex-1 flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3">
-                <Search className="w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search by make, model, or year..."
-                  className="bg-transparent w-full text-white placeholder-gray-400 focus:outline-none"
-                />
-              </div>
-              <button className="bg-brand text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand/90 transition-colors">
-                Search
-              </button>
-            </div>
           </div>
+
+          <p className="text-justify text-xl text-gray-300 animate-slideUp delay-200">
+            Discover the finest collection of classic and muscle cars.
+            Each vehicle tells a unique story of automotive history.
+          </p>
         </div>
       </div>
 
       {/* Categories Section */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category, index) => (
-            <div 
-              key={index}
-              className="group bg-backgroundtertiary dark:bg-white/50 rounded-xl p-6 backdrop-blur-sm hover:bg-brand/20 transition-all duration-300 cursor-pointer"
-            >
-              <h3 className="text-xl font-bold text-white dark:text-gray-900 mb-2 group-hover:text-brand">
-                {category}
-              </h3>
-              <div className="flex items-center text-gray-400 dark:text-gray-600 group-hover:text-brand">
-                Explore
-                <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" />
-              </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {categories.map((category, index) => (
+          <Link
+            href="/cars"
+            key={index}
+            className="group bg-backgroundtertiary dark:bg-white/50 rounded-xl p-6 backdrop-blur-sm hover:bg-brand/20 transition-all duration-300 cursor-pointer"
+          >
+            <h3 className="text-xl font-bold text-white dark:text-gray-900 mb-2 group-hover:text-brand">
+              {category}
+            </h3>
+            <div className="flex items-center text-gray-400 dark:text-gray-600 group-hover:text-brand">
+              Explore
+              <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" />
             </div>
-          ))}
-        </div>
+          </Link>
+        ))}
       </div>
+    </div>
 
       {/* Features Section */}
       <div className="bg-backgroundtertiary/40 dark:bg-white/50 py-16">
@@ -125,7 +115,7 @@ export default function Home() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div 
+                <div
                   key={index}
                   className="text-center p-6"
                 >
@@ -159,14 +149,17 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {latestAdditions.map((car, index) => (
-            <div 
-              key={index}  
+            <div
+              key={index}
               className="bg-backgroundtertiary dark:bg-white/50 rounded-xl overflow-hidden group cursor-pointer"
             >
               <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={car.image} 
+                <Image
+                  src={car.image}
                   alt={car.name}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

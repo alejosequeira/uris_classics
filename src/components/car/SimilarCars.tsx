@@ -9,7 +9,8 @@ import {
   ChevronRight,
   Gauge,
   DollarSign,
-  Calendar
+  Calendar,
+  LucideIcon
 } from 'lucide-react';
 
 interface SimilarCarsProps {
@@ -77,7 +78,15 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
     }
   };
 
-  const FilterButton = ({ value, icon: Icon, label }: { value: typeof filterBy, icon: any, label: string }) => (
+  const FilterButton = ({ 
+    value, 
+    icon: Icon, 
+    label 
+  }: { 
+    value: typeof filterBy, 
+    icon: LucideIcon, 
+    label: string 
+  }) => (
     <button
       onClick={() => setFilterBy(value)}
       className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${

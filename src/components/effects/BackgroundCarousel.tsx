@@ -200,7 +200,7 @@ const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex, cars }: CarouselPro
         rotateY: mousePosition.x * 15,
       };
     });
-  }, [cars.length, mousePosition.x, mousePosition.y]);
+  }, [mousePosition.x, mousePosition.y, cars]);
 
   // Memoizar el handler de refresh
   const handleRefresh = useCallback(() => {

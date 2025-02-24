@@ -40,15 +40,13 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showControls, setShowControls] = useState(true);
+  const [showControls] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [mouseIdle, setMouseIdle] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const startPosRef = useRef({ x: 0, y: 0 });
-  let mouseTimer: NodeJS.Timeout;
 
   const handleZoom = useCallback((delta: number, clientX?: number, clientY?: number) => {
     setZoomLevel(prev => {
@@ -136,7 +134,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
   }, [isOpen, onClose, onNext, onPrevious]);
-  
+
 
   useEffect(() => {
     // Reset zoom cuando cambia la imagen

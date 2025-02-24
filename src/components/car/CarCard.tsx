@@ -1,6 +1,7 @@
 "use client"
 import React, { memo } from 'react';
 import { Heart } from "lucide-react";
+import Image from 'next/image';
 
 interface Review {
   id: string;
@@ -35,18 +36,21 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
     <div className="group relative overflow-hidden rounded-lg bg-background dark:bg-white hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
       {/* Image Container */}
       <div className="relative aspect-video overflow-hidden rounded-t-lg">
-        <img
+        <Image
           src={car.imageUrl || "/api/placeholder/800/600"}
           alt={`${car.year} ${car.make} ${car.model}`}
+          width={0}
+          height={0}
+          sizes="100vw"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        
+
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Brand Accent Bar */}
         <div className="absolute bottom-0 left-0 w-full h-1 bg-brand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-        
+
         {/* Favorite Button */}
         <button
           onClick={(e) => {
@@ -56,11 +60,10 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           className="absolute top-3 right-3 p-2 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm hover:bg-brand transition-colors duration-200 group/btn z-10"
         >
           <Heart
-            className={`w-5 h-5 transition-colors duration-200 ${
-              car.isFavorite 
-                ? 'fill-brand text-brand' 
+            className={`w-5 h-5 transition-colors duration-200 ${car.isFavorite
+                ? 'fill-brand text-brand'
                 : 'text-white dark:text-gray-900 group-hover/btn:text-white'
-            }`}
+              }`}
           />
         </button>
 
@@ -116,7 +119,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
         </div>
 
         {/* Action Button */}
-        <button 
+        <button
           onClick={() => window.location.href = `/cars/${car.id}`}
           className="w-full py-2.5 px-4 bg-brand text-white dark:text-gray-900 rounded-md hover:bg-brand-dark transform hover:translate-y-[-1px] transition-all duration-200 font-semibold"
         >
@@ -137,12 +140,15 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
       <div className="flex flex-col md:flex-row">
         {/* Image Container */}
         <div className="relative w-full md:w-80 aspect-video md:aspect-auto">
-          <img
+          <Image
             src={car.imageUrl || "/api/placeholder/800/600"}
             alt={`${car.year} ${car.make} ${car.model}`}
+            width={0}
+  height={0}
+  sizes="100vw"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          
+
           {/* Favorite Button */}
           <button
             onClick={(e) => {
@@ -152,11 +158,10 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
             className="absolute top-3 right-3 p-2 rounded-full bg-white/20 dark:bg-black/20 backdrop-blur-sm hover:bg-brand transition-colors duration-200 group/btn z-10"
           >
             <Heart
-              className={`w-5 h-5 transition-colors duration-200 ${
-                car.isFavorite 
-                  ? 'fill-brand text-brand' 
+              className={`w-5 h-5 transition-colors duration-200 ${car.isFavorite
+                  ? 'fill-brand text-brand'
                   : 'text-white dark:text-gray-900 group-hover/btn:text-white'
-              }`}
+                }`}
             />
           </button>
 
@@ -215,7 +220,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
 
             {/* Action Button */}
             <div className="mt-auto">
-              <button 
+              <button
                 onClick={() => window.location.href = `/cars/${car.id}`}
                 className="w-full md:w-auto px-6 py-2.5 bg-brand text-white dark:text-gray-900 rounded-md hover:bg-brand-dark transform hover:translate-y-[-1px] transition-all duration-200 font-semibold"
               >

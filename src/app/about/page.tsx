@@ -103,8 +103,8 @@ export default function AboutPage() {
                 dream vehicles and preserving automotive history.
               </p>
               <p className="text-gray-400 dark:text-gray-600">
-                Every car tells a story, and we're here to help write the next chapter 
-                in these remarkable machines' histories. Our commitment to authenticity 
+                Every car tells a story, and we&apos;re here to help write the next chapter 
+                in these remarkable machines&apos; histories. Our commitment to authenticity 
                 and quality has made us the go-to destination for serious collectors 
                 and enthusiasts alike.
               </p>
@@ -123,7 +123,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-gray-400 dark:text-gray-600 mb-8 max-w-2xl mx-auto">
             Our team of experts brings decades of combined experience in classic car 
-            restoration, authentication, and sales. We're here to help you find your 
+            restoration, authentication, and sales. We&apos;re here to help you find your 
             perfect classic car.
           </p>
           <button className="bg-brand text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-brand/90 transition-colors duration-200 flex items-center gap-2 mx-auto">
