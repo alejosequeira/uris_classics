@@ -7,7 +7,7 @@ const WhatsAppButton = () => {
     const { theme } = useTheme();
     
     const handleClick = () => {
-        const phoneNumber = '+5493454092927';
+        const phoneNumber = '+5491124663784';
         const message = 'Hola! Me interesa saber más sobre los autos clásicos.';
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
