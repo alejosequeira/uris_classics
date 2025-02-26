@@ -37,26 +37,26 @@ export default function ContactPage() {
   const contactInfo = [
     {
       icon: Phone,
-      title: "Call Us",
-      info: "+1 (555) 123-4567",
-      description: "Monday to Friday, 9am to 6pm"
+      title: "Contact us",
+      info: "+54 9 1124663784",
+      description: "Monday to Saturday, 9am to 8pm"
     },
     {
       icon: Mail,
       title: "Email Us",
-      info: "contact@classicars.com",
+      info: "motecarssales@gmail.com",
       description: "We'll respond within 24 hours"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      info: "123 Classic Avenue",
-      description: "Los Angeles, CA 90001"
+      info: "Palermo",
+      description: "Capital Federal, CP 1425"
     }
   ];
 
   return (
-    <div className="min-h-screen dark:bg-gray-100 py-12">
+    <div className="min-h-screen dark:bg-gray-100 py-12 my-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">

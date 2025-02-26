@@ -9,6 +9,7 @@ import mockCars from '@/api/carData';
 import ViewToggle from '@/components/ui/ViewToggle';
 import Spinner from '@/components/ui/Spinner';
 import { useSearch } from '@/context/SearchContext';
+import HeroSection from '@/components/layout/HeroSection';
 
 const CARS_PER_PAGE = 6;
 
@@ -32,7 +33,7 @@ export default function CarsPage() {
   });
   const [filters, setFilters] = useState<Filters>({
     make: '',
-    minYear: 1969,
+    minYear: 1930,
     maxYear: 2024,
     minPrice: 0,
     maxPrice: 0
@@ -54,6 +55,7 @@ export default function CarsPage() {
       isFavorite: storedFavorites.includes(car.id)
     }));
     setCars(carsWithFavorites);
+    
   }, []);
 
   const filterAndSortCars = useCallback(async (
@@ -174,12 +176,16 @@ export default function CarsPage() {
 
   // Efecto para manejar búsquedas y filtros
   useEffect(() => {
+
     filterAndSortCars(searchTerm || '', filters, currentPage, sortOption, carsPerPage);
+
   }, [filterAndSortCars, searchTerm, filters, currentPage, sortOption, carsPerPage]);
 
   return (
+    <>
+      <HeroSection />
     <div className=" container mx-auto px-4 py-8">
-      
+    
 
       <div className="shadow-xl rounded-lg p-6 mb-8">
         
@@ -244,5 +250,6 @@ export default function CarsPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

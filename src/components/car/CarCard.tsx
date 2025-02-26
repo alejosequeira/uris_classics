@@ -35,6 +35,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
   const GridView = () => (
     <div className="group relative overflow-hidden rounded-lg bg-background dark:bg-white hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
       {/* Image Container */}
+
       <div className="relative aspect-video overflow-hidden rounded-t-lg">
         <Image
           src={car.imageUrl || "/api/placeholder/800/600"}
@@ -43,6 +44,10 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           height={0}
           sizes="100vw"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          onError={() => {
+            
+            console.log(`Error loading image for ${car.make} ${car.model}`);
+          }}
         />
 
         {/* Gradient Overlay */}
@@ -61,8 +66,8 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
         >
           <Heart
             className={`w-5 h-5 transition-colors duration-200 ${car.isFavorite
-                ? 'fill-brand text-brand'
-                : 'text-white dark:text-gray-900 group-hover/btn:text-white'
+              ? 'fill-brand text-brand'
+              : 'text-white dark:text-gray-900 group-hover/btn:text-white'
               }`}
           />
         </button>
@@ -74,7 +79,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           </span>
           {car.mileage && (
             <span className="px-2 py-1 rounded-md bg-white/20 dark:bg-black/20 backdrop-blur-sm text-gray-900  dark:text-gray-900 text-sm">
-              {car.mileage.toLocaleString()} mi
+              {car.mileage?.toLocaleString()} mi
             </span>
           )}
         </div>
@@ -88,7 +93,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
               {car.make} {car.model}
             </h3>
             <span className="text-2xl font-bold text-brand">
-              ${car.price.toLocaleString()}
+              ${car.price?.toLocaleString()}
             </span>
           </div>
           <div className="flex items-center gap-3">
@@ -144,8 +149,8 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
             src={car.imageUrl || "/api/placeholder/800/600"}
             alt={`${car.year} ${car.make} ${car.model}`}
             width={0}
-  height={0}
-  sizes="100vw"
+            height={0}
+            sizes="100vw"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
@@ -159,8 +164,8 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           >
             <Heart
               className={`w-5 h-5 transition-colors duration-200 ${car.isFavorite
-                  ? 'fill-brand text-brand'
-                  : 'text-white dark:text-gray-900 group-hover/btn:text-white'
+                ? 'fill-brand text-brand'
+                : 'text-white dark:text-gray-900 group-hover/btn:text-white'
                 }`}
             />
           </button>

@@ -1,12 +1,12 @@
 
-import { 
-  ShieldCheck, 
-  Award, 
-  Wrench, 
-  Users, 
-  Clock, 
-  CarFront, 
-  MessageCircle 
+import {
+  ShieldCheck,
+  Award,
+  Wrench,
+  Users,
+  Clock,
+  CarFront,
+  MessageCircle
 } from 'lucide-react';
 
 export default function AboutPage() {
@@ -29,14 +29,14 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { number: "1000+", label: "Classic Cars" },
-    { number: "500+", label: "Happy Collectors" },
-    { number: "15+", label: "Years Experience" },
-    { number: "100%", label: "Satisfaction" }
+    { number: "4+", label: "Classic Cars" },
+    { number: "2+", label: "Happy Collectors" },
+    { number: "1+", label: "Years Experience" },
+    { number: "101%", label: "Satisfaction" }
   ];
 
   return (
-    <div className="min-h-screen  dark:bg-gray-100 py-12">
+    <div className="min-h-screen  dark:bg-gray-100 py-12 my-12">
       {/* Hero Section */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -47,8 +47,8 @@ export default function AboutPage() {
             Discover the Legacy of Classic Cars
           </h1>
           <p className="text-xl text-gray-400 dark:text-gray-600 max-w-3xl mx-auto">
-            Welcome to the premier destination for classic and muscle car enthusiasts. 
-            Our passion for automotive history drives us to curate the finest collection 
+            Welcome to the premier destination for classic and muscle car enthusiasts.
+            Our passion for automotive history drives us to curate the finest collection
             of timeless vehicles.
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function AboutPage() {
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
-            <div 
+            <div
               key={index}
               className="text-center p-6 bg-backgroundtertiary dark:bg-white/50 rounded-xl backdrop-blur-sm transform hover:scale-105 transition-transform duration-300"
             >
@@ -71,8 +71,8 @@ export default function AboutPage() {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="p-6 bg-backgroundtertiary dark:bg-white/50 rounded-xl backdrop-blur-sm transform hover:scale-105 transition-transform duration-300"
               >
                 <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4">
@@ -97,17 +97,13 @@ export default function AboutPage() {
                 Our History
               </h2>
               <p className="text-gray-400 dark:text-gray-600 mb-4">
-                Founded by passionate car enthusiasts, our marketplace has grown from 
-                a small collection to one of the most trusted platforms for classic 
-                car transactions. We take pride in connecting collectors with their 
-                dream vehicles and preserving automotive history.
-              </p>
-              <p className="text-gray-400 dark:text-gray-600">
-                Every car tells a story, and we&apos;re here to help write the next chapter 
-                in these remarkable machines&apos; histories. Our commitment to authenticity 
-                and quality has made us the go-to destination for serious collectors 
+                Mote Cars was born from a deep passion for classic cars and an unstoppable ambition to bring automotive legends back to life. With just one year in the market, we have already established ourselves as a trusted name in the import and sale of iconic vehicles. Our mission is simple: to connect enthusiasts with the timeless beauty of classic cars, ensuring each one finds its perfect home.</p>
+              {/* <p className="text-gray-400 dark:text-gray-600">
+                Every car tells a story, and we&apos;re here to help write the next chapter
+                in these remarkable machines&apos; histories. Our commitment to authenticity
+                and quality has made us the go-to destination for serious collectors
                 and enthusiasts alike.
-              </p>
+              </p> */}
             </div>
             <div className="w-full md:w-1/3 aspect-square bg-background dark:bg-gray-200 rounded-xl flex items-center justify-center">
               <Clock className="w-24 h-24 text-brand" />
@@ -122,8 +118,8 @@ export default function AboutPage() {
             Meet Our Team
           </h2>
           <p className="text-gray-400 dark:text-gray-600 mb-8 max-w-2xl mx-auto">
-            Our team of experts brings decades of combined experience in classic car 
-            restoration, authentication, and sales. We&apos;re here to help you find your 
+            Our team of experts brings decades of combined experience in classic car
+            restoration, authentication, and sales. We&apos;re here to help you find your
             perfect classic car.
           </p>
           <button className="bg-brand text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-brand/90 transition-colors duration-200 flex items-center gap-2 mx-auto">
