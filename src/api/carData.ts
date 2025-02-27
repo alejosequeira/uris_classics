@@ -159,7 +159,7 @@ const mockCars: Car[] = [
             transmission: 'Automatic',
             mileage: 27700,
             exteriorColor: 'Red',
-            interiorColor: 'Black',
+            interiorColor: 'White and Red',
             horsepower: '225 hp',
             vin: "5F07F116739",      
         },
@@ -214,7 +214,7 @@ const mockCars: Car[] = [
             exteriorColor: 'White',
             interiorColor: 'Red',
             horsepower: '225 hp',
-            vin: "3F02F116739",  
+            vin: "",  
         },
         features: [
             'Power steering',
@@ -267,7 +267,7 @@ const mockCars: Car[] = [
             exteriorColor: 'Blue',
             interiorColor: 'Black',
             horsepower: '390 hp',
-            vin: "1F02F116739",  
+            vin: "",  
         },
         features: [
             'Convertible top',

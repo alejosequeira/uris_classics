@@ -68,7 +68,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
         <div className="absolute inset-0">
           <Image
-            src="/images/forsale/first-mustang/MustangRestomod/img1.jpg"
+            src="/images/forsale/first-mustang/img1.jpg"
             alt="Classic Cars"
             width={0}
             height={0}

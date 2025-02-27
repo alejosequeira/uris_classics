@@ -9,7 +9,7 @@ import {
   Send,
   CarFront,
   Clock
-} from 'lucide-react';
+} from 'lucide-react'; 
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -54,6 +54,7 @@ export default function ContactPage() {
       description: "Capital Federal, CP 1425"
     }
   ];
+
 
   return (
     <div className="min-h-screen dark:bg-gray-100 py-12 my-12">
@@ -225,8 +226,6 @@ export default function ContactPage() {
                   </label>
                 </div>
               </div>
-
-              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full bg-brand text-white dark:text-gray-900 py-4 rounded-lg hover:bg-brand/90 transition-colors flex items-center justify-center gap-2 font-semibold"
@@ -234,6 +233,13 @@ export default function ContactPage() {
                 <Send className="w-5 h-5" />
                 Send Message
               </button>
+             {/* <Link
+              href="/contact"
+              className="bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-600 dark:hover:bg-gray-300 transition-colors flex items-center gap-2"
+            >
+                <Send className="w-5 h-5" />
+                Send Message
+            </Link>*/}
             </form>
 
             {/* Business Hours */}
