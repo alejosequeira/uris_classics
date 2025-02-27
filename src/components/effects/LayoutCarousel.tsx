@@ -34,15 +34,6 @@ const LayoutCarousel = () => {
     };
   }, []);
 
-  // Memoizar los mapeos de coches para evitar recálculos
-  const mobileCarData = useMemo(() => 
-    randomCars.map((car, index) => ({
-      ...car,
-      priority: index === 0,
-      alt: `${car.title} view ${index + 1}`
-    })),
-    [randomCars]
-  );
 
   const desktopCarData = useMemo(() => 
     randomCars.map((car, index) => ({
@@ -72,7 +63,7 @@ const LayoutCarousel = () => {
         key={isMobile ? 'mobile' : 'desktop'}
       >
         {isMobile ? (
-          <MobileCarousel cars={mobileCarData} />
+          <MobileCarousel />
         ) : (
           <BackgroundCarousel 
             cars={desktopCarData}

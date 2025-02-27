@@ -105,7 +105,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
           <div>
             <button
               onClick={() => setShowAll(!showAll)}
-              className="w-full py-2 px-4 bg-black/5 hover:bg-black/10 rounded-lg transition-colors duration-300 text-sm font-medium"
+              className="w-full py-2 px-4 bg-backgroundsecond hover:bg-background text-white rounded-lg transition-colors duration-300 text-sm font-medium"
             >
               {showAll ? 'Show Less' : `View ${remainingImages.length} More Photos`}
             </button>

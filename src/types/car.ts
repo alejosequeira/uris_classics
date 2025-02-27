@@ -23,8 +23,7 @@ export interface Car {
       exteriorColor: string;
       interiorColor: string;
       horsepower: string;
-      topSpeed: string;
-      acceleration: string;
+      vin: string;
   };
   features: string[];
   history: string;

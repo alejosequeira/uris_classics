@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { 
-  ArrowLeft, 
-  Settings, 
-  Gauge, 
-  Paintbrush, 
-  ShieldCheck, 
+import {
+  ArrowLeft,
+  Settings,
+  Gauge,
+  Paintbrush,
+  ShieldCheck,
   History,
   MessageCircle,
   CarFront,
@@ -19,6 +19,7 @@ import mockCars from '@/api/carData';
 import { getSimilarCars } from '@/utils/carUtils';
 import SimilarCars from '@/components/car/SimilarCars';
 import ImageGallery from '@/components/car/ImageGallery';
+import TestDriveButton from '@/components/ui/TestDriveButton';
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const car = mockCars.find(c => c.id === params.id);
@@ -38,8 +39,8 @@ export default function CarDetails({ params }: { params: { id: string } }) {
     <div className="min-h-screen dark:bg-gray-100">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
-        <Link 
-          href="/cars" 
+        <Link
+          href="/cars"
           className="inline-flex items-center gap-2 text-white dark:text-gray-900 hover:text-brand transition-colors mb-6 group"
         >
           <ArrowLeft className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
@@ -58,8 +59,8 @@ export default function CarDetails({ params }: { params: { id: string } }) {
 
             {/* Gallery Section */}
             <div className="relative">
-              <ImageGallery 
-                images={car.images} 
+              <ImageGallery
+                images={car.images}
                 mainImage={car.imageUrl}
               />
               <div className="absolute bottom-4 left-4 flex gap-2">
@@ -178,14 +179,14 @@ export default function CarDetails({ params }: { params: { id: string } }) {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 bg-brand hover:bg-brand/90 text-white dark:text-gray-900 font-bold py-4 px-6 rounded-lg transition-all duration-200 transform hover:translate-y-[-2px] flex items-center justify-center gap-2">
+              <Link
+                href="/contact"
+                className="flex-1 bg-brand hover:bg-brand/90 text-white dark:text-gray-900 font-bold py-4 px-6 rounded-lg transition-all duration-200 transform hover:translate-y-[-2px] flex items-center justify-center gap-2"
+              >
                 <MessageCircle className="w-5 h-5" />
                 Contact Seller
-              </button>
-              <button className="flex-1 bg-card-foreground dark:bg-gray-200 hover:bg-backgroundsecond dark:hover:bg-gray-300 text-white dark:text-gray-900 font-bold py-4 px-6 rounded-lg transition-all duration-200 transform hover:translate-y-[-2px] flex items-center justify-center gap-2">
-                <Calendar className="w-5 h-5" />
-                Schedule Test Drive
-              </button>
+              </Link>
+              <TestDriveButton />
             </div>
           </div>
         </div>

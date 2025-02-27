@@ -2,8 +2,9 @@
 import React, { useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import { CarouselCar } from '@/api/carData';
+import { useRandomCars } from '@/utils/useRandomCars';
 
 // Componente memoizado para los botones indicadores
 const CarouselIndicator = memo(({ 
@@ -45,6 +46,19 @@ const NavigationButton = memo(({
 });
 NavigationButton.displayName = 'NavigationButton';
 
+// Botón de refresco memoizado
+const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
+  <motion.button
+    className="absolute right-2 top-[calc(50%+2.5rem)] -translate-y-1/2 p-2.5 rounded-full bg-red-500/10 hover:bg-red-500/20 backdrop-blur-sm z-30 transition-all duration-300"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+  >
+    <RefreshCw className="w-5 h-5 text-white/90" />
+  </motion.button>
+));
+RefreshButton.displayName = 'RefreshButton';
+
 // Componente memoizado para el contenido del slide
 const SlideContent = memo(({ 
   car 
@@ -75,21 +89,31 @@ const SlideContent = memo(({
 ));
 SlideContent.displayName = 'SlideContent';
 
-const MobileCarousel = ({ cars }: { cars: CarouselCar[] }) => {
+const MobileCarousel = () => {
+  // Usar directamente el hook para obtener los coches y la función de refresco
+  const { randomCars, refreshCars } = useRandomCars();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Handlers memoizados
   const nextSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % cars.length);
-  }, [cars.length]);
+    setCurrentIndex(prev => (prev + 1) % randomCars.length);
+  }, [randomCars.length]);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 + cars.length) % cars.length);
-  }, [cars.length]);
+    setCurrentIndex(prev => (prev - 1 + randomCars.length) % randomCars.length);
+  }, [randomCars.length]);
 
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
   }, []);
+
+  // Memoizar el handler de refresh
+  const handleRefresh = useCallback(() => {
+    console.log("Refresh button clicked");
+    refreshCars();
+    // Resetear el índice al refrescar
+    setCurrentIndex(0);
+  }, [refreshCars]);
 
   // Animaciones memoizadas
   const neonAnimation = useMemo(() => ({
@@ -110,11 +134,16 @@ const MobileCarousel = ({ cars }: { cars: CarouselCar[] }) => {
     transition: { duration: 0.3 }
   }), []);
 
+  // Si aún no hay coches, mostrar algo mientras cargan
+  if (randomCars.length === 0) {
+    return <div className="w-full max-w-[90%] mx-auto -mt-4 aspect-[16/10] bg-gray-900/50 rounded-lg animate-pulse" />;
+  }
+
   return (
     <div className="relative w-full max-w-[90%] mx-auto -mt-4">
       {/* Indicadores */}
       <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex space-x-3 z-30">
-        {cars.map((_, index) => (
+        {randomCars.map((_, index) => (
           <CarouselIndicator
             key={index}
             index={index}
@@ -137,13 +166,16 @@ const MobileCarousel = ({ cars }: { cars: CarouselCar[] }) => {
               className="absolute inset-0 rounded-lg z-20"
               {...neonAnimation}
             />
-            <SlideContent car={cars[currentIndex]} />
+            <SlideContent car={randomCars[currentIndex]} />
           </motion.div>
         </AnimatePresence>
 
         {/* Botones de navegación */}
         <NavigationButton direction="left" onClick={prevSlide} />
         <NavigationButton direction="right" onClick={nextSlide} />
+        
+        {/* Botón de refresco - ahora posicionado debajo del botón de navegación derecho */}
+        <RefreshButton onClick={handleRefresh} />
       </div>
     </div>
   );
