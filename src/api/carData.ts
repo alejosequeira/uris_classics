@@ -19,33 +19,33 @@ export const carGroups: CarGroup[] = [
         cars: [
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus6.jpeg',
                 alt: '1969 Ford Mustang - Front View',
                 priority: true 
             },
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus5.jpeg',
                 alt: '1969 Ford Mustang - Side View' 
             },
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus4.jpeg',
                 alt: '1969 Ford Mustang - Rear View' 
             },
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus3.jpeg',
                 alt: '1969 Ford Mustang - Interior View' 
             },
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus2.jpeg',
                 alt: '1969 Ford Mustang - Engine View' 
             },
             { 
                 title: '1969 Ford Mustang', 
-                imageUrl: '/images/ford-mustang-1969.webp',
+                imageUrl: '/images/hero/mus1.jpeg',
                 alt: '1969 Ford Mustang - Detail View' 
             }
         ]
@@ -267,7 +267,7 @@ const mockCars: Car[] = [
             exteriorColor: 'Blue',
             interiorColor: 'Black',
             horsepower: '390 hp',
-            vin: "",  
+            vin: "194670S408010",  
         },
         features: [
             'Convertible top',

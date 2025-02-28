@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useMemo, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CarouselCar } from '@/api/carData';
 import { useRandomCars } from '@/utils/useRandomCars';
 
@@ -45,6 +45,7 @@ const NavigationButton = memo(({
   );
 });
 NavigationButton.displayName = 'NavigationButton';
+{/* Contenedor principal 
 
 // Botón de refresco memoizado
 const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
@@ -58,7 +59,7 @@ const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
   </motion.button>
 ));
 RefreshButton.displayName = 'RefreshButton';
-
+*/}
 // Componente memoizado para el contenido del slide
 const SlideContent = memo(({ 
   car 
@@ -174,8 +175,8 @@ const MobileCarousel = () => {
         <NavigationButton direction="left" onClick={prevSlide} />
         <NavigationButton direction="right" onClick={nextSlide} />
         
-        {/* Botón de refresco - ahora posicionado debajo del botón de navegación derecho */}
-        <RefreshButton onClick={handleRefresh} />
+        {/* Botón de refresco - ahora posicionado debajo del botón de navegación derecho 
+        <RefreshButton onClick={handleRefresh} />*/}
       </div>
     </div>
   );

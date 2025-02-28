@@ -8,6 +8,8 @@ import {
   CarFront,
   MessageCircle
 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutPage() {
   const features = [
@@ -106,7 +108,15 @@ export default function AboutPage() {
               </p> */}
             </div>
             <div className="w-full md:w-1/3 aspect-square bg-background dark:bg-gray-200 rounded-xl flex items-center justify-center">
-              <Clock className="w-24 h-24 text-brand" />
+            
+              <Image
+            src="/images/forsale/first-mustang/img1.jpg"
+            alt="Classic Cars"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-full object-cover"
+          />
             </div>
           </div>
         </div>
@@ -122,10 +132,14 @@ export default function AboutPage() {
             restoration, authentication, and sales. We&apos;re here to help you find your
             perfect classic car.
           </p>
-          <button className="bg-brand text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-brand/90 transition-colors duration-200 flex items-center gap-2 mx-auto">
-            <MessageCircle className="w-5 h-5" />
-            Contact Us
-          </button>
+         
+          <Link
+  href="/contact"
+  className="w-1/4 bg-brand text-white dark:text-gray-900 px-4 py-2 rounded-md hover:bg-brand/90 transition-colors duration-200 flex items-center gap-1 mx-auto text-sm justify-center"
+>
+  <MessageCircle className="w-4 h-4" />
+  Contact Us
+</Link>
         </div>
       </div>
     </div>
