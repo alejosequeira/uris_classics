@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@types/lodash": "^4.17.14",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.10.2",

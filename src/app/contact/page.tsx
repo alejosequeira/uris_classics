@@ -54,7 +54,12 @@ export default function ContactPage() {
       description: "Capital Federal, CP 1425"
     }
   ];
-
+  const handleClick = () => {
+    const phoneNumber = '+5491124663784';
+    const message = 'Hola! Me interesa que me contacten.';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+};
 
   return (
     <div className="min-h-screen dark:bg-gray-100 py-12 my-12">
@@ -228,6 +233,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
+                onClick={handleClick}
                 className="w-full bg-brand text-white dark:text-gray-900 py-4 rounded-lg hover:bg-brand/90 transition-colors flex items-center justify-center gap-2 font-semibold"
               >
                 <Send className="w-5 h-5" />
