@@ -4,7 +4,6 @@ import {
   Award,
   Wrench,
   Users,
-  Clock,
   CarFront,
   MessageCircle
 } from 'lucide-react';

@@ -59,6 +59,14 @@ const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
   </motion.button>
 ));
 RefreshButton.displayName = 'RefreshButton';
+
+  // Memoizar el handler de refresh
+  const handleRefresh = useCallback(() => {
+    console.log("Refresh button clicked");
+    refreshCars();
+    // Resetear el índice al refrescar
+    setCurrentIndex(0);
+  }, [refreshCars]);
 */}
 // Componente memoizado para el contenido del slide
 const SlideContent = memo(({ 
@@ -92,7 +100,7 @@ SlideContent.displayName = 'SlideContent';
 
 const MobileCarousel = () => {
   // Usar directamente el hook para obtener los coches y la función de refresco
-  const { randomCars, refreshCars } = useRandomCars();
+  const { randomCars } = useRandomCars();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Handlers memoizados
@@ -108,13 +116,7 @@ const MobileCarousel = () => {
     setCurrentIndex(index);
   }, []);
 
-  // Memoizar el handler de refresh
-  const handleRefresh = useCallback(() => {
-    console.log("Refresh button clicked");
-    refreshCars();
-    // Resetear el índice al refrescar
-    setCurrentIndex(0);
-  }, [refreshCars]);
+
 
   // Animaciones memoizadas
   const neonAnimation = useMemo(() => ({
