@@ -1,17 +1,14 @@
 "use client"
-import { useRandomCars } from '@/utils/useRandomCars';
 import BackgroundCarousel from './BackgroundCarousel';
-import MobileCarousel from './MobileCarousel';
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 const LayoutCarousel = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const { randomCars } = useRandomCars();
-  const [isLoading, setIsLoading] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Agregar debounce al detector de redimensión
+  // Detector de redimensión con debounce
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
     
@@ -22,10 +19,12 @@ const LayoutCarousel = () => {
       }, 200);
     };
     
+    // Comprobación inicial
     checkMobile();
     window.addEventListener('resize', checkMobile);
     
-    const loadingTimer = setTimeout(() => setIsLoading(false), 500);
+    // Tiempo de carga simulado
+    const loadingTimer: NodeJS.Timeout = setTimeout(() => setIsLoading(false), 500);
     
     return () => {
       window.removeEventListener('resize', checkMobile);
@@ -34,45 +33,34 @@ const LayoutCarousel = () => {
     };
   }, []);
 
-
-  const desktopCarData = useMemo(() => 
-    randomCars.map((car, index) => ({
-      ...car,
-      priority: index < 2,
-      alt: `${car.title} view ${index + 1}`
-    })),
-    [randomCars]
-  );
-
-  // Estabilizar la función de setHoveredIndex
+  // Función de manejo de hover estabilizada
   const handleSetHoveredIndex = useCallback((index: number | null) => {
     setHoveredIndex(index);
   }, []);
 
+  // Estado de carga
   if (isLoading) {
     return <div className="w-full h-64 bg-black/10 animate-pulse" />;
   }
 
+  // Si es móvil, no renderizamos el componente en absoluto
+  if (isMobile) {
+    return null;
+  }
+
+  // Solo renderizamos BackgroundCarousel si es desktop
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        key={isMobile ? 'mobile' : 'desktop'}
-      >
-        {isMobile ? (
-          <MobileCarousel />
-        ) : (
-          <BackgroundCarousel 
-            cars={desktopCarData}
-            hoveredIndex={hoveredIndex}
-            setHoveredIndex={handleSetHoveredIndex}
-          />
-        )}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <BackgroundCarousel 
+        hoveredIndex={hoveredIndex}
+        setHoveredIndex={handleSetHoveredIndex}
+      />
+    </motion.div>
   );
 };
 

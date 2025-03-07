@@ -78,12 +78,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
           </div>
         </div>
 
-        {/* Miniaturas iniciales */}
+        {/* Miniaturas iniciales - Ahora más grandes */}
         <div className="grid grid-cols-4 gap-2">
           {initialImages.map((img, index) => (
             <div
               key={`${img}-${index}`}
-              className="relative h-24 cursor-pointer rounded-lg overflow-hidden"
+              className="relative h-96 cursor-pointer rounded-lg overflow-hidden"
               onClick={() => {
                 setCurrentImageIndex(index);
                 setIsViewerOpen(true);
@@ -100,7 +100,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
           ))}
         </div>
 
-        {/* Ver más fotos */}
+        {/* Ver más fotos - Ahora con miniaturas más grandes */}
         {remainingImages.length > 0 && (
           <div>
             <button
@@ -115,7 +115,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
                 {remainingImages.map((img, index) => (
                   <div
                     key={`${img}-${index + 4}`}
-                    className="relative h-24 cursor-pointer rounded-lg overflow-hidden"
+                    className="relative h-96 cursor-pointer rounded-lg overflow-hidden"
                     onClick={() => {
                       setCurrentImageIndex(index + 4);
                       setIsViewerOpen(true);

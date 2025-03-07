@@ -3,18 +3,26 @@ import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const ThemeToggle = () => {
   const { setTheme, theme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
+  const router = useRouter();
 
   const handleClick = () => {
     setIsAnimating(true);
     setTheme(theme === 'dark' ? 'light' : 'dark');
+    
+    // Hacer scroll al principio de la página
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+    
+    // Navegar a la página /cars
+    router.push('/cars');
+    
     setTimeout(() => setIsAnimating(false), 1000);
   };
 

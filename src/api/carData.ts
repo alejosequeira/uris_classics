@@ -18,33 +18,33 @@ export const carGroups: CarGroup[] = [
         // Grupo Mustang
         cars: [
             { 
-                title: '1969 Ford Mustang', 
+                title: '2023 Ford Mustang', 
                 imageUrl: '/images/hero/mus6.jpeg',
                 alt: '1969 Ford Mustang - Front View',
                 priority: true 
             },
             { 
-                title: '1969 Ford Mustang', 
+                title: '2015 Ford Mustang', 
                 imageUrl: '/images/hero/mus5.jpeg',
                 alt: '1969 Ford Mustang - Side View' 
             },
             { 
-                title: '1969 Ford Mustang', 
+                title: '2005 Ford Mustang', 
                 imageUrl: '/images/hero/mus4.jpeg',
                 alt: '1969 Ford Mustang - Rear View' 
             },
             { 
-                title: '1969 Ford Mustang', 
+                title: '1987 Ford Mustang', 
                 imageUrl: '/images/hero/mus3.jpeg',
                 alt: '1969 Ford Mustang - Interior View' 
             },
             { 
-                title: '1969 Ford Mustang', 
+                title: '1970 Ford Mustang', 
                 imageUrl: '/images/hero/mus2.jpeg',
                 alt: '1969 Ford Mustang - Engine View' 
             },
             { 
-                title: '1969 Ford Mustang', 
+                title: '1965 Ford Mustang', 
                 imageUrl: '/images/hero/mus1.jpeg',
                 alt: '1969 Ford Mustang - Detail View' 
             }
@@ -158,7 +158,7 @@ const mockCars: Car[] = [
             engine: '289 V8',
             transmission: 'Automatic',
             mileage: 27700,
-            exteriorColor: 'Red',
+            exteriorColor: 'White',
             interiorColor: 'White and Red',
             horsepower: '225 hp',
             vin: "5F07F116739",      
@@ -206,7 +206,7 @@ const mockCars: Car[] = [
             '/images/forsale/second-mustang/File8.jpg',            
             '/images/forsale/second-mustang/File10.jpg',            
         ],
-        description: 'The 1965 Ford Mustang is an automotive icon, known for its sporty design and cultural impact. This classic pony car features a sleek body with muscular lines, a distinctive grille with the galloping horse emblem, and round headlights. The 1965 Mustang marked the beginning of a new era for American sports cars.',
+        description: 'El Ford Mustang de 1965 es un ícono automotriz, conocido por su diseño deportivo e impacto cultural. Este clásico pony car presenta una carrocería elegante con líneas musculosas, una parrilla distintiva con el emblema del caballo al galope y faros redondos. El Mustang de 1965 marcó el comienzo de una nueva era para los autos deportivos estadounidenses.',
         specifications: {
             engine: '289 V8',
             transmission: 'Automatic',
@@ -217,11 +217,11 @@ const mockCars: Car[] = [
             vin: "",  
         },
         features: [
-            'Power steering',
-            'Power brakes',
-            'Original radio',
-            'Bucket seats',
-            'Chrome wheels'
+            'Llantas y neumaticos nuevos',
+            'Frenos delanteros a disco',
+            'Doble salida de escape',
+            'Interior y pintura original',
+            
         ],
         history: 'Well-maintained classic with documented service history.',
         location: 'Miami, FL',

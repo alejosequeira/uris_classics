@@ -7,7 +7,6 @@ import { useRandomCars } from '@/utils/useRandomCars';
 import { CarouselCar } from '@/api/carData';
 
 interface CarouselProps {
-  cars: CarouselCar[];
   hoveredIndex: number | null;
   setHoveredIndex: (index: number | null) => void;
 }
@@ -138,10 +137,9 @@ const CarItem = memo(({
 });
 CarItem.displayName = 'CarItem';
 
-// Botón de refresco memoizado
 const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
   <motion.button
-    className="absolute top-8 right-8 p-3 rounded-full bg-red-500/10 hover:bg-red-500/20 backdrop-blur-sm pointer-events-auto z-50"
+    className="fixed bottom-24 right-8 p-3 rounded-full bg-red-500/10 hover:bg-red-500/20 backdrop-blur-sm pointer-events-auto z-40"
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.95 }}
     onClick={onClick}
@@ -151,9 +149,10 @@ const RefreshButton = memo(({ onClick }: { onClick: () => void }) => (
 ));
 RefreshButton.displayName = 'RefreshButton';
 
-const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex, cars }: CarouselProps) => {
+const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex }: CarouselProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { refreshCars } = useRandomCars();
+  // Usar directamente el hook aquí para tener una única fuente de verdad
+  const { randomCars, refreshCars } = useRandomCars();
 
   // Optimizar el manejo de movimiento del mouse con throttling
   useEffect(() => {
@@ -185,8 +184,8 @@ const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex, cars }: CarouselPro
 
   // Calcular posiciones una vez por render y memorizarlas
   const carPositions = useMemo(() => {
-    return cars.map((_, index) => {
-      const angle = (index / (cars.length - 1)) * Math.PI;
+    return randomCars.map((_, index) => {
+      const angle = (index / (randomCars.length - 1)) * Math.PI;
       const radius = 600;
       const baseX = Math.cos(angle) * radius;
       const baseY = Math.sin(angle) * 80;
@@ -200,7 +199,7 @@ const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex, cars }: CarouselPro
         rotateY: mousePosition.x * 15,
       };
     });
-  }, [mousePosition.x, mousePosition.y, cars]);
+  }, [mousePosition.x, mousePosition.y, randomCars]);
 
   // Memoizar el handler de refresh
   const handleRefresh = useCallback(() => {
@@ -212,7 +211,7 @@ const BackgroundCarousel = ({ hoveredIndex, setHoveredIndex, cars }: CarouselPro
       <RefreshButton onClick={handleRefresh} />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        {cars.map((car, index) => (
+        {randomCars.map((car, index) => (
           <CarItem
             key={`${car.imageUrl}-${index}`}
             car={car}

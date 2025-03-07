@@ -39,24 +39,26 @@ export default function Home() {
   const latestAdditions = [
     {
       id: 1,
-      image: "/images/forsale/second-mustang/File5.jpg",
+
+      image: "/images/forsale/first-mustang/img5.jpg",
       year: "1965",
-      name: "Ford Mustang Coupe",
-      price: "$98,000"
+      name: "Ford Mustang Restomod",
+      price: "$110,000"
+
     },
     {
       id: 2,
-      image: "/images/optimizadoback/corvette.jpeg",
-      year: "1963",
-      name: "Shelby Cobra 427",
-      price: "$245,000"
+      image: "/images/forsale/second-mustang/file9.jpg",
+      year: "1965",
+      name: "Ford Mustang",
+      price: "$98,000"
     },
     {
       id: 3,
-      image: "/images/optimizadoback/porsche.jpeg",
-      year: "1975",
-      name: "Porsche 911 Carrera",
-      price: "$185,000"
+      image: "/images/forsale/corvette/corvette4.jpg",
+      year: "1970",
+      name: "Chevrolet Corvette Stingray",
+      price: "$95,000"
     }
   ];
 
@@ -83,6 +85,22 @@ export default function Home() {
               Find Your Dream
               <span className="text-brand block mt-2">Classic Car</span>
             </h1>
+            <div className="mt-10">
+            <div className="mt-10 relative">
+  <div className="absolute -inset-1 bg-[var(--brand-light)] rounded-full blur opacity-30 animate-pulse"></div>
+  <Link
+  href="/cars"
+  className="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-[var(--brand)] text-[var(--foreground)] text-2xl font-bold
+             hover:shadow-[0_0_20px_var(--brand-light)] 
+             hover:scale-105 transition-all duration-300"
+>
+  VIEW INVENTORY
+  <svg className="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  </svg>
+</Link>
+</div>
+            </div>
           </div>
 
           <p className="text-justify text-xl text-gray-300 animate-slideUp delay-200">
@@ -159,7 +177,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-8">
           {latestAdditions.map((car) => (
             <Link
-              href={`/cars`}
+              href={`/cars/${car.id}`}
               key={car.id}
             >
               <div
