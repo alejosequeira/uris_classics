@@ -48,7 +48,7 @@ export default function Home() {
     },
     {
       id: 2,
-      image: "/images/forsale/second-mustang/file4.jpg",
+      image: "/images/mustangdos.jpg",
       year: "1965",
       name: "Ford Mustang",
       price: "$98,000"
