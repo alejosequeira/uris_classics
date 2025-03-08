@@ -108,7 +108,7 @@ const CarSearch: React.FC<CarSearchProps> = ({
       <form onSubmit={handleSubmit} className={currentStyle.form}>
         <input
           type="text"
-          placeholder="Search by Year, Make or Model..."
+          placeholder="Buscar por Año, Marca o Modelo..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -117,11 +117,11 @@ const CarSearch: React.FC<CarSearchProps> = ({
         <button 
           type="submit" 
           className={currentStyle.button}
-          aria-label="Search"
+          aria-label="Buscar"
         >
           {variant === "hero" ? (
             <div className="flex items-center gap-2">
-              <span>Search</span>
+              <span>Buscar</span>
               <Search className="w-4 h-4" />
             </div>
           ) : (

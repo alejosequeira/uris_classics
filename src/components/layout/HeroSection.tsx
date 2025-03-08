@@ -37,7 +37,7 @@ const DarkModeHero = () => (
         `}
         style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
         >
-          TIMELESS ELEGANCE
+          ELEGANCIA ATEMPORAL
         </h1>
 
         <p className={`
@@ -48,7 +48,7 @@ const DarkModeHero = () => (
         `}
         style={{ fontSize: "clamp(1.125rem, 3vw, 1.875rem)" }}
         >
-          We are dedicated to parking your dream car in your garage!
+          ¡Nos dedicamos a estacionar el auto de tus sueños en tu garage!
         </p>
       </div>
     </div>
@@ -79,7 +79,7 @@ const LightModeHero = () => (
         <div className="relative text-center space-y-12 md:space-y-10 px-4">
           <motion.div {...FADE_UP_ANIMATION}>
             <RusticText
-              text="INNOVATION MEETS STYLE"
+              text="LA INNOVACIÓN ENCUENTRA EL ESTILO"
               className="font-bold text-[var(--brand)] tracking-wide drop-shadow-lg"
              
             />
@@ -91,7 +91,7 @@ const LightModeHero = () => (
             className="text-brand-dark tracking-wide"
             style={{ fontSize: "clamp(1.025rem, 3vw, 1.875rem)" }}
           >
-            Experience a perfect blend of future-forward designs and timeless classics.
+            Experimenta una perfecta combinación de diseños vanguardistas y clásicos atemporales.
           </motion.p>
         </div>
       </div>

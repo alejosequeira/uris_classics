@@ -171,58 +171,10 @@ const CarFilters: React.FC<CarFiltersProps> = ({
     }
   }), [onSortChange]);
 
-  // // Memos para clases condicionales
-  // const yearButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedYear ? 'bg-brand text-white' : 'bg-card text-foreground'
-  //   }`, [selectedYear]);
-
-  // const makeButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedMake ? 'bg-brand text-white' : 'bg-card text-foreground'
-  //   }`, [selectedMake]);
-
-  // const priceButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${selectedPriceRange ? 'bg-brand text-white' : 'bg-card text-foreground'
-  //   }`, [selectedPriceRange]);
-
-  // const sortButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${sortOption !== 'default' ? 'bg-brand text-white' : 'bg-card text-foreground'
-  //   }`, [sortOption]);
-
-  // const carsPerPageButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors ${carsPerPage !== CARS_PER_PAGE ? 'bg-brand text-white' : 'bg-card text-foreground'
-  //   }`, [carsPerPage]);
-
-  // const favoritesButtonClass = useMemo(() =>
-  //   `w-full px-4 py-2.5 text-left text-white rounded-lg transition-colors relative ${showOnlyFavorites ? 'bg-brand text-white' : 'bg-card text-foreground hover:bg-brand/10'
-  //   }`, [showOnlyFavorites]);
-
-  // // Función memoizada para opciones de años
-  // const renderYearOptions = useMemo(() => {
-  //   if (openDropdown !== 'year') return null;
-
-  //   return (
-  //     <div className=" absolute top-full left-0 w-full mt-1 border border-border rounded-lg shadow-lg z-20">
-  //       <div className="max-h-[200px] overflow-y-auto">
-  //         {YEARS.map(year => (
-  //           <button
-  //             key={year}
-  //             className={`w-full px-4 py-2 text-left text-white transition-colors ${selectedYear === year
-  //               ? 'bg-brand text-white'
-  //               : 'text-foreground hover:bg-brand/10'
-  //               }`}
-  //             onClick={() => handleYearSelect(year)}
-  //           >
-  //             {year}
-  //           </button>
-  //         ))}
-  //       </div>
-  //     </div>
-  //   );
-  // }, [openDropdown, selectedYear, handleYearSelect]);
 
   return (
     <div className="w-full space-y-4 ">
-      {/* Barra superior: Search + Botones */}
+      {/* Barra superior: Búsqueda + Botones */}
       <div className="flex flex-col sm:flex-row gap-4 ">
         <div className="flex-1">
           <CarSearch
@@ -238,7 +190,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
             onClick={() => onToggleFilters(!isFiltersOpen)}
           >
             <SlidersHorizontal className={`h-5 w-5 transition-transform duration-300 ${isFiltersOpen ? 'rotate-180' : ''}`} />
-            <span className="hidden sm:inline">{isFiltersOpen ? 'CLOSE' : 'FILTERS'}</span>
+            <span className="hidden sm:inline">{isFiltersOpen ? 'CERRAR' : 'FILTROS'}</span>
           </button>
 
           <button
@@ -246,7 +198,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
             onClick={handleLocalClear}
           >
             <RotateCcw className="h-5 w-5 transition-transform duration-300 hover:rotate-180" />
-            <span className="hidden sm:inline">RESET</span>
+            <span className="hidden sm:inline">REINICIAR</span>
           </button>
         </div>
       </div>
@@ -255,7 +207,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
       {isFiltersOpen && (
         <div className="rounded-lg p-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-            {/* Year Dropdown */}
+            {/* Desplegable de Año */}
             <div className="relative ">
           <button
             onClick={() => handleDropdownToggle('year')}
@@ -264,7 +216,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
             }`}
           >
             <div className="flex items-center justify-between">
-              <span>{selectedYear ? `Year: ${selectedYear}` : 'Year'}</span>
+              <span>{selectedYear ? `Año: ${selectedYear}` : 'Año'}</span>
               {selectedYear ? (
                 <button
                   onClick={handleClearYear}
@@ -298,7 +250,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
           )}
         </div>
 
-            {/* Make Dropdown */}
+            {/* Desplegable de Marca */}
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('make')}
@@ -306,7 +258,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                   }`}
               >
                 <div className="flex items-center justify-between">
-                  <span>{selectedMake || 'Make'}</span>
+                  <span>{selectedMake || 'Marca'}</span>
                   {selectedMake ? (
                     <button
                       onClick={handleClearMake}
@@ -339,7 +291,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
               )}
             </div>
 
-            {/* Price Range Dropdown */}
+            {/* Desplegable de Rango de Precio */}
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('price')}
@@ -347,7 +299,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                   }`}
               >
                 <div className="flex items-center justify-between">
-                  <span>{selectedPriceRange ? selectedPriceRange.label : 'Price'}</span>
+                  <span>{selectedPriceRange ? selectedPriceRange.label : 'Precio'}</span>
                   {selectedPriceRange ? (
                     <button
                       onClick={handleClearPrice}
@@ -378,7 +330,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
               )}
             </div>
 
-            {/* Sort By Dropdown */}
+            {/* Desplegable de Ordenar Por */}
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('sort')}
@@ -387,9 +339,9 @@ const CarFilters: React.FC<CarFiltersProps> = ({
               >
                 <div className="flex items-center justify-between">
                   <span>
-                    {sortOption === 'default' ? 'Sort By' :
-                      sortOption === 'priceHighToLow' ? 'Price: High to Low' :
-                        'Price: Low to High'}
+                    {sortOption === 'default' ? 'Ordenar Por' :
+                      sortOption === 'priceHighToLow' ? 'Precio: Mayor a Menor' :
+                        'Precio: Menor a Mayor'}
                   </span>
                   {sortOption !== 'default' ? (
                     <button
@@ -412,7 +364,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                       }`}
                     onClick={sortHandlers.default}
                   >
-                    Default
+                    Predeterminado
                   </button>
                   <button
                     className={`w-full px-4 py-2.5 text-left text-white transition-colors ${sortOption === 'priceHighToLow'
@@ -421,7 +373,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                       }`}
                     onClick={sortHandlers.highToLow}
                   >
-                    Price: High to Low
+                    Precio: Mayor a Menor
                   </button>
                   <button
                     className={`w-full px-4 py-2.5 text-left text-white transition-colors ${sortOption === 'priceLowToHigh'
@@ -430,13 +382,13 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                       }`}
                     onClick={sortHandlers.lowToHigh}
                   >
-                    Price: Low to High
+                    Precio: Menor a Mayor
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Cars Per Page Dropdown */}
+            {/* Desplegable de Autos Por Página */}
             <div className="relative">
               <button
                 onClick={() => handleDropdownToggle('carsPerPage')}
@@ -444,7 +396,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                   }`}
               >
                 <div className="flex items-center justify-between">
-                  <span>{`${carsPerPage} per page`}</span>
+                  <span>{`${carsPerPage} por página`}</span>
                   {carsPerPage !== CARS_PER_PAGE ? (
                     <button
                       onClick={handleClearCarsPerPage}
@@ -471,14 +423,14 @@ const CarFilters: React.FC<CarFiltersProps> = ({
                         setOpenDropdown(null);
                       }}
                     >
-                      {option} cars
+                      {option} autos
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Show Only Favorites Toggle */}
+            {/* Mostrar Solo Favoritos */}
             <button
               onClick={() => onToggleFavorites(!showOnlyFavorites)}
               className={`w-full px-4 py-3 text-left text-white rounded-lg border border-gray-700/50 dark:border-gray-300/50 transition-all duration-200 hover:border-brand focus:outline-none focus:ring-2 focus:ring-brand/50 ${showOnlyFavorites ? 'bg-brand text-white dark:text-gray-900 border-transparent' : 'bg-backgroundtertiary dark:bg-gray-200/50'
@@ -487,7 +439,7 @@ const CarFilters: React.FC<CarFiltersProps> = ({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Heart className={`w-4 h-4 ${showOnlyFavorites ? 'fill-current' : ''}`} />
-                  <span>{showOnlyFavorites ? 'Show Favorites' : 'Show Favorites'}</span>
+                  <span>{showOnlyFavorites ? 'Mostrar Favoritos' : 'Mostrar Favoritos'}</span>
                 </div>
                 {showOnlyFavorites && (
                   <button

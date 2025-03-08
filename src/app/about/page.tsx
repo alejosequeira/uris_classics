@@ -38,23 +38,23 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen  dark:bg-gray-100 py-12 my-12">
-      {/* Hero Section */}
+      {/* Sección Hero */}
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex justify-center mb-6">
             <CarFront className="w-16 h-16 text-brand" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-gray-900 mb-6">
-            Discover the Legacy of Classic Cars
+            Descubre el Legado de los Autos Clásicos
           </h1>
           <p className="text-xl text-gray-400 dark:text-gray-600 max-w-3xl mx-auto">
-            Welcome to the premier destination for classic and muscle car enthusiasts.
-            Our passion for automotive history drives us to curate the finest collection
-            of timeless vehicles.
+            Bienvenido al destino principal para entusiastas de autos clásicos y muscle cars.
+            Nuestra pasión por la historia automotriz nos impulsa a seleccionar la mejor colección
+            de vehículos atemporales.
           </p>
         </div>
 
-        {/* Stats Section */}
+        {/* Sección de Estadísticas */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
           {stats.map((stat, index) => (
             <div
@@ -67,7 +67,7 @@ export default function AboutPage() {
           ))}
         </div>
 
-        {/* Features Grid */}
+        {/* Cuadrícula de Características */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -90,27 +90,27 @@ export default function AboutPage() {
           })}
         </div>
 
-        {/* History Section */}
+        {/* Sección de Historia */}
         <div className="bg-backgroundtertiary dark:bg-white/50 rounded-xl p-8 backdrop-blur-sm mb-20">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1">
               <h2 className="text-3xl font-bold text-white dark:text-gray-900 mb-4">
-                Our History
+                Nuestra Historia
               </h2>
               <p className="text-gray-400 dark:text-gray-600 mb-4">
-                Mote Cars was born from a deep passion for classic cars and an unstoppable ambition to bring automotive legends back to life. With just one year in the market, we have already established ourselves as a trusted name in the import and sale of iconic vehicles. Our mission is simple: to connect enthusiasts with the timeless beauty of classic cars, ensuring each one finds its perfect home.</p>
+                Mote Cars nació de una profunda pasión por los autos clásicos y una ambición imparable de devolver a la vida a leyendas automotrices. Con solo un año en el mercado, ya nos hemos establecido como un nombre de confianza en la importación y venta de vehículos icónicos. Nuestra misión es simple: conectar a los entusiastas con la belleza atemporal de los autos clásicos, asegurando que cada uno encuentre su hogar perfecto.</p>
               {/* <p className="text-gray-400 dark:text-gray-600">
-                Every car tells a story, and we&apos;re here to help write the next chapter
-                in these remarkable machines&apos; histories. Our commitment to authenticity
-                and quality has made us the go-to destination for serious collectors
-                and enthusiasts alike.
+                Cada auto cuenta una historia, y estamos aquí para ayudar a escribir el siguiente capítulo
+                en las historias de estas extraordinarias máquinas. Nuestro compromiso con la autenticidad
+                y la calidad nos ha convertido en el destino predilecto tanto para coleccionistas serios
+                como para entusiastas.
               </p> */}
             </div>
             <div className="w-full md:w-1/3 aspect-square bg-background dark:bg-gray-200 rounded-xl flex items-center justify-center">
             
               <Image
             src="/images/forsale/first-mustang/img1.jpg"
-            alt="Classic Cars"
+            alt="Autos Clásicos"
             width={0}
             height={0}
             sizes="100vw"
@@ -120,16 +120,16 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Sección del Equipo */}
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white dark:text-gray-900 mb-4 flex items-center justify-center gap-3">
             <Users className="w-8 h-8 text-brand" />
-            Meet Our Team
+            Conoce a Nuestro Equipo
           </h2>
           <p className="text-gray-400 dark:text-gray-600 mb-8 max-w-2xl mx-auto">
-            Our team of experts brings decades of combined experience in classic car
-            restoration, authentication, and sales. We&apos;re here to help you find your
-            perfect classic car.
+            Nuestro equipo de expertos aporta décadas de experiencia combinada en restauración,
+            autenticación y venta de autos clásicos. Estamos aquí para ayudarte a encontrar
+            tu auto clásico perfecto.
           </p>
          
           <Link
@@ -137,7 +137,7 @@ export default function AboutPage() {
   className="w-1/4 bg-brand text-white dark:text-gray-900 px-4 py-2 rounded-md hover:bg-brand/90 transition-colors duration-200 flex items-center gap-1 mx-auto text-sm justify-center"
 >
   <MessageCircle className="w-4 h-4" />
-  Contact Us
+  Contáctanos
 </Link>
         </div>
       </div>

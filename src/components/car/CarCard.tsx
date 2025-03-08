@@ -34,7 +34,7 @@ interface CarCardProps {
 const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' }) => {
   const GridView = () => (
     <div className="group relative overflow-hidden rounded-lg bg-background dark:bg-white hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-      {/* Image Container */}
+      {/* Contenedor de Imagen */}
 
       <div className="relative aspect-video overflow-hidden rounded-t-lg">
         <Image
@@ -50,13 +50,13 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           }}
         />
 
-        {/* Gradient Overlay */}
+        {/* Superposición de Gradiente */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        {/* Brand Accent Bar */}
+        {/* Barra de Acento de Marca */}
         <div className="absolute bottom-0 left-0 w-full h-1 bg-brand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-        {/* Favorite Button */}
+        {/* Botón de Favorito */}
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -72,7 +72,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           />
         </button>
 
-        {/* Badges */}
+        {/* Insignias */}
         <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
           <span className="px-2 py-1 rounded-md bg-white/20 dark:bg-black/20 backdrop-blur-sm text--gray-900  dark:text-gray-900 text-sm font-semibold">
             {car.year}
@@ -86,7 +86,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
       </div>
 
       <div className="p-4">
-        {/* Title and Rating */}
+        {/* Título y Calificación */}
         <div className="mb-4">
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-bold text-white dark:text-gray-900">
@@ -117,22 +117,22 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
           </div>
         </div>
 
-        {/* Car Details */}
+        {/* Detalles del Auto */}
         <div className="grid grid-cols-2 gap-2 mb-4 text-sm text-gray-300 dark:text-gray-600">
           {car.engine && <span>• {car.engine}</span>}
           {car.transmission && <span>• {car.transmission}</span>}
         </div>
 
-        {/* Action Button */}
+        {/* Botón de Acción */}
         <button
           onClick={() => window.location.href = `/cars/${car.id}`}
           className="w-full py-2.5 px-4 bg-brand text-white dark:text-gray-900 rounded-md hover:bg-brand-dark transform hover:translate-y-[-1px] transition-all duration-200 font-semibold"
         >
-          View Details
+          Ver Detalles
         </button>
       </div>
 
-      {/* Decorative Corner Accents */}
+      {/* Acentos Decorativos en las Esquinas */}
       <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-tl" />
       <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-tr" />
       <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-bl" />
@@ -143,7 +143,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
   const ListView = () => (
     <div className="group relative overflow-hidden rounded-lg bg-background dark:bg-white hover:shadow-xl transition-all duration-300 ease-in-out mb-4">
       <div className="flex flex-col md:flex-row">
-        {/* Image Container */}
+        {/* Contenedor de Imagen */}
         <div className="relative w-full md:w-80 aspect-video md:aspect-auto">
           <Image
             src={car.imageUrl || "/api/placeholder/800/600"}
@@ -154,7 +154,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
-          {/* Favorite Button */}
+          {/* Botón de Favorito */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -170,7 +170,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
             />
           </button>
 
-          {/* Badges */}
+          {/* Insignias */}
           <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
             <span className="px-2 py-1 rounded-md bg-white/20 dark:bg-black/20 backdrop-blur-sm text-gray-900 dark:text-gray-900 text-sm font-semibold">
               {car.year}
@@ -182,7 +182,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
             )}
           </div>
 
-          {/* Brand Accent Line */}
+          {/* Línea de Acento de Marca */}
           <div className="absolute bottom-0 left-0 w-full h-1 bg-brand transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
         </div>
 
@@ -211,32 +211,32 @@ const CarCard: React.FC<CarCardProps> = ({ car, onToggleFavorite, view = 'grid' 
               </span>
             </div>
 
-            {/* Car Details */}
+            {/* Detalles del Auto */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="text-sm text-gray-300 dark:text-gray-600">
-                <p>Engine: {car.engine}</p>
-                <p>Transmission: {car.transmission}</p>
+                <p>Motor: {car.engine}</p>
+                <p>Transmisión: {car.transmission}</p>
               </div>
               <div className="text-sm text-gray-300 dark:text-gray-600">
-                <p>Mileage: {car.mileage?.toLocaleString()} miles</p>
-                <p>Location: {car.location}</p>
+                <p>Kilometraje: {car.mileage?.toLocaleString()} millas</p>
+                <p>Ubicación: {car.location}</p>
               </div>
             </div>
 
-            {/* Action Button */}
+            {/* Botón de Acción */}
             <div className="mt-auto">
               <button
                 onClick={() => window.location.href = `/cars/${car.id}`}
                 className="w-full md:w-auto px-6 py-2.5 bg-brand text-white dark:text-gray-900 rounded-md hover:bg-brand-dark transform hover:translate-y-[-1px] transition-all duration-200 font-semibold"
               >
-                View Details
+                Ver Detalles
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Decorative Corner Accents */}
+      {/* Acentos Decorativos en las Esquinas */}
       <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-tl" />
       <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-tr" />
       <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-brand opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-bl" />

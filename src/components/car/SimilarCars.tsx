@@ -102,34 +102,34 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
 
   return (
     <div className="relative">
-      {/* Header Section */}
+      {/* Sección de Encabezado */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-3">
           <Package className="w-6 h-6 text-brand" />
           <h2 className="text-2xl font-bold text-white dark:text-gray-900">
-            Similar Cars
+            Autos Similares
           </h2>
           <span className="text-gray-400 dark:text-gray-600">
             ({sortedCars.length})
           </span>
         </div>
 
-        {/* Filter Buttons */}
+        {/* Botones de Filtro */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0">
-          <FilterButton value="price" icon={DollarSign} label="Price" />
-          <FilterButton value="year" icon={Calendar} label="Year" />
-          <FilterButton value="mileage" icon={Gauge} label="Mileage" />
+          <FilterButton value="price" icon={DollarSign} label="Precio" />
+          <FilterButton value="year" icon={Calendar} label="Año" />
+          <FilterButton value="mileage" icon={Gauge} label="Kilometraje" />
         </div>
       </div>
 
-      {/* Cars Grid with Navigation */}
+      {/* Cuadrícula de Autos con Navegación */}
       <div className="relative group">
-        {/* Navigation Buttons */}
+        {/* Botones de Navegación */}
         {canScrollLeft && (
           <button
             onClick={scrollLeft}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 bg-backgroundsecond dark:bg-white/50 text-white dark:text-gray-900 p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-brand"
-            aria-label="Previous cars"
+            aria-label="Autos anteriores"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -139,17 +139,17 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
           <button
             onClick={scrollRight}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 bg-backgroundsecond dark:bg-white/50 text-white dark:text-gray-900 p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-brand"
-            aria-label="Next cars"
+            aria-label="Autos siguientes"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
         )}
 
-        {/* Cards Container */}
+        {/* Contenedor de Tarjetas */}
         <div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300"
           role="region"
-          aria-label="Similar cars gallery"
+          aria-label="Galería de autos similares"
         >
           {visibleCars.map(similarCar => (
             <div 
@@ -165,7 +165,7 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
           ))}
         </div>
 
-        {/* Progress Indicators */}
+        {/* Indicadores de Progreso */}
         {sortedCars.length > cardsToShow && (
           <div className="flex justify-center gap-2 mt-6">
             {Array.from({ length: Math.ceil(sortedCars.length / cardsToShow) }).map((_, idx) => (
@@ -177,17 +177,17 @@ const SimilarCars: React.FC<SimilarCarsProps> = ({ similarCars: initialSimilarCa
                     ? 'bg-brand w-6'
                     : 'bg-gray-600 dark:bg-gray-400'
                 }`}
-                aria-label={`Go to page ${idx + 1}`}
+                aria-label={`Ir a página ${idx + 1}`}
               />
             ))}
           </div>
         )}
 
-        {/* Empty State */}
+        {/* Estado Vacío */}
         {visibleCars.length === 0 && (
           <div className="text-center py-12 bg-backgroundsecond dark:bg-gray-100 rounded-xl">
             <Package className="w-12 h-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
-            <p className="text-gray-300 dark:text-gray-700">No similar cars found.</p>
+            <p className="text-gray-300 dark:text-gray-700">No se encontraron autos similares.</p>
           </div>
         )}
       </div>

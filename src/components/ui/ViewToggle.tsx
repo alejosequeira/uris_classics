@@ -14,7 +14,7 @@ const ViewToggle: React.FC<ViewToggleProps> = ({ view, onViewChange }) => {
           view === 'grid' ? 'bg-blue-500 text-white' : 'bg-gray-200'
         }`}
       >
-        Grid
+        Cuadrícula
       </button>
       <button
         onClick={() => onViewChange('list')}
@@ -22,7 +22,7 @@ const ViewToggle: React.FC<ViewToggleProps> = ({ view, onViewChange }) => {
           view === 'list' ? 'bg-blue-500 text-white' : 'bg-gray-200'
         }`}
       >
-        List
+        Lista
       </button>
     </div>
   );

@@ -38,38 +38,38 @@ export default function CarDetails({ params }: { params: { id: string } }) {
   return (
     <div className="min-h-screen dark:bg-gray-100">
       <div className="container mx-auto px-4 py-8">
-        {/* Back Button */}
+        {/* Botón de Regreso */}
         <Link
           href="/cars"
           className="inline-flex items-center gap-2 text-white dark:text-gray-900 hover:text-brand transition-colors mb-6 group"
         >
           <ArrowLeft className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
-          Back to Cars
+          Volver a Autos
         </Link>
 
-        {/* Main Content */}
+        {/* Contenido Principal */}
         <div className="bg-backgroundtertiary dark:bg-white rounded-xl overflow-hidden shadow-2xl">
           <div className="relative">
-            {/* Price Badge */}
+            {/* Etiqueta de Precio */}
             <div className="absolute top-4 right-4 z-10">
               <div className="bg-brand text-white dark:text-gray-900 px-6 py-3 rounded-full font-bold text-2xl shadow-lg backdrop-blur-sm">
                 ${car.price.toLocaleString()}
               </div>
             </div>
 
-            {/* Gallery Section */}
+            {/* Sección de Galería */}
             <div className="relative">
               <ImageGallery
                 images={car.images}
                 mainImage={car.imageUrl}
               />
               <div className="absolute bottom-4 left-4 flex gap-2">
-                {/* Year Badge */}
+                {/* Etiqueta de Año */}
                 <div className="flex items-center gap-2 bg-black/50 dark:bg-white/50 backdrop-blur-sm text-white dark:text-gray-900 px-4 py-2 rounded-full">
                   <Calendar className="w-4 h-4" />
                   <span className="font-semibold">{car.year}</span>
                 </div>
-                {/* Location Badge */}
+                {/* Etiqueta de Ubicación */}
                 <div className="flex items-center gap-2 bg-black/50 dark:bg-white/50 backdrop-blur-sm text-white dark:text-gray-900 px-4 py-2 rounded-full">
                   <MapPin className="w-4 h-4" />
                   <span className="font-semibold">{car.location}</span>
@@ -79,7 +79,7 @@ export default function CarDetails({ params }: { params: { id: string } }) {
           </div>
 
           <div className="p-8">
-            {/* Header Section */}
+            {/* Sección de Encabezado */}
             <div className="mb-8">
               <h1 className="text-4xl font-bold text-white dark:text-gray-900 mb-4">
                 {car.make} {car.model}
@@ -87,24 +87,24 @@ export default function CarDetails({ params }: { params: { id: string } }) {
               <div className="flex items-center gap-4">
                 <StarRating rating={car.averageRating} />
                 <span className="text-gray-400 dark:text-gray-600">
-                  ({car.reviews.length} reviews)
+                  ({car.reviews.length} reseñas)
                 </span>
               </div>
             </div>
 
-            {/* Quick Specs Grid */}
+            {/* Cuadrícula de Especificaciones Rápidas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="flex items-center gap-3 text-gray-300 dark:text-gray-700">
                 <Settings className="w-6 h-6 text-brand" />
                 <div>
-                  <p className="text-sm">Engine</p>
+                  <p className="text-sm">Motor</p>
                   <p className="font-semibold">{car.specifications.engine}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 text-gray-300 dark:text-gray-700">
                 <Gauge className="w-6 h-6 text-brand" />
                 <div>
-                  <p className="text-sm">Mileage</p>
+                  <p className="text-sm">Kilometraje</p>
                   <p className="font-semibold">{car.specifications.mileage.toLocaleString()} mi</p>
                 </div>
               </div>
@@ -117,21 +117,21 @@ export default function CarDetails({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            {/* Description */}
+            {/* Descripción */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white dark:text-gray-900 mb-4">About this {car.make}</h2>
+              <h2 className="text-2xl font-bold text-white dark:text-gray-900 mb-4">Acerca de este {car.make}</h2>
               <p className="text-gray-300 dark:text-gray-700 leading-relaxed">
                 {car.description}
               </p>
             </div>
 
-            {/* Specifications and Features Grid */}
+            {/* Cuadrícula de Especificaciones y Características */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* Specifications Card */}
+              {/* Tarjeta de Especificaciones */}
               <div className="bg-backgroundsecond dark:bg-gray-100 rounded-xl p-6 backdrop-blur-sm">
                 <h2 className="text-xl font-bold text-white dark:text-gray-900 mb-4 flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-brand" />
-                  Specifications
+                  Especificaciones
                 </h2>
                 <ul className="space-y-3">
                   {Object.entries(car.specifications).map(([key, value], index) => (
@@ -147,11 +147,11 @@ export default function CarDetails({ params }: { params: { id: string } }) {
                 </ul>
               </div>
 
-              {/* Features Card */}
+              {/* Tarjeta de Características */}
               <div className="bg-backgroundsecond dark:bg-gray-100 rounded-xl p-6 backdrop-blur-sm">
                 <h2 className="text-xl font-bold text-white dark:text-gray-900 mb-4 flex items-center gap-2">
                   <CarFront className="w-5 h-5 text-brand" />
-                  Features
+                  Características
                 </h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {car.features.map((feature, index) => (
@@ -164,12 +164,12 @@ export default function CarDetails({ params }: { params: { id: string } }) {
               </div>
             </div>
 
-            {/* Vehicle History Section */}
+            {/* Sección de Historial del Vehículo */}
             {car.history && (
               <div className="mb-8 bg-backgroundsecond dark:bg-gray-100 rounded-xl p-6 backdrop-blur-sm">
                 <h2 className="text-xl font-bold text-white dark:text-gray-900 mb-4 flex items-center gap-2">
                   <History className="w-5 h-5 text-brand" />
-                  Vehicle History
+                  Historial del Vehículo
                 </h2>
                 <p className="text-gray-300 dark:text-gray-700 leading-relaxed">
                   {car.history}
@@ -177,28 +177,28 @@ export default function CarDetails({ params }: { params: { id: string } }) {
               </div>
             )}
 
-            {/* Action Buttons */}
+            {/* Botones de Acción */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
                 className="flex-1 bg-brand hover:bg-brand/90 text-white dark:text-gray-900 font-bold py-4 px-6 rounded-lg transition-all duration-200 transform hover:translate-y-[-2px] flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
-                Contact Seller
+                Contactar Vendedor
               </Link>
               <TestDriveButton />
             </div>
           </div>
         </div>
 
-        {/* Reviews Section */}
+        {/* Sección de Reseñas */}
         <div className="mt-12 bg-backgroundtertiary dark:bg-white rounded-xl p-8">
           <Reviews reviews={car.reviews} />
         </div>
 
-        {/* Similar Cars Section */}
+        {/* Sección de Autos Similares */}
         <div className="mt-12 bg-backgroundtertiary dark:bg-white rounded-xl p-8">
-          <h2 className="text-2xl font-bold text-white dark:text-gray-900 mb-6">Similar Cars</h2>
+          <h2 className="text-2xl font-bold text-white dark:text-gray-900 mb-6">Autos Similares</h2>
           <SimilarCars similarCars={similarCars} />
         </div>
       </div>

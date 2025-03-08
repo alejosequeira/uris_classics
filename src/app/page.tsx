@@ -40,7 +40,7 @@ export default function Home() {
     {
       id: 1,
 
-      image: "/images/forsale/first-mustang/img5.jpg",
+      image: "/images/forsale/first-mustang/img1.jpg",
       year: "1965",
       name: "Ford Mustang Restomod",
       price: "$110,000"
@@ -48,7 +48,7 @@ export default function Home() {
     },
     {
       id: 2,
-      image: "/images/forsale/second-mustang/file9.jpg",
+      image: "/images/forsale/second-mustang/file4.jpg",
       year: "1965",
       name: "Ford Mustang",
       price: "$98,000"
@@ -61,17 +61,16 @@ export default function Home() {
       price: "$95,000"
     }
   ];
-
   return (
     <div className="min-h-screen dark:bg-gray-100">
 
-      {/* Hero Section */}
+      {/* Sección Hero */}
       <div className="relative overflow-hidden h-screen flex items-center">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
         <div className="absolute inset-0">
           <Image
             src="/images/forsale/first-mustang/img1.jpg"
-            alt="Classic Cars"
+            alt="Autos Clásicos"
             width={0}
             height={0}
             sizes="100vw"
@@ -82,8 +81,8 @@ export default function Home() {
         <div className="relative z-20 container mx-auto px-4 py-24 flex flex-col justify-between h-full">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white animate-fadeIn">
-              Find Your Dream
-              <span className="text-brand block mt-2">Classic Car</span>
+              Encuentra Tu Auto
+              <span className="text-brand block mt-2">Clásico Soñado</span>
             </h1>
             <div className="mt-10">
             <div className="mt-10 relative">
@@ -94,7 +93,7 @@ export default function Home() {
              hover:shadow-[0_0_20px_var(--brand-light)] 
              hover:scale-105 transition-all duration-300"
 >
-  VIEW INVENTORY
+  VER INVENTARIO
   <svg className="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
   </svg>
@@ -104,13 +103,13 @@ export default function Home() {
           </div>
 
           <p className="text-justify text-xl text-gray-300 animate-slideUp delay-200">
-            Discover the finest collection of classic and muscle cars.
-            Each vehicle tells a unique story of automotive history.
+            Descubre la mejor colección de autos clásicos y muscle cars.
+            Cada vehículo cuenta una historia única de la tradición automotriz.
           </p>
         </div>
       </div>
 
-      {/* Categories Section */}
+      {/* Sección de Categorías */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {categories.map((category, index) => (
@@ -123,7 +122,7 @@ export default function Home() {
                 {category}
               </h3>
               <div className="flex items-center text-gray-400 dark:text-gray-600 group-hover:text-brand">
-                Explore
+                Explorar
                 <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" />
               </div>
             </Link>
@@ -131,7 +130,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features Section */}
+      {/* Sección de Características */}
       <div className="bg-backgroundtertiary/40 dark:bg-white/50 py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
@@ -158,17 +157,17 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Latest Additions */}
+      {/* Últimas Adiciones */}
       <div className="container mx-auto px-4 py-16">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold text-white dark:text-gray-900">
-            Latest Additions
+            Últimas Adiciones
           </h2>
           <Link
             href="/cars"
           >
             <button className="text-brand hover:text-brand/80 transition-colors flex items-center gap-2">
-              View All
+              Ver Todos
               <ArrowRight className="w-4 h-4" />
             </button>
           </Link>
@@ -209,14 +208,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* Sección CTA */}
       <div className="container mx-auto px-4 py-16">
         <div className="bg-backgroundtertiary dark:bg-white/50 rounded-xl p-8 text-center backdrop-blur-sm">
           <h2 className="text-3xl font-bold text-white dark:text-gray-900 mb-4">
-            Ready to Find Your Classic?
+            ¿Listo para Encontrar Tu Clásico?
           </h2>
           <p className="text-gray-400 dark:text-gray-600 mb-6 max-w-2xl mx-auto">
-            Join thousands of classic car enthusiasts who have found their dream vehicles through our marketplace.
+            Únete a miles de entusiastas de autos clásicos que han encontrado sus vehículos soñados a través de nuestro mercado.
           </p>
           <div className="flex justify-center gap-4">
             <Link
@@ -224,14 +223,14 @@ export default function Home() {
               className="bg-brand text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-brand/90 transition-colors flex items-center gap-2"
             >
               <CarFront className="w-5 h-5" />
-              Browse Cars
+              Explorar Autos
             </Link>
             <Link
               href="/contact"
               className="bg-gray-700 dark:bg-gray-200 text-white dark:text-gray-900 px-8 py-3 rounded-lg hover:bg-gray-600 dark:hover:bg-gray-300 transition-colors flex items-center gap-2"
             >
               <Users className="w-5 h-5" />
-              Contact Us
+              Contáctanos
             </Link>
           </div>
         </div>

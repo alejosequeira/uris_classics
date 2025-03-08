@@ -25,9 +25,9 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit} className="mt-6 bg-gray-100 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4">Add Your Review</h3>
+            <h3 className="text-xl font-semibold mb-4">Agrega Tu Reseña</h3>
             <div className="mb-4">
-                <label className="block mb-2">Your Rating</label>
+                <label className="block mb-2">Tu Calificación</label>
                 <div className="flex items-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -42,7 +42,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                 </div>
             </div>
             <div className="mb-4">
-                <label htmlFor="name" className="block mb-2">Your Name</label>
+                <label htmlFor="name" className="block mb-2">Tu Nombre</label>
                 <input
                     type="text"
                     id="name"
@@ -54,7 +54,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
             </div>
 
             <div className="mb-4">
-                <label htmlFor="comment" className="block mb-2">Your Comment</label>
+                <label htmlFor="comment" className="block mb-2">Tu Comentario</label>
                 <textarea
                     id="comment"
                     value={comment}
@@ -65,7 +65,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit }) => {
                 ></textarea>
             </div>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Submit Review
+                Enviar Reseña
             </button>
         </form>
     );

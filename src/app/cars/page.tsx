@@ -208,7 +208,7 @@ export default function CarsPage() {
 
       <div className="flex justify-between items-center mb-6">
         <p className="text-lg text-muted-foreground">
-          Showing {filteredCars.data.length} of {filteredCars.total} cars
+          Mostrando {filteredCars.data.length} de {filteredCars.total} autos
         </p>
         <ViewToggle view={view} onViewChange={setView} />
       </div>
@@ -243,9 +243,9 @@ export default function CarsPage() {
         </>
       ) : (
         <div className="text-center py-12">
-          <p className="text-2xl text-foreground mb-2">No cars found</p>
+          <p className="text-2xl text-foreground mb-2">No se encontraron autos</p>
           <p className="text-muted-foreground">
-            Try adjusting your search or filter criteria
+            Intenta ajustar tu búsqueda o criterios de filtro
           </p>
         </div>
       )}

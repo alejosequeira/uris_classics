@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: 'Classic Cars Marketplace',
     description: 'Find and buy your dream classic or muscle car',
     images: ['/twitter-image.jpg'], // Crear y añadir esta imagen en la carpeta public
-    creator: '@yourhandle', // Si tienes una cuenta de Twitter
+    creator: '@aleseq__', // Si tienes una cuenta de Twitter
   },
   
   // Configuración adicional de iconos

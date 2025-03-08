@@ -37,7 +37,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
         >
           <Image
             src={allImages[currentImageIndex]}
-            alt="Car view"
+            alt="Vista del auto"
             layout="fill"
             objectFit="cover"
             className="transition-transform duration-500 group-hover:scale-105"
@@ -70,7 +70,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
 
             {/* Indicador de imagen y texto */}
             <div className="absolute bottom-0 inset-x-0 p-4 flex justify-between items-center">
-              <span className="text-white text-sm font-medium">Click to expand</span>
+              <span className="text-white text-sm font-medium">Clic para ampliar</span>
               <span className="text-white text-sm bg-black/30 px-3 py-1 rounded-full">
                 {currentImageIndex + 1} / {allImages.length}
               </span>
@@ -91,7 +91,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
             >
               <Image
                 src={img}
-                alt={`Car view ${index + 1}`}
+                alt={`Vista del auto ${index + 1}`}
                 layout="fill"
                 objectFit="cover"
                 className="transition-transform duration-300 hover:scale-110"
@@ -107,7 +107,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
               onClick={() => setShowAll(!showAll)}
               className="w-full py-2 px-4 bg-backgroundsecond hover:bg-background text-white rounded-lg transition-colors duration-300 text-sm font-medium"
             >
-              {showAll ? 'Show Less' : `View ${remainingImages.length} More Photos`}
+              {showAll ? 'Mostrar Menos' : `Ver ${remainingImages.length} Fotos Más`}
             </button>
 
             {showAll && (
@@ -123,7 +123,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, mainImage }) => {
                   >
                     <Image
                       src={img}
-                      alt={`Car view ${index + 5}`}
+                      alt={`Vista del auto ${index + 5}`}
                       layout="fill"
                       objectFit="cover"
                       className="transition-transform duration-300 hover:scale-110"

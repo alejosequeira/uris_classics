@@ -90,7 +90,7 @@ const DesktopNav = memo(() => (
         href="/cars"
         className="px-6 py-2 rounded-full bg-[var(--brand)] text-[var(--foreground)] font-medium hover:shadow-[0_0_15px_var(--brand-light)] hover:scale-105 transition-all duration-300"
       >
-        INVENTORY
+        INVENTARIO
       </NavLink>
     </div>
   </nav>
@@ -103,8 +103,8 @@ interface MobileMenuProps {
 }
 
 const menuItems = [
-  { name: "ABOUT", href: "/about" },
-  { name: "CONTACT", href: "/contact" }
+  { name: "SOBRE NOSOTROS", href: "/about" },
+  { name: "CONTACTO", href: "/contact" }
 ];
 
 const MenuItem = memo(({ 
@@ -225,7 +225,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                            hover:shadow-red-500/30 hover:scale-[1.02]
                            active:scale-[0.98] transition-all duration-300"
                 >
-                  INVENTORY
+                  INVENTARIO
                 </Link>
               </motion.div>
             </nav>
