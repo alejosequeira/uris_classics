@@ -259,7 +259,7 @@ const mockCars: Car[] = [
             '/images/forsale/corvette/corvette14.jpg',
             '/images/forsale/corvette/corvette15.jpg',
         ],
-        description: 'Present today is a true icon, and it takes shape with this lovely 1970 Chevrolet Corvette Convertible. This muscular classic from the ʼ70s guarantees thunderous performance and the best of the ʼ70s muscle car design to ensure you stand out from the crowd.',
+        description: 'Presentamos un verdadero icono americano, y toma forma con este hermoso Chevrolet Corvette Convertible de 1970. Este clásico de los años 70 garantiza un rendimiento increible y lo mejor del diseño de los muscle car de los años 70 para que destaques entre la multitud.',
         specifications: {
             engine: '454ci V8',
             transmission: '4-speed Manual',
@@ -270,12 +270,9 @@ const mockCars: Car[] = [
             vin: "194670S408010",  
         },
         features: [
-            'Convertible top',
-            'Power steering',
-            'Power brakes',
-            'AM/FM radio',
-            'Chrome wheels',
-            'T-top option'
+            'Escape doble salida con colectores de hierro fundido',
+            'Frenos a discos en las 4 ruedas',
+            'Interior y Pintura original',            
         ],
         history: 'Numbers matching drivetrain with full restoration completed in 2018.',
         location: 'Miami, FL',

@@ -104,7 +104,7 @@ export default function Home() {
 
           <p className="text-justify text-xl text-gray-300 animate-slideUp delay-200">
             Descubre la mejor colección de autos clásicos y muscle cars.
-            Cada vehículo cuenta una historia única de la tradición automotriz.
+            Cada vehículo cuenta una historia única de la industria automotriz.
           </p>
         </div>
       </div>
