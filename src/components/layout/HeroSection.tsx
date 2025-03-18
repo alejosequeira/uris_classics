@@ -35,12 +35,23 @@ const DarkModeHero = () => (
           [text-shadow:_2px_2px_4px_rgba(0,0,0,0.5)]
           animate-fadeSlideUp
         `}
-        style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+        style={{ fontSize: "clamp(2rem, 6vw, 4rem)" }}
         >
-          ELEGANCIA ATEMPORAL
+          {/* Nos dedicamos a estacionar  */}
+          NOS DEDICAMOS A ESTACIONAR
         </h1>
-
-        <p className={`
+        <h1 className={`
+          ${playfair.className} 
+          text-white font-bold tracking-wider 
+          [text-shadow:_2px_2px_4px_rgba(0,0,0,0.5)]
+          animate-fadeSlideUp
+        `}
+        style={{ fontSize: "clamp(1.5rem, 6vw, 4rem)" }}
+        >
+          {/* el auto de tus sueños en tu garage */}
+          EL AUTO DE TUS SUEÑOS EN TU GARAGE!
+        </h1>
+        {/* <p className={`
           ${playfair.className} 
           font-light text-white tracking-wide leading-relaxed 
           [text-shadow:_1px_1px_2px_rgba(0,0,0,0.3)]
@@ -49,7 +60,7 @@ const DarkModeHero = () => (
         style={{ fontSize: "clamp(1.125rem, 3vw, 1.875rem)" }}
         >
           ¡Nos dedicamos a estacionar el auto de tus sueños en tu garage!
-        </p>
+        </p> */}
       </div>
     </div>
   </>
@@ -79,7 +90,7 @@ const LightModeHero = () => (
         <div className="relative text-center space-y-12 md:space-y-10 px-4">
           <motion.div {...FADE_UP_ANIMATION}>
             <RusticText
-              text="LA INNOVACIÓN ENCUENTRA EL ESTILO"
+              text="INNOVATION MEETS STYLE"
               className="font-bold text-[var(--brand)] tracking-wide drop-shadow-lg"
              
             />
