@@ -90,7 +90,7 @@ const LightModeHero = () => (
         <div className="relative text-center space-y-12 md:space-y-10 px-4">
           <motion.div {...FADE_UP_ANIMATION}>
             <RusticText
-              text="INNOVATION MEETS STYLE"
+              text="NOS DEDICAMOS A ESTACIONAR EL AUTO DE TUS SUEÑOS EN TU GARAGE!"
               className="font-bold text-[var(--brand)] tracking-wide drop-shadow-lg"
              
             />

@@ -13,7 +13,7 @@ interface RusticTextProps {
 const RusticText: React.FC<RusticTextProps> = ({ 
   text, 
   className,
-  textSize = "clamp(2.5rem, 6vw, 6rem)" // valor por defecto
+  textSize = "clamp(1.5rem, 6vw, 4rem)" // valor por defecto
 }) => {
   // Memoizamos los estilos que no cambian
   const staticStyles = useMemo(() => ({

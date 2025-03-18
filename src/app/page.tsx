@@ -82,7 +82,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white animate-fadeIn">
               Encuentra Tu Auto
-              <span className="text-brand block mt-2">Clásico Soñado</span>
+              <span className="text-brand block mt-2">Clásico </span>
             </h1>
             <div className="mt-10">
             <div className="mt-10 relative">
