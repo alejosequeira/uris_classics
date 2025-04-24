@@ -136,7 +136,7 @@ const mockCars: Car[] = [
         make: 'Ford',
         model: 'Mustang Restomod',
         year: 1965,
-        price: 110000,
+        price: 99500,
         imageUrl: '/images/forsale/first-mustang/img1.jpg',
         images: [
             '/images/forsale/first-mustang/img2.jpg',
